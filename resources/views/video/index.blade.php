@@ -46,7 +46,8 @@
                         <div class="col-lg-12">
                             <h3>Author video list</h3>
                             @foreach($list as $item)
-                                {{$item->name}}<br>
+                                <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a>
+                                <br>
                             @endforeach
                         </div>
 

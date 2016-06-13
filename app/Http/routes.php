@@ -18,10 +18,12 @@ Route::get('/', ['as' => 'home_page', 'uses' => 'HomeController@index']);
 
 Route::get('/courses', ['as' => 'video_categories', 'uses' => 'VideoController@index']);
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
-Route::get('/video/{key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
 
 //authorized user
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/video/{key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
+    Route::post('/video/{key}', ['as' => 'order_store', 'uses' => 'OrderController@store']);
 
     Route::get('/profile', ['as' => 'profile_show', 'uses' => 'UserController@show']);
     Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);

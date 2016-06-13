@@ -33,12 +33,45 @@
                                     <label>level: </label><span>{{$video->level}}</span>
                                     <label>author: </label><span>{{$video->author->user->name}}</span>
                                     {{--<a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>--}}
-                                        <label>sss{{$status}}</label>
                                     @if($status)
                                         show video
                                     @else
-                                        <a class="btn btn-primary">buy video</a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Modal Header</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <br>
+                                                        <label>name</label>{{$video->name}}<br>
+                                                        <label>prijs</label>{{$video->prijs}}<br>
+                                                        <label>level</label>{{$video->level}}<br>
+                                                        <label>author</label>{{$video->author->user->name}}<br>
+                                                        <label>categorie</label>{{$video->category->name}}<br>
+
+                                                       video ke {{$video->video_key}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        {!! Form::open(array('route' => array('order_store', $video->video_key) )) !!}
+                                                            {{ Form::hidden('video_key', $video->video_key) }}
+                                                            {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        {!! Form::close() !!}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">buy video</button>
+
                                     @endif
+
                                 </div>
                             </div>
                         </div>

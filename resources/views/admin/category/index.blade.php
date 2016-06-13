@@ -27,7 +27,7 @@
                                 </ul>
                             </ul>
                         @endforeach
-
+                        <a class="btn btn-primary" href="{{URL::route('admin_category_create')}}">new category</a>
                     </div>
                 </div>
             </div>

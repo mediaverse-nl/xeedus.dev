@@ -25,6 +25,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/video/{key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
     Route::post('/video/{key}', ['as' => 'order_store', 'uses' => 'OrderController@store']);
 
+    Route::get('/credits', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@index']);
+    Route::post('/credits', ['as' => 'credits_update', 'uses' => 'Auth\CreditController@update']);
+
+    Route::get('/profile/courses', ['as' => 'profile_courses_index', 'uses' => 'Auth\VideoController@index']);
+    
     Route::get('/profile', ['as' => 'profile_show', 'uses' => 'UserController@show']);
     Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);
     Route::post('/profile', ['as' => 'profile_update', 'uses' => 'UserController@update']);
@@ -45,9 +50,6 @@ Route::group(['middleware' => ['auth', 'author']], function () {
 
     //author panel
     Route::get('partner', ['as' => '', 'uses' => 'Controller@index']);
-    Route::get('asd', ['as' => '', function(){
-        return 'sadasd';
-    }]);
 
     Route::group(['prefix' => 'partner'], function () {
         //author panel video management
@@ -78,13 +80,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin', ['as' => 'admin_panel', 'uses' => 'AdminController@index']);
     Route::get('admin/profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
     Route::get('admin/author', ['as' => 'admin_authors_all', 'uses' => 'AuthorController@index']);
-
-
-
+    
     Route::get('admin/categories', ['as' => 'admin_category_all', 'uses' => 'CategoryController@index']);
-
-
-
+    Route::get('admin/categories/create', ['as' => 'admin_category_create', 'uses' => 'Admin\CategoryController@create']);
+    Route::post('admin/categories', ['as' => 'admin_category_store', 'uses' => 'Admin\CategoryController@store']);
+    
 
 });
 

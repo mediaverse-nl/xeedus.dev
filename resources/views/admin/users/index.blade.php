@@ -38,6 +38,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->author->id }}</td>
                                         <td><a href="" class="btn btn-danger">{{isset($user->status) ? $user->status : 'block'}}</a></td>
                                         <td><a href="" class="btn btn-danger">{{isset($user->status) ? $user->status : 'block'}}</a></td>
                                     </tr>

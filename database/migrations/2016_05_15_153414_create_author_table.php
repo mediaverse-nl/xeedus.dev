@@ -18,6 +18,7 @@ class CreateAuthorTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('biography');
             $table->string('image');
+            $table->integer('credit_bank');
             $table->string('bank_credentials');
             $table->string('bank_number', 18);
             $table->string('status');

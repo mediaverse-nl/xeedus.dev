@@ -33,6 +33,28 @@ class CreditController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,7 +76,7 @@ class CreditController extends Controller
                 ->withInput();
         } else {
 
-            $this->user->credits = $this->user->credits + $request->amount;
+            $this->user->credits = $this->user->credits + $request->credits;
             $this->user->save();
 
             \Session::flash('succes_message','successfully.');

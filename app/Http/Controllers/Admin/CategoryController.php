@@ -13,6 +13,14 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+
+    protected $category;
+
+    public function __construct()
+    {
+        $this->category = new Category;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,11 +68,9 @@ class CategoryController extends Controller
                 ->withInput();
         } else {
 
-            $category = new Category;
-
-            $category->name = $request->name;
-            $category->cate_id = $request->cate_id;
-            $category->save();
+            $this->category->name = $request->name;
+            $this->category->cate_id = $request->cate_id;
+            $this->category->save();
 
             return redirect()->route('admin_category_all');
         }
@@ -73,25 +79,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($category)
     {
-        //
+        $cate = Category::where('name', str_replace('-', ' ', $category) )->first();
+
+        return view('admin.category.edit')->with('cate', $cate);
     }
 
     /**
@@ -101,19 +98,38 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $category = Category::find($request->id);
+
+        $messages = [
+            'regex' => 'Can only contain A-Z a-z'
+        ];
+
+        $rules = [
+            'name'     => 'required|max:25|regex:/^[A-Za-z \t]*$/i',
+            'id'     => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('admin_category_edit', $category->name)
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+
+
+
+            $category->name = $request->name;
+
+            $category->save();
+
+            \Session::flash('succes_message','successfully.');
+
+            return redirect()->route('admin_category_all');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

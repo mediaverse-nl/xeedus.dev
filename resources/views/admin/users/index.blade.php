@@ -17,6 +17,8 @@
 
                     <div class="panel-body">
 
+                        @include('layouts.menus.admin_menu')
+
                         <style>
                             table, th, td {
                                 border: 1px solid black;
@@ -38,7 +40,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->author->id }}</td>
+                                        {{--<td>{{ $user->author->id }}</td>--}}
                                         <td><a href="" class="btn btn-danger">{{isset($user->status) ? $user->status : 'block'}}</a></td>
                                         <td><a href="" class="btn btn-danger">{{isset($user->status) ? $user->status : 'block'}}</a></td>
                                     </tr>

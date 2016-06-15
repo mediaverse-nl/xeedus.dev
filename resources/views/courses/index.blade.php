@@ -30,7 +30,8 @@
                         <div class="col-lg-12">
                             <div class="col-lg-3">
                                 <h3>menu</h3>
-                                {{--{{timestamps()}}--}}
+                                <span>Author</span>
+
                             </div>
                             <div class="col-lg-9">
                                 @foreach($category->video as $video)

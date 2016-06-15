@@ -17,12 +17,14 @@
 
                     <div class="panel-body">
 
+                        @include('layouts.menus.admin_menu')
+
                         @foreach ($categories as $category)
                             <ul>
-                                <li>{{$category->name}} {{ $category->video->count()}}</li>
+                                <li>{{$category->name}} {{ $category->video->count()}} <a href="{{ URL::route('admin_category_edit', str_replace(' ', '-', $category->name)) }}"><span class="label label-default">edit</span></a></li>
                                 <ul>
                                     @foreach ($category->children as $child)
-                                        <li>{{ $category->id }} - {{ $child->name }} </li>
+                                        <li>{{ $category->id }} - {{ $child->name }} <a href="{{ URL::route('admin_category_edit', str_replace(' ', '-', $child->name)) }}"><span class="label label-default">edit</span></a></li>
                                     @endforeach
                                 </ul>
                             </ul>

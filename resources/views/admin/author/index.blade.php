@@ -17,6 +17,8 @@
 
                     <div class="panel-body">
 
+                        @include('layouts.menus.admin_menu')
+
                         <style>
                             table, th, td {
                                 border: 1px solid black;
@@ -37,7 +39,7 @@
                                     <th>postcode</th>
                                     <th>huisnummer</th>
                                 </tr>
-                                @foreach($users as $user)
+                                @foreach($authors as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->user->name }}</td>

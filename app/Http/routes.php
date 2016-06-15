@@ -77,14 +77,23 @@ Route::group(['middleware' => ['auth', 'author']], function () {
 //authorized admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
-    Route::get('admin', ['as' => 'admin_panel', 'uses' => 'AdminController@index']);
-    Route::get('admin/profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
-    Route::get('admin/author', ['as' => 'admin_authors_all', 'uses' => 'AuthorController@index']);
+    Route::group(['prefix' => 'admin'], function () {
+
+        Route::get('/', ['as' => 'admin_panel', 'uses' => 'AdminController@index']);
+        Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
+
+        Route::get('author', ['as' => 'admin_authors_all', 'uses' => 'Admin\AuthorController@index']);
+
+        Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
+
+        Route::get('categories', ['as' => 'admin_category_all', 'uses' => 'CategoryController@index']);
+        Route::get('categories/{category}/edit', ['as' => 'admin_category_edit', 'uses' => 'Admin\CategoryController@edit']);
+
+        Route::get('categories/create', ['as' => 'admin_category_create', 'uses' => 'Admin\CategoryController@create']);
+        Route::post('categories', ['as' => 'admin_category_store', 'uses' => 'Admin\CategoryController@store']);
+        Route::patch('categories', ['as' => 'admin_category_update', 'uses' => 'Admin\CategoryController@update']);
     
-    Route::get('admin/categories', ['as' => 'admin_category_all', 'uses' => 'CategoryController@index']);
-    Route::get('admin/categories/create', ['as' => 'admin_category_create', 'uses' => 'Admin\CategoryController@create']);
-    Route::post('admin/categories', ['as' => 'admin_category_store', 'uses' => 'Admin\CategoryController@store']);
-    
+    });
 
 });
 

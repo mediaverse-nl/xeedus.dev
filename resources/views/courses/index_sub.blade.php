@@ -5,7 +5,7 @@
 @endsection
 
 @section('description')
-    Here is you description. You can else echo content and use your foreach in here.
+
 @stop
 
 @section('content')
@@ -13,24 +13,20 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">sign up for are partner programm</div>
+                    <div class="panel-heading">Author profile panel</div>
 
                     <div class="panel-body">
 
                         @include('errors.message')
-
+                        {{--{{dd($videos->video)}}--}}
+                        <hr>
                         <div class="col-lg-12">
-                            <label>Author:</label> {{$author->name}}
-                        </div>
-
-                        <div class="col-lg-3">
-                            <h3>list of videos</h3>
-                            @foreach($videos as $video)
-                                <a href="{{URL::route('video_show', $video->video_key)}}">{{$video->name}}</a>
+                            @foreach($category->children as $child)
                                 <br>
+                                <a href="{{ URL::route('video_categories_sub', str_replace(' ', '-', $child->name)) }}">{{$child->name}}</a>
+
                             @endforeach
                         </div>
-
 
                     </div>
                 </div>

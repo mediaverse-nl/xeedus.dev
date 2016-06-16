@@ -51,6 +51,20 @@
         }
         ul.menu > li:hover > ul > li:first-child,
         ul.menu > li > ul:hover > li:first-child {margin-left: 0px}
+
+        .dropdown-menu-large{
+            width: 40px;
+        }
+
+        .dropdown-menu-large > li{
+            float: left !important;
+            height: 20px;
+        }
+
+        .sub-menu{
+          margin-left: 50px;
+        }
+
     </style>
 </head>
 <body id="app-layout">
@@ -80,11 +94,11 @@
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 
-                        <ul class="menu dropdown-menu dropdown-menu-large row">
+                        <ul class="menu dropdown-menu dropdown-menu-large row ">
                             @foreach($categories as $category)
                                 <li>
                                     <a href="{{ url('courses/'.str_replace(' ', '-', $category->name).'')  }}">{{ $category->name }}</a>
-                                    <ul >
+                                    <ul class="sub-menu">
                                         @foreach($category->children as $child)
                                             <li class="sub"><a href="{{ url('courses/'.str_replace(' ', '-', $child->name).'') }}">{{ $child->name }}</a></li>
                                         @endforeach()

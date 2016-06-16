@@ -60,6 +60,9 @@ class CategoryController extends Controller
     {
         $category = Category::where('name', str_replace('-', ' ', $name))->first();
 
+        if($category->cate_id == 0){
+            return view('courses.index_sub')->with('category', $category);
+        }
         return view('courses.index')->with('category', $category);
     }
 

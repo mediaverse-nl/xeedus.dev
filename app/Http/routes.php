@@ -19,6 +19,8 @@ Route::get('/', ['as' => 'home_page', 'uses' => 'HomeController@index']);
 Route::get('/courses', ['as' => 'video_categories', 'uses' => 'VideoController@index']);
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
 
+Route::get('/author/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
+
 //authorized user
 Route::group(['middleware' => 'auth'], function () {
 
@@ -83,8 +85,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
 
         Route::get('author', ['as' => 'admin_authors_all', 'uses' => 'Admin\AuthorController@index']);
+        Route::get('author/requests', ['as' => 'admin_authors_requests', 'uses' => 'Admin\AuthorController@index']);
 
         Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
+//        Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
 
         Route::get('categories', ['as' => 'admin_category_all', 'uses' => 'CategoryController@index']);
         Route::get('categories/{category}/edit', ['as' => 'admin_category_edit', 'uses' => 'Admin\CategoryController@edit']);

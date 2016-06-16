@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Video;
+use App\Author;
+
 use Auth;
 use Session;
 use Validator;
-use App\Author;
 
 use Illuminate\Http\Request;
 
@@ -21,8 +24,7 @@ class AuthorController extends Controller
     {
         $this->author = new Author;
         $this->authors = Author::all();
-        $this->this_author  = Author::where('user_id', Auth::user()->id)->first();
-
+        $this->this_author  = Auth::user();
     }
 
     /**
@@ -45,7 +47,11 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('author.create')->with('user', $this->this_author);
+        $check_exists = Author::where('user_id', $this->this_author->id)->exists();
+
+        return view('author.create')
+            ->with('user', $this->this_author)
+            ->with('check_exists', $check_exists);
     }
 
     /**
@@ -60,7 +66,6 @@ class AuthorController extends Controller
             'image.required' => 'Select a profile image',
             'image.mimes' => 'file type must be (JPEG, PNG, JNG or BMP) ',
             'bank_number.regex' => 'Iban is not formated right ( NL91 ABNA 0417 1643 00 )',
-
         ];
 
         $rules = [
@@ -119,9 +124,14 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        $videos = Video::where('author_id', $this->this_author->id)->get();
+        $author = User::where('name', str_replace(' ', '-', $name))->first();
+
+        return view('author.index')
+            ->with('author', $author)
+            ->with('videos', $videos);
     }
 
     /**

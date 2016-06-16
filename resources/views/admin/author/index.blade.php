@@ -19,6 +19,11 @@
 
                         @include('layouts.menus.admin_menu')
 
+                        <a class="btn btn-primary" href="{{ URL::route('admin_authors_requests') }}">requests</a>
+
+                        <br>
+                        <br>
+
                         <style>
                             table, th, td {
                                 border: 1px solid black;
@@ -48,7 +53,14 @@
                                         <td>{{ $user->user->achternaam }}</td>
                                         <td>{{ $user->user->postcode }}</td>
                                         <td>{{ $user->user->huisnummer }}</td>
-                                        <td><a href="" class="btn btn-danger"></a></td>
+                                        <td>{{ $user->status }}</td>
+                                        <td>
+                                            @if($user->status == 'verified')
+                                                <a href="" class="btn btn-danger">unverified</a>
+                                            @else
+                                                <a href="" class="btn btn-success">verified</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

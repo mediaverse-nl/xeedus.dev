@@ -19,10 +19,30 @@
 
                         @include('layouts.menus.admin_menu')
 
-                        @foreach ($videos as $video)
-                            <br>
-                            {{$video->name}}
-                        @endforeach
+                        <table class="table table-condensed" cellpadding="5" border="">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <th>author</th>
+                                    <th>units</th>
+                                    <th>totaal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($videos as $video)
+                                    <tr>
+                                        <td>{{$video->id}}</td>
+                                        <td>{{$video->name}}</td>
+                                        <td>{{$video->prijs}}</td>
+                                        <td>{{$video->author->user->name}}</td>
+                                        <td>{{$video->order->count()}}</td>
+                                        <td>{{$video->order->count() * $video->prijs}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
                     </div>
                 </div>

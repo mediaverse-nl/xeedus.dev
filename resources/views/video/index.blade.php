@@ -31,7 +31,7 @@
                                     <p>{{$video->beschrijving}}</p>
                                     <label>price: </label><span>{{$video->prijs}}</span>
                                     <label>level: </label><span>{{$video->level}}</span>
-                                    <label>author: </label><span>{{$video->author->user->name}}</span>
+                                    <label>author: </label><span><a href="{{URL::route('author_show', $video->author->user->name)}}">{{$video->author->user->name}}</a></span>
                                     {{--<a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>--}}
                                     @if($status)
                                         show video

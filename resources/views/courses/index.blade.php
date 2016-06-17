@@ -19,21 +19,21 @@
 
                         @include('errors.message')
 
-                        {{--{{dd($videos->video)}}--}}
-                        <hr>
-                        {{--{{dd($videos->video)}}--}}
 
-                        {{--{{dd($category)}}--}}
-
-                        {{--{{$category}}--}}
-                        <hr>
                         <div class="col-lg-12">
                             <div class="col-lg-3">
+
                                 <h3>menu</h3>
-                                <span>Author</span>
+                                <ul class="nav of nav-stacked">
+                                    <h4>Author</h4>
+                                    @foreach($authors as $author)
+                                        <li>- {{$author->name}}</li>
+                                    @endforeach
+                                </ul>
 
                             </div>
                             <div class="col-lg-9">
+                                <h1>{{$category->name}}</h1>
                                 @foreach($category->video as $video)
                                     <div class="col-lg-12" style="margin-bottom: 20px; border: 1px solid">
                                         <div class="col-lg-3" style="border: 1px solid; height: 150px;">

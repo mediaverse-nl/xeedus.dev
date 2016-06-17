@@ -13,18 +13,15 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Author profile panel</div>
+                    <div class="panel-heading">Sub categories</div>
 
                     <div class="panel-body">
 
-                        @include('errors.message')
-                        {{--{{dd($videos->video)}}--}}
-                        <hr>
                         <div class="col-lg-12">
+                            <h1>{{$category->name}}</h1>
                             @foreach($category->children as $child)
                                 <br>
                                 <a href="{{ URL::route('video_categories_sub', str_replace(' ', '-', $child->name)) }}">{{$child->name}}</a>
-
                             @endforeach
                         </div>
 

@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Author');
     }
 
+    public function creditorder()
+    {
+        return $this->hasMany('App\CreditOrder');
+    }
+
     public function koppeltabelchat()
     {
         return $this->hasMany('App\Koppeltabelchat');

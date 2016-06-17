@@ -19,48 +19,28 @@
 
                         @include('layouts.menus.admin_menu')
 
-                        <a class="btn btn-primary" href="{{ URL::route('admin_authors_requests') }}">requests</a>
+                        {{--<a class="btn btn-primary" href="{{ URL::route('admin_authors_requests') }}">requests</a>--}}
 
-                        <br>
-                        <br>
-
-                        <style>
-                            table, th, td {
-                                border: 1px solid black;
-                                padding: 10px;
-                            }
-                        </style>
-
-                        <a></a>
-
-                        <table>
-                            <tbody>
+                        <table class="table-condensed table-bordered table-bordered table-hover">
+                            <thead>
                                 <tr>
                                     <th>Nr</th>
                                     <th>username</th>
                                     <th>email</th>
-                                    <th>voornaam</th>
-                                    <th>achternaam</th>
-                                    <th>postcode</th>
-                                    <th>huisnummer</th>
+                                    <th>credits</th>
+                                    <th>status</th>
+                                    <th>verified</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 @foreach($authors as $user)
-                                    <tr>
+                                    <tr class="table-row"data-href="{{URL::route('admin_authors_show', $user->id)}}">
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->user->name }}</td>
                                         <td>{{ $user->user->email }}</td>
-                                        <td>{{ $user->user->voornaam }}</td>
-                                        <td>{{ $user->user->achternaam }}</td>
-                                        <td>{{ $user->user->postcode }}</td>
-                                        <td>{{ $user->user->huisnummer }}</td>
+                                        <td>{{ $user->credit_bank }}</td>
                                         <td>{{ $user->status }}</td>
-                                        <td>
-                                            @if($user->status == 'verified')
-                                                <a href="" class="btn btn-danger">unverified</a>
-                                            @else
-                                                <a href="" class="btn btn-success">verified</a>
-                                            @endif
-                                        </td>
+                                        <td>{{ $user->verified }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -75,5 +55,13 @@
 @endsection
 
 @section('javascript')
+
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $(".table-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
 
 @endsection

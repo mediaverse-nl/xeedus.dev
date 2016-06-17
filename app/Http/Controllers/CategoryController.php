@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 
+use DB;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -58,12 +60,28 @@ class CategoryController extends Controller
      */
     public function show($name)
     {
-        $category = Category::where('name', str_replace('-', ' ', $name))->first();
+        $name = str_replace('-', ' ', $name);
+
+        $authors = DB::table('users')
+            ->select('users.name')
+            ->join('author', 'author.user_id', '=', 'users.id')
+            ->join('videos', 'videos.author_id', '=', 'author.id')
+            ->join('categories as c1', 'c1.id', '=', 'videos.category_id')
+            ->join('categories as c2', 'c1.cate_id', '=', 'c2.cate_id')
+            ->where('c2.name', $name)
+            ->groupBy('users.name')
+            ->get();
+
+
+//        return $authors;
+        $category = Category::where('name', $name)->first();
 
         if($category->cate_id == 0){
-            return view('courses.index_sub')->with('category', $category);
+            return view('courses.index_sub')
+                ->with('category', $category);
         }
-        return view('courses.index')->with('category', $category);
+        return view('courses.index')->with('category', $category)
+            ->with('authors', $authors);
     }
 
     /**

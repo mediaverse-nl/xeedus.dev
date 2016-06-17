@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorTable extends Migration
+class CreateCreditorderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class CreateAuthorTable extends Migration
      */
     public function up()
     {
-        Schema::create('author', function (Blueprint $table) {
+        Schema::create('creditorder', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('biography');
-            $table->string('image');
-            $table->integer('credit_bank');
-            $table->string('bank_credentials');
-            $table->string('bank_number', 18);
+            $table->decimal('price', 19, 4);
+            $table->integer('credits');
             $table->string('status');
-            $table->string('verified');
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateAuthorTable extends Migration
      */
     public function down()
     {
-        Schema::drop('author');
+        Schema::drop('creditorder');
     }
 }

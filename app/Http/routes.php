@@ -13,12 +13,11 @@
 
 Route::auth();
 
+//home page
 Route::get('/', ['as' => 'home_page', 'uses' => 'HomeController@index']);
-
-
-Route::get('/courses', ['as' => 'video_categories', 'uses' => 'VideoController@index']);
+//main and sub categories
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
-
+//author profile
 Route::get('/author/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
 
 //authorized user
@@ -85,7 +84,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
 
         Route::get('author', ['as' => 'admin_authors_all', 'uses' => 'Admin\AuthorController@index']);
-        Route::get('author/requests', ['as' => 'admin_authors_requests', 'uses' => 'Admin\AuthorController@index']);
+        Route::get('author/{id}', ['as' => 'admin_authors_show', 'uses' => 'Admin\AuthorController@show']);
+        Route::patch('author', ['as' => 'admin_authors_update', 'uses' => 'Admin\AuthorController@update']);
+//        Route::get('author/requests', ['as' => 'admin_authors_requests', 'uses' => 'Admin\AuthorController@index']);
 
         Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
 //        Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);

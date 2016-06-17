@@ -19,18 +19,27 @@
 
                         @include('errors.message')
 
+
                         {!! Form::model(array('route' => 'credits_update')) !!}
 
                             <div class="form-group">
-                                {!! Form::label('amount', 'credits') !!}<br>
-                                <label>10 </label> {!! Form::radio('amount', 10) !!}<br>
-                                <label>20 </label> {!! Form::radio('amount', 20) !!}<br>
-                                <label>50 </label> {!! Form::radio('amount', 50) !!}<br>
-                                <label>100 </label> {!! Form::radio('amount', 100) !!}<br>
+                                {!! Form::label('amount', 'credits') !!}
+                                <br>
+
+                                @foreach(collect($currency) as $item)
+                                    {{$item->price}}
+                                @endforeach
+
+                                {!! Form::radio('amount', 10) !!}   <label></label>
+                                <br>
+                                {!! Form::radio('amount', 20) !!}   <label>20 </label>
+                                <br>
+                                {!! Form::radio('amount', 50) !!}   <label>50 </label>
+                                <br>
+                                {!! Form::radio('amount', 100) !!}  <label>100 credits for $ 10.99 </label> <br>
                             </div>
 
                             {!! Form::submit('buy credits', ['class' => 'btn btn-primary']) !!}
-
 
                         {!! Form::close() !!}
 

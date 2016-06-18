@@ -157,6 +157,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         'Collective\Html\HtmlServiceProvider',
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
+        Mollie\Laravel\MollieServiceProvider::class,
+
 
     ],
 
@@ -208,6 +212,9 @@ return [
         'Form'      => 'Collective\Html\FormFacade',
         'HTML'      => 'Collective\Html\HtmlFacade',
 
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
     ],
 
 ];

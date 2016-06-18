@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\CreditOrder;
 
 use Auth;
 use Validator;
+use Config;
 
 use Illuminate\Http\Request;
 
@@ -16,29 +18,22 @@ class CreditController extends Controller
 {
 
     protected $user;
-    protected $currency = array();
+    protected $order;
+    protected $status;
+
+    protected $currency = [
+        ['id' => '442-244-55', 'price' => 10.00, 'credits' => 100],
+        ['id' => '442-244-56', 'price' => 20.00, 'credits' => 200],
+        ['id' => '442-244-57', 'price' => 50.00, 'credits' => 500],
+        ['id' => '442-244-58', 'price' => 75.00, 'credits' => 750],
+        ['id' => '442-244-59', 'price' => 100.00, 'credits' => 1000],
+    ];
 
     public function __construct()
     {
+        $this->order = new CreditOrder;
         $this->user = User::find(Auth::user()->id);
-
-        $this->currency = [
-            '442-244-55' => [
-                'price' => '10,00', 'credits' => '100'
-            ],
-            '442-244-56' => [
-                'price' => '20,00', 'credits' => '200'
-            ],
-            '442-244-57' => [
-                'price' => '50,00', 'credits' => '500'
-            ],
-            '442-244-58' => [
-                'price' => '75,00', 'credits' => '750'
-            ],
-            '442-244-59' => [
-                'price' => '100,00', 'credits' => '1000'
-            ]
-        ];
+        $this->status = 'open';
     }
 
     /**
@@ -48,7 +43,7 @@ class CreditController extends Controller
      */
     public function index()
     {
-        return view('auth.credits.index')->with('currency', $this->currency);
+        return view('auth.credits.index');
     }
 
     /**
@@ -82,8 +77,21 @@ class CreditController extends Controller
      */
     public function update(Request $request)
     {
+
+        $this->user->credits = $this->user->credits + $request->order;
+        $this->user->save();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $rules = [
-            'amount' => 'required|integer',
+            'order' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -95,10 +103,17 @@ class CreditController extends Controller
                 ->withInput();
         } else {
 
-            $this->user->credits = $this->user->credits + $request->amount;
-            $this->user->save();
+            $item = collect($this->currency)
+                ->where('id', $request->order);
 
-            \Session::flash('succes_message', 'successfully.');
+            $this->order->user_id   = Auth::user()->id;
+            $this->order->credits   = $item->implode('credits');
+            $this->order->price     = $item->implode('price');
+            $this->order->status    = $this->status;
+
+            $this->order->save();
+
+            \Session::flash('succes_message', 'asd');
 
             return redirect()->route('credits_show');
         }

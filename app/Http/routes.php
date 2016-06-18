@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/credits', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@index']);
     Route::post('/credits', ['as' => 'credits_update', 'uses' => 'Auth\CreditController@update']);
+    Route::patch('/credits', ['as' => 'credits_store', 'uses' => 'Auth\CreditController@store']);
 
     Route::get('/profile/courses', ['as' => 'profile_courses_index', 'uses' => 'Auth\VideoController@index']);
     

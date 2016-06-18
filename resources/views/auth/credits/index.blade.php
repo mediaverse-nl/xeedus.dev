@@ -19,24 +19,16 @@
 
                         @include('errors.message')
 
-
-                        {!! Form::model(array('route' => 'credits_update')) !!}
-
+                        {!! Form::model(array('route' => 'credits_store')) !!}
+                        {!! method_field('patch') !!}
                             <div class="form-group">
-                                {!! Form::label('amount', 'credits') !!}
+                                {!! Form::label('order', 'credits') !!}
                                 <br>
-
-                                @foreach(collect($currency) as $item)
-                                    {{$item->price}}
-                                @endforeach
-
-                                {!! Form::radio('amount', 10) !!}   <label></label>
-                                <br>
-                                {!! Form::radio('amount', 20) !!}   <label>20 </label>
-                                <br>
-                                {!! Form::radio('amount', 50) !!}   <label>50 </label>
-                                <br>
-                                {!! Form::radio('amount', 100) !!}  <label>100 credits for $ 10.99 </label> <br>
+                                {!! Form::radio('order', '442-244-55') !!}  <label>100 credits for € 10.- </label> <br>
+                                {!! Form::radio('order', '442-244-56') !!}  <label>200 credits for € 20.- </label> <br>
+                                {!! Form::radio('order', '442-244-57') !!}  <label>500 credits for € 50.- </label> <br>
+                                {!! Form::radio('order', '442-244-58') !!}  <label>750 credits for € 75.- </label> <br>
+                                {!! Form::radio('order', '442-244-59') !!}  <label>1000 credits for € 100.- </label> <br>
                             </div>
 
                             {!! Form::submit('buy credits', ['class' => 'btn btn-primary']) !!}

@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
-        "blueimp/jquery-file-upload": "9.12.3"
+        "blueimp/jquery-file-upload": "9.12.3",
+        "mollie/laravel-mollie": "^1.2",
+        "laravel/socialite": "^2.0"
     }
     ,
     "require-dev": {

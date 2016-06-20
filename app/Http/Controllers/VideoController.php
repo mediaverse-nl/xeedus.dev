@@ -62,9 +62,13 @@ class VideoController extends Controller
 
         $videos = Video::where('author_id', $author_id)->get();
 
+        $orders = Order::where('user_id', $this->user->id)
+            ->get();
+
         return view('video.index')
             ->with('video', $this->video)
             ->with('list', $videos)
-            ->with('status', $order);
+            ->with('status', $order)
+            ->with('orders', $orders);
     }
 }

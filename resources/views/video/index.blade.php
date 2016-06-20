@@ -75,11 +75,26 @@
                                 </div>
                             </div>
                         </div>
-
+{{list($orders)}}
                         <div class="col-lg-12">
                             <h3>Author video list</h3>
                             @foreach($list as $item)
-                                <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a>
+                                @if($item->video_key == Request::segment(2))
+                                    <a style="color: greenyellow" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a>
+                                @else
+                                    @if($item->prijs == 0)
+                                        <a style="color: darkgreen;" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> free video
+                                    @else
+                                        @if (in_array($item->id, $orders))
+                                            <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> paid
+                                        @else
+                                            <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> buy
+                                        @endif
+                                    @endif
+
+                                @endif
+
+                                
                                 <br>
                             @endforeach
                         </div>

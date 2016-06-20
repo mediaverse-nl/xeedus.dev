@@ -31,6 +31,14 @@
                                     @endforeach
                                 </ul>
 
+                                <ul class="nav of nav-stacked">
+                                    <h4>Categories</h4>
+                                    @foreach($subCategories as $cate)
+                                        {{--@if()--}}
+                                        <li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-',$cate->name))}}">{{$cate->name}}</a></li>
+                                    @endforeach
+                                </ul>
+
                             </div>
                             <div class="col-lg-9">
                                 <h1>{{$category->name}}</h1>
@@ -41,7 +49,8 @@
                                             {{$video->thumbnails}}
                                         </div>
                                         <div class="col-lg-9">
-                                            <head>{{$video->name}}</head>
+                                            <label>titel: </label>
+                                            <head>{{$video->name}}</head><br>
                                             <label>description</label>
                                             <p>{{$video->beschrijving}}</p>
                                             <label>price: </label><span>{{$video->prijs}}</span>

@@ -71,16 +71,20 @@ class CategoryController extends Controller
             ->where('c2.name', $name)
             ->groupBy('users.name')
             ->get();
-
-
+        
 //        return $authors;
         $category = Category::where('name', $name)->first();
+
+        $subCategories = Category::where('cate_id', $category->cate_id)->get();
+
 
         if($category->cate_id == 0){
             return view('courses.index_sub')
                 ->with('category', $category);
         }
-        return view('courses.index')->with('category', $category)
+        return view('courses.index')
+            ->with('category', $category)
+            ->with('subCategories', $subCategories)
             ->with('authors', $authors);
     }
 

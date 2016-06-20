@@ -12,9 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $description = "Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het merendeel heeft te lijden gehad van wijzigingen in een of andere vorm, door ingevoegde humor of willekeurig gekozen woorden die nog niet half geloofwaardig ogen. Als u een passage uit Lorum Ipsum gaat gebruiken";
-
-        // $this->call(UsersTableSeeder::class);
         DB::table('users')->insert([
             ['name' => 'bert', 'voornaam' => 'bert', 'email' => 'bleh@gmail.com', 'password' => bcrypt('admin'), 'role' => 'admin', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
             ['name' => 'admin', 'voornaam' => 'deveron', 'email' => 'admin@mail.com', 'password' => bcrypt('admin'), 'role' => 'admin', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
@@ -40,15 +37,15 @@ class DatabaseSeeder extends Seeder
             ['cate_id' => '3', 'name' => 'sub 3 retro', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
         ]);
 
-        DB::table('videos')->insert([
-            ['name' => 'katten video', 'category_id' => 4, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'honden video', 'category_id' => 4, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'golf video', 'category_id' => 9, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'voetbal video', 'category_id' => 7, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'battlefield video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on',  'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'GTA video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'prijs' => rand(1, 40), 'status' => 'on', 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['name' => 'the sims video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'prijs' => rand(1, 40), 'status' => 'on', 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')]
-        ]);
+//        DB::table('videos')->insert([
+//            ['name' => 'katten video', 'category_id' => 4, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'honden video', 'category_id' => 4, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'golf video', 'category_id' => 9, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'voetbal video', 'category_id' => 7, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on', 'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'battlefield video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'status' => 'on',  'prijs' => rand(1, 40), 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'GTA video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'prijs' => rand(1, 40), 'status' => 'on', 'beschrijving' => $description, 'author_id' => 2, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+//            ['name' => 'the sims video', 'category_id' => 8, 'video_key' => str_random(10), 'level' => rand(1, 3), 'prijs' => rand(1, 40), 'status' => 'on', 'beschrijving' => $description, 'author_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')]
+//        ]);
 
         DB::table('order')->insert([
             ['user_id' => 1, 'video_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],

@@ -60,7 +60,9 @@ class VideoController extends Controller
             ->where('video_id', $this->video->id)
             ->exists();
 
-        $videos = Video::where('author_id', $author_id)->get();
+        $videos = Video::where('author_id', $author_id)
+            ->get();
+
 
         $orders = Order::where('user_id', $this->user->id)
             ->get();

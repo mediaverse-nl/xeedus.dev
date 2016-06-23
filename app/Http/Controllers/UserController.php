@@ -26,16 +26,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('admin.users.index')->with('users', $this->users);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id

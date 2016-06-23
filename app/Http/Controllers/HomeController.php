@@ -7,6 +7,7 @@ use App\Video;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,13 @@ class HomeController extends Controller
     {
         $video = Video::orderBy('created_at', 'desc')->get();
 
-        return view('home')->with('video', $video);
+        $best_video = DB::table('videos')
+            ->rightjoin('views', 'videos.id', '=', 'views.video_id')
+            ->selectRaw('views.*, count(views.video_id) as RoomsCount')
+            ->get();
+
+        return view('home')
+            ->with('video', $video)
+            ->with('best_video', $best_video);
     }
 }

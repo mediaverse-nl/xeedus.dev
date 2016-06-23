@@ -17,21 +17,22 @@
 
                     <div class="panel-body">
 
-                        @include('errors.message')
-
                         <div class="col-lg-12">
                             <div class="col-lg-12" style="margin-bottom: 20px; border: 1px solid">
-                                <div class="col-lg-3" style="border: 1px solid; height: 150px;">
-                                    <span>img</span>
-                                    {{$video->thumbnails}}
-                                </div>
+                                {{--<div class="col-lg-3" style="border: 1px solid; height: 150px;">--}}
+
+                                {{--</div>--}}
                                 <div class="col-lg-9">
-                                    <head>{{$video->name}}</head>
+                                    <div class="col-lg-12">
+                                        <img style="width: 100%; height: 400px;" class="img-responsive" src="/videos/thumbnails/{{$video->thumbnails}}">
+                                    </div>
+                                    <h1>{{$video->name}}</h1><br>
                                     <label>description</label>
                                     <p>{{$video->beschrijving}}</p>
-                                    <label>price: </label><span>{{$video->prijs}}</span>
-                                    <label>level: </label><span>{{$video->level}}</span>
-                                    <label>author: </label><span><a href="{{URL::route('author_show', $video->author->user->name)}}">{{$video->author->user->name}}</a></span>
+                                    <label>price: </label><span>{{$video->prijs}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <label>level: </label><span>{{$video->level}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <label>average rating: </label><span>{{number_format($video->review->avg('rating'), 1)}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <label>author: </label><span><a href="{{URL::route('author_show', $video->author->user->name)}}">{{$video->author->user->name}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                                     {{--<a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>--}}
                                     @if($status)
                                         show video
@@ -75,28 +76,64 @@
                                 </div>
                             </div>
                         </div>
-{{list($orders)}}
+{{--{{list($orders)}}--}}
                         <div class="col-lg-12">
-                            <h3>Author video list</h3>
-                            @foreach($list as $item)
-                                @if($item->video_key == Request::segment(2))
-                                    <a style="color: greenyellow" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a>
-                                @else
-                                    @if($item->prijs == 0)
-                                        <a style="color: darkgreen;" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> free video
+                            <div class="col-lg-4">
+                                <h3>video list</h3>
+                                @foreach($list as $item)
+                                    @if($item->video_key == Request::segment(2))
+                                        <a style="color: greenyellow" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a>
                                     @else
-                                        @if (in_array($item->id, $orders))
-                                            <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> paid
+                                        @if($item->prijs == 0)
+                                            <a style="color: darkgreen;" href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> free video
                                         @else
+                                            {{--@if (in_array($item->id, $orders))--}}
+                                            {{--<a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> paid--}}
+                                            {{--@else--}}
                                             <a href="{{URL::route('video_show', $item->video_key)}}">{{$item->name}}</a> buy
+                                            {{--@endif--}}
                                         @endif
                                     @endif
+                                    <br>
+                                @endforeach
+                            </div>
+                            <div class="col-lg-8">
 
+                                @foreach($video->review as $review)
+                                    <div>
+                                        <h3 class="">{{$review->user->name}}</h3>
+                                        <p class="pull-right">rating: {{$review->rating}}</p>
+                                        <p>{{$review->tekst}}</p>
+
+                                    </div><hr>
+
+                                @endforeach
+
+                                @include('errors.message')
+                                <h3>Reviews</h3>
+                                @if(Auth::check())
+
+                                    {!! Form::open(array('route' => array('review_store'), 'method' => 'PATCH' )) !!}
+
+                                        {!! Form::hidden('segment', Request::segment(2)) !!}
+                                        <label for="input-1" class="control-label">Rate This</label>
+                                        <input id="input-1" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+
+                                        <div class="form-group">
+                                            {!! Form::label('tekst', 'Review') !!}
+                                            {!! Form::textarea('tekst', null, ['class' => 'form-control']) !!}
+                                        </div>
+
+                                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+
+                                        <a href="{{ URL::route('video_show', Request::segment(2)) }}" class="btn btn-default">terug</a>
+
+                                    {!! Form::close() !!}
+
+                                @else
+                                    You must be logged in to post a review
                                 @endif
-
-                                
-                                <br>
-                            @endforeach
+                            </div>
                         </div>
 
                     </div>

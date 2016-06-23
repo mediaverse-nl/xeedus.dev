@@ -5,5 +5,7 @@
     <a href="{{ URL::route('admin_authors_all') }}" class="btn btn-default">authors</a>
     <a href="{{ URL::route('admin_videos_all') }}" class="btn btn-default">videos</a>
     <a href="{{ URL::route('admin_category_all') }}" class="btn btn-default">categorieen</a>
+    <a href="{{ URL::route('admin_reviews_all') }}" class="btn btn-default">reviews</a>
+    <a href="{{ URL::route('admin_orders_all') }}" class="btn btn-default">orders</a>
     <a></a>
 </div>

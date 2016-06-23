@@ -9,6 +9,24 @@
 @stop
 
 @section('content')
+
+    <style>
+        .circle {
+            background: red;
+            border-radius: 200px;
+            color: white;
+            height: 150px;
+            font-weight: bold;
+            width: 150px;
+            display: table;
+            margin: 20px auto;
+        }
+        .circle p {
+            vertical-align: middle;
+            display: table-cell;
+        }
+    </style>
+
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -19,19 +37,32 @@
 
                         @include('errors.message')
 
-                        <div class="col-lg-12">
-                            <label>Author:</label> {{$author->name}}
+                        <div class="row">
+                            <div class="col-lg-2 pull-left">
+                                <img class="img-responsive img-circle" src="/author/{{$author->author->image}}">
+                            </div>
+                            <div class="col-lg-6 pull-left">
+                                <label>Author:</label> {{$author->name}}
+                                <h4 id="glyphicons-glyphs">Biography:</h4>
+                                <p>{{$author->author->biography}}</p>
+                                <span>videos delen op facebook, twitter en google+ dit maakt de vindbaarheid beter</span>
+                            </div>
+                            <div class="col-lg-4 pull-right">
+                                <div class="circle">
+                                    <p class="text-center">Rating <br><span class="">5,5</span></p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-lg-3">
-                            <h3>list of videos</h3>
-                            @foreach($videos as $video)
-                                <a href="{{URL::route('video_show', $video->video_key)}}">{{$video->name}}</a>
-                                <br>
-                            @endforeach
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <h3>list of videos</h3>
+                                @foreach($videos as $video)
+                                    <a href="{{URL::route('video_show', $video->video_key)}}">{{$video->name}}</a>
+                                    <br>
+                                @endforeach
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

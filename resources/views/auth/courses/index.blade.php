@@ -17,13 +17,44 @@
 
                     <div class="panel-body">
 
-                        @include('errors.message')
+                        @include('layouts.menus.user_menu')
 
-                        {{$user}}
-                        @foreach($user->order as $order)
-                           <br> {{$order->video->name}}
+                        <div class="col-lg-9">
+                            @include('errors.message')
 
-                        @endforeach
+                            <div class="panel panel-default">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading">My orders</div>
+                                <div class="panel-body">
+                                    <p>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het merendeel heeft te lijden gehad van wijzigingen in een of andere vorm, door ingevoegde humor of willekeurig gekozen woorden die nog niet half geloofwaardig ogen. Als u een passage uit Lorum Ipsum gaat gebruiken dient u zich ervan te verzekeren dat er niets beschamends midden in de tekst verborgen zit. Alle Lorum Ipsum generators op Internet</p>
+                                </div>
+
+                                <!-- Table -->
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>date</th>
+                                        <th>author</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach($user->order as $order)
+                                        <tr>
+                                            <td>{{$order->id}}</td>
+                                            <td>{{date_format($order->created_at, "Y/m/d")}}</td>
+                                            <td>{{$order->user->name}}</td>
+                                            <td><a href="{{URL::route('video_show', $order->video->video_key)}}" class="btn btn-default btn-xs">show</a></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>

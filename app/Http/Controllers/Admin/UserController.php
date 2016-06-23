@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Author;
 use App\User;
+use Auth;
 
 use Validator;
+use Input;
 use Session;
-use Auth;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AuthorController extends Controller
+class UserController extends Controller
 {
+    protected $user;
+    protected $this_user;
+
+    public function __construct()
+    {
+        $this->users = User::all();
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,10 +31,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $author = Author::all();
-
-        return view('admin.author.index')->with('authors', $author); //$author;
-        //
+        return view('admin.users.index')->with('users', $this->users);
     }
 
     /**
@@ -59,9 +63,7 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        $author = Author::where('id', $id)->first();
-        
-        return view('admin.author.show')->with('author', $author);
+        //
     }
 
     /**
@@ -82,46 +84,9 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $messages = [
-            'biography.required'        => '',
-        ];
-
-        $rules = [
-            'biography'          => 'required|max:500',
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->route('admin_authors_show', $request->id)
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $author = Author::where('id', $request->id)->first();
-
-        $author->verified  =  $request->verified;
-
-        $user = User::find($author->user_id);
-
-        if($request->verified == 'on'){
-            $user->role = 'author';
-            $author->status = 'verified';
-        }else{
-            $user->role = 'user';
-            $author->status = 'unverified';
-        }
-
-        $author->save();
-        $user->save();
-
-        \Session::flash('succes_message','successfully.');
-
-
-        return redirect()->route('admin_authors_all');
+        //
     }
 
     /**

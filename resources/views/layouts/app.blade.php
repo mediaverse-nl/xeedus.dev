@@ -20,8 +20,40 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <style>
+        /* Sticky footer styles
+       -------------------------------------------------- */
+        html {
+            position: relative;
+            min-height: 100%;
+        }
         body {
+            /* Margin bottom by footer height */
+            margin-bottom: 100px;
             font-family: 'Lato';
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 60px;
+            background-color: #f5f5f5;
+        }
+        .footer-content {
+            height: 200px;
+            background-color: #222;
+        }
+        .footer-links {
+
+            background: #E7A456;
+            height: 50px;;
+        }
+        .footer-links > div > div > p {
+            margin: 15px;
+        }
+        .footer-links a {
+            color: black !important;
+            margin-right: 30px;
         }
 
         .fa-btn {
@@ -66,6 +98,14 @@
           margin-left: 50px;
         }
 
+        .navbar-brand {
+            padding: 0px; /* firefox bug fix */
+        }
+        .navbar-brand>img {
+            height: 150%;
+            padding: 10px; /* firefox bug fix */
+            width: auto;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -82,15 +122,14 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                <a class="navbar-brand" href="{{ URL::route('home_page') }}">
+                    <img class="logo" src="/sitefiles/logo.png">
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::route('home_page') }}">Home</a></li>
 
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
@@ -147,15 +186,41 @@
 
     @yield('content')
 
-
-    <div class="footer-basic-centered" style="background-color: #F8F8F8;">
-        <div class="container">
-            <div class="col-lg-12">
-                <a href="{{ URL::route('author_create') }}" class="">partner</a>
+    <footer class="footer">
+        <div class="footer-basic-centered" style="background-color: #F8F8F8;">
+            <div class="footer-content">
+                <div class="container">
+                    <a href="{{ URL::route('author_create') }}" class="">partner</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                    <a href="#">About us</a>
+                    <a href="#">Support</a>
+                    <div class="col-lg-4 pull-right">
+                        <a>Facebook</a>
+                        <a>Twitter</a>
+                        <a>Google+</a>
+                        <a>Linkedin</a>
+                        <a></a>
+                        <a></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="container">
+                    <div class="col-lg-12">
+                        <p class="">
+                            <a href="#" class="pull-right"> © 2016 Xeedus B.V.</a>
+                            <a href="#">Algemene voorwaarden</a>
+                            <a href="#">privacy policy</a>
+                            <a href="#">Terms </a>
+                            <a href="#">cookie policy</a>
+                            <a href="#">site map</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
+    </footer>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

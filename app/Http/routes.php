@@ -26,9 +26,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/video/{key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
     Route::post('/video/{key}', ['as' => 'order_store', 'uses' => 'OrderController@store']);
 
+    Route::get('/orders', ['as' => 'orders_show', 'uses' => 'Auth\OrderController@index']);
+
+    Route::get('/review', ['as' => 'review_show', 'uses' => 'Auth\ReviewController@index']);
+
     Route::get('/credits', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@index']);
     Route::post('/credits', ['as' => 'credits_update', 'uses' => 'Auth\CreditController@update']);
     Route::patch('/credits', ['as' => 'credits_store', 'uses' => 'Auth\CreditController@store']);
+
+    Route::patch('/review', ['as' => 'review_store', 'uses' => 'Auth\ReviewController@store']);
 
     Route::get('/profile/courses', ['as' => 'profile_courses_index', 'uses' => 'Auth\VideoController@index']);
     
@@ -82,7 +88,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/', ['as' => 'admin_panel', 'uses' => 'AdminController@index']);
-        Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'UserController@index']);
+        Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'Admin\UserController@index']);
 
         Route::get('author', ['as' => 'admin_authors_all', 'uses' => 'Admin\AuthorController@index']);
         Route::get('author/{id}', ['as' => 'admin_authors_show', 'uses' => 'Admin\AuthorController@show']);
@@ -98,7 +104,15 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('categories/create', ['as' => 'admin_category_create', 'uses' => 'Admin\CategoryController@create']);
         Route::post('categories', ['as' => 'admin_category_store', 'uses' => 'Admin\CategoryController@store']);
         Route::patch('categories', ['as' => 'admin_category_update', 'uses' => 'Admin\CategoryController@update']);
-    
+
+        Route::get('reviews', ['as' => 'admin_reviews_all', 'uses' => 'Admin\ReviewController@index']);
+        Route::get('reviews/{id}', ['as' => 'admin_reviews_show', 'uses' => 'Admin\ReviewController@show']);
+        Route::post('reviews/{id}', ['as' => 'admin_reviews_update', 'uses' => 'Admin\ReviewController@update']);
+        Route::delete('reviews/{id}', ['as' => 'admin_reviews_destroy', 'uses' => 'Admin\ReviewController@destroy']);
+
+        //orders
+        Route::get('orders', ['as' => 'admin_orders_all', 'uses' => 'Admin\OrderController@index']);
+
     });
 
 });

@@ -21,7 +21,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-
+{{--{{dd($best_video)}}--}}
                     <div>
                         <h2>categories</h2>
                         @foreach($categories as $category)
@@ -29,12 +29,30 @@
                         @endforeach
                     </div>
 
-                    <h2>slider</h2>
+                    <h2>recently</h2>
                     <div class="slider">
                         @foreach($video as $vid )
-                            <div style="background-color: #2b38cd; color: #dddddd; padding: 30px;">
-                                {{$vid->name}}
-                                <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a>
+                            <div class="thumbnail">
+                                <img src="/{{$vid->thumbnails}}" alt="">
+                                <div class="caption">
+                                    <h3>{{$vid->name}}</h3>
+                                    <p>...</p>
+                                    <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <h2>Best</h2>
+                    <div class="slider">
+                        @foreach($video as $vid )
+                            <div class="thumbnail">
+                                <img src="/{{$vid->thumbnails}}" alt="">
+                                <div class="caption">
+                                    <h3>{{$vid->name}}</h3>
+                                    <p>...</p>
+                                    <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -53,7 +71,10 @@
         $(".slider").slick({
 
             // normal options...
-            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
 
             // the magic
             responsive: [{
@@ -61,15 +82,19 @@
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    infinite: true
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
                 }
 
             }, {
 
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
-                    dots: true
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
                 }
 
             }, {

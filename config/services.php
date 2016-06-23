@@ -38,6 +38,7 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
     'mollie' => [
              'client_id'     => env('MOLLIE_CLIENT_ID', 'app_xxx'),
              'client_secret' => env('MOLLIE_CLIENT_SECRET'),

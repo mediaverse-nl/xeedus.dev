@@ -19,12 +19,7 @@
 
                         @include('layouts.menus.admin_menu')
 
-                        <style>
-                            table, th, td {
-                                border: 1px solid black;
-                                padding: 10px;
-                            }
-                        </style>
+                        {{--<a class="btn btn-primary" href="{{ URL::route('admin_authors_requests') }}">requests</a>--}}
 
                         <table class="table-condensed table-bordered table-bordered table-hover">
                             <thead>
@@ -32,16 +27,17 @@
                                     <th>Nr</th>
                                     <th>username</th>
                                     <th>email</th>
+                                    <th>credits</th>
                                     <th>status</th>
+                                    <th>verified</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
-                                    <tr class="table-row"data-href="{{URL::route('admin_authors_show', $user->id)}}">
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
+                                @foreach($reviews as $review)
+                                    <tr class="table-row" data-href="{{URL::route('admin_reviews_show', $review->id )}}">
+                                        <td>{{ $review->user->name }}</td>
+                                        {{--<td>{{ $review->user->name }}</td>--}}
+                                        <td>{{ $review->video->video_key }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -56,5 +52,13 @@
 @endsection
 
 @section('javascript')
+
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $(".table-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
 
 @endsection

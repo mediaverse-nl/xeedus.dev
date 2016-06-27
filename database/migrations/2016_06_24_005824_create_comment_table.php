@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewTable extends Migration
+class CreateCommentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,16 @@ class CreateReviewTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('video_id')->unsigned();
+            $table->foreign('video_id')->references('id')->on('video');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('author_id')->unsigned();
-            $table->foreign('author_id')->references('id')->on('author');
-            $table->string('tekst');
-            $table->decimal('rating_1', 5, 2);
-            $table->decimal('rating_2', 5, 2);
-            $table->decimal('rating_3', 5, 2);
+            $table->integer('parent_id')->unsigned();
+            $table->foreign('parent_id')->references('id')->on('comment');
+            $table->string('text', 200);
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateReviewTable extends Migration
      */
     public function down()
     {
-        Schema::drop('reviews');
+        Schema::drop('comment');
     }
 }

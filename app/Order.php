@@ -11,11 +11,11 @@ class Order extends Model
     //
     public function video()
     {
-        return $this->belongsTo('App\Video', 'id');
+        return $this->belongsTo('App\Video', 'video_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

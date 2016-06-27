@@ -24,6 +24,14 @@
                                 {{--</div>--}}
                                 <div class="col-lg-9">
                                     <div class="col-lg-12">
+                                        <video id="myVid" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png">
+                                            <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+
+                                            <p>
+                                                upgrade your browser or download <a href="https://www.google.nl/chrome/browser/desktop/">chrome</a>
+                                            </p>
+
+                                        </video>
                                         <img style="width: 100%; height: 400px;" class="img-responsive" src="/videos/thumbnails/{{$video->thumbnails}}">
                                     </div>
                                     <h1>{{$video->name}}</h1><br>
@@ -31,7 +39,7 @@
                                     <p>{{$video->beschrijving}}</p>
                                     <label>price: </label><span>{{$video->prijs}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
                                     <label>level: </label><span>{{$video->level}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                    <label>average rating: </label><span>{{number_format($video->review->avg('rating'), 1)}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <label>average rating: </label><span>{{number_format($video->author->review->where('video_key', Request::segment(2))->avg('rating'), 1)}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
                                     <label>author: </label><span><a href="{{URL::route('author_show', $video->author->user->name)}}">{{$video->author->user->name}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                                     {{--<a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>--}}
                                     @if($status)
@@ -99,40 +107,12 @@
                             </div>
                             <div class="col-lg-8">
 
-                                @foreach($video->review as $review)
+                                @foreach($video->comment as $review)
                                     <div>
-                                        <h3 class="">{{$review->user->name}}</h3>
-                                        <p class="pull-right">rating: {{$review->rating}}</p>
-                                        <p>{{$review->tekst}}</p>
-
+                                        {{$review}}
                                     </div><hr>
-
                                 @endforeach
 
-                                @include('errors.message')
-                                <h3>Reviews</h3>
-                                @if(Auth::check())
-
-                                    {!! Form::open(array('route' => array('review_store'), 'method' => 'PATCH' )) !!}
-
-                                        {!! Form::hidden('segment', Request::segment(2)) !!}
-                                        <label for="input-1" class="control-label">Rate This</label>
-                                        <input id="input-1" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
-
-                                        <div class="form-group">
-                                            {!! Form::label('tekst', 'Review') !!}
-                                            {!! Form::textarea('tekst', null, ['class' => 'form-control']) !!}
-                                        </div>
-
-                                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-
-                                        <a href="{{ URL::route('video_show', Request::segment(2)) }}" class="btn btn-default">terug</a>
-
-                                    {!! Form::close() !!}
-
-                                @else
-                                    You must be logged in to post a review
-                                @endif
                             </div>
                         </div>
 
@@ -166,5 +146,29 @@
 
         });
         //-->
+
+
+        var adManager = function () {
+            var vid = document.getElementById("myVid"),
+                    adSrc = "videos/epic_rap_battles_of_history_16_adolf_hitler_vs_darth_vader_2_1280x720.mp4",
+                    src;
+
+            var adEnded = function () {
+                vid.removeEventListener("ended", adEnded, false);
+                vid.src = src;
+                vid.load();
+                vid.play();
+            };
+
+            return {
+                init: function () {
+                    src = vid.src;
+                    vid.src = adSrc;
+                    vid.load();
+                    vid.addEventListener("ended", adEnded, false);
+                }
+            };
+        }();
+
     </script>
 @endsection

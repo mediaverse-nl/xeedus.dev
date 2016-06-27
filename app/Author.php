@@ -20,4 +20,9 @@ class Author extends Model
     {
         return $this->hasMany('App\Video', 'author_id', 'id');
     }
+
+    public function review()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

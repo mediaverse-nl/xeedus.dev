@@ -106,6 +106,30 @@
             padding: 10px; /* firefox bug fix */
             width: auto;
         }
+
+        .video-wrapper {
+            width: 100%;
+            /* whatever width you want */
+            display: inline-block;
+            position: relative;
+        }
+        .video-wrapper:after {
+            padding-top: 56.25%;
+            /* 16:9 ratio */
+            display: block;
+            content: '';
+        }
+        .video-main {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            /* fill parent */
+            background-color: deepskyblue;
+            /* let's see it! */
+            color: white;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -190,18 +214,16 @@
         <div class="footer-basic-centered" style="background-color: #F8F8F8;">
             <div class="footer-content">
                 <div class="container">
-                    <a href="{{ URL::route('author_create') }}" class="">partner</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Contact</a>
-                    <a href="#">About us</a>
-                    <a href="#">Support</a>
+                    <a href="{{URL::route('author_create')}}" class="">partner</a>
+                    <a href="{{URL::route('page_faq')}}">FAQ</a>
+                    <a href="{{URL::route('page_contact')}}">Contact</a>
+                    <a href="{{URL::route('page_about')}}">About us</a>
+                    <a href="{{URL::route('page_support')}}">Support</a>
                     <div class="col-lg-4 pull-right">
                         <a>Facebook</a>
                         <a>Twitter</a>
                         <a>Google+</a>
                         <a>Linkedin</a>
-                        <a></a>
-                        <a></a>
                     </div>
                 </div>
             </div>
@@ -209,12 +231,11 @@
                 <div class="container">
                     <div class="col-lg-12">
                         <p class="">
-                            <a href="#" class="pull-right"> © 2016 Xeedus B.V.</a>
-                            <a href="#">Algemene voorwaarden</a>
-                            <a href="#">privacy policy</a>
-                            <a href="#">Terms </a>
-                            <a href="#">cookie policy</a>
-                            <a href="#">site map</a>
+                            <span class="pull-right"> © 2016 Xeedus B.V.</span>
+                            <a href="{{URL::route('page_privacy')}}">privacy policy</a>
+                            <a href="{{URL::route('page_terms')}}">Terms </a>
+                            <a href="{{URL::route('page_cookie')}}">cookie policy</a>
+                            <a href="{{URL::route('page_sitemap')}}">site map</a>
                         </p>
                     </div>
                 </div>

@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('geboortedatum');
             $table->string('email')->unique();
             $table->string('password');
+            $table->timestamp('blocked_on')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

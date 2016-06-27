@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,6 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+//    public function isBlocked()
+//    {
+//        if ( Auth::user()->blocked_on && Carbon::now() >= Auth::user()->blocked_on ) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public function isAdmin()
     {
@@ -67,6 +79,11 @@ class User extends Authenticatable
     public function chatmessage()
     {
         return $this->hasMany('App\Chatmessage');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany('App\Comment');
     }
 
     public function order()

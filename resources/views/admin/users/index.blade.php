@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach($users as $user)
-                                    <tr class="table-row"data-href="{{URL::route('admin_authors_show', $user->id)}}">
+                                    <tr class="table-row"data-href="{{URL::route('admin_user_edit', $user->id)}}">
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
@@ -56,5 +56,13 @@
 @endsection
 
 @section('javascript')
+
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $(".table-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
 
 @endsection

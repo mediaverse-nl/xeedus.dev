@@ -52,5 +52,7 @@ class Kernel extends HttpKernel
         
         'admin' => \App\Http\Middleware\Admin::class,
         'author' => \App\Http\Middleware\Author::class,
+        
+        'notBlocked' => \App\Http\Middleware\NotBlocked::class,
     ];
 }

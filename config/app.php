@@ -161,6 +161,8 @@ return [
 
         Mollie\Laravel\MollieServiceProvider::class,
 
+        'Maatwebsite\Excel\ExcelServiceProvider',
+
 
     ],
 
@@ -215,6 +217,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ],
 
 ];

@@ -15,6 +15,7 @@ class CreateChatboxTable extends Migration
         //
         Schema::create('chatbox', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status');
             $table->timestamps();
         });
     }

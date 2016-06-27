@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
 use App\User;
 use App\Video;
 use App\Author;
@@ -9,6 +10,8 @@ use App\Author;
 use Auth;
 use Session;
 use Validator;
+
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -128,10 +131,23 @@ class AuthorController extends Controller
     {
         $videos = Video::where('author_id', $this->this_author->id)->get();
         $author = User::where('name', str_replace(' ', '-', $name))->first();
+        $reviews = Review::where('author_id', $author->id)->get();
+
+
+        $averages = $author->review()
+            ->select(
+                array('reviews.*',
+                    DB::raw('avg(rating_1) rating_1, avg(rating_2) rating_2, avg(rating_3) rating_3')
+                )
+            )
+            ->where('author_id', $author->id)
+            ->get();
 
         return view('author.index')
             ->with('author', $author)
-            ->with('videos', $videos);
+            ->with('videos', $videos)
+            ->with('reviews', $reviews)
+            ->with('averages', $averages);
     }
 
     /**

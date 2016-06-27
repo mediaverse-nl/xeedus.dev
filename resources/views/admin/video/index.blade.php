@@ -19,7 +19,7 @@
 
                         @include('layouts.menus.admin_menu')
 
-                        <table class="table table-condensed" cellpadding="5" border="">
+                        <table class="table-condensed table-bordered table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>id</th>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Review;
 use App\Video;
+use App\User;
 
 use Validator;
 use Auth;
@@ -48,35 +49,41 @@ class ReviewController extends Controller
 
         $messages = [
             'tekst.required' => 'tekst',
-            'rating.required' => 'rating',
+            'rating_1.required' => 'rating 1',
+            'rating_2.required' => 'rating 2',
+            'rating_3.required' => 'rating 3',
         ];
 
         $rules = [
             'tekst'     => 'required|max:255',
-            'rating'     => 'required',
+            'rating_1'     => 'required',
+            'rating_2'     => 'required',
+            'rating_3'     => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return redirect()
-                ->route('video_show', $request->segment)
+                ->route('author_show', $request->segment)
                 ->withErrors($validator)
                 ->withInput();
         } else {
 
-            $video = Video::where('video_key', $request->segment)->first();
+            $video = User::where('name', $request->segment)->first();
 
             $this->review->user_id      = Auth::user()->id;
-            $this->review->video_id     = $video->id;
+            $this->review->author_id     = $video->author->id;
             $this->review->tekst        = $request->tekst;
-            $this->review->rating       = $request->rating;
+            $this->review->rating_1       = $request->rating_1;
+            $this->review->rating_2       = $request->rating_2;
+            $this->review->rating_3       = $request->rating_3;
 
             $this->review->save();
 
             \Session::flash('succes_message', 'successfully.');
 
-            return redirect()->route('video_show', $request->segment);
+            return redirect()->route('author_show', $request->segment);
         }
 
     }

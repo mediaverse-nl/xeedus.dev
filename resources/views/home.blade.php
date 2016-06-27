@@ -21,7 +21,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-{{--{{dd($best_video)}}--}}
+                    {{--{{dd($best_video)}}--}}
                     <div>
                         <h2>categories</h2>
                         @foreach($categories as $category)

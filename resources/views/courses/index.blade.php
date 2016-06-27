@@ -19,7 +19,6 @@
 
                         @include('errors.message')
 
-
                         <div class="col-lg-12">
                             <div class="col-lg-3">
 
@@ -43,27 +42,28 @@
                             <div class="col-lg-9">
                                 <h1>{{$category->name}}</h1>
                                 @foreach($category->video as $video)
-                                    <div class="col-lg-12" style="margin-bottom: 20px; border: 1px solid">
-                                        <div class="col-lg-3" style="border: 1px solid; height: 150px;">
-                                            <span>img</span>
-                                            {{$video->thumbnails}}
+                                    <div class="col-lg-12" style="margin-bottom: 20px;">
+                                        <div class="col-lg-5">
+                                            <div class="video-wrapper">
+                                                <div class="video-main">
+                                                    @if($video->thumbnails)
+                                                        <img width="100%" height="100%" src="/images/{{$video->thumbnails}}" rel="" >
+                                                    @else
+                                                        <img width="100%" height="100%" src="/images/test.png" rel="" >
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-9">
-                                            <label>titel: </label>
-                                            <head>{{$video->name}}</head><br>
-                                            <label>description</label>
-                                            <p>{{$video->beschrijving}}</p>
+                                        <div class="col-lg-7">
+                                            <head>{{str_limit($video->name, 30)}}</head><br>
+                                            <p><small>{{str_limit($video->beschrijving, 100)}}</small></p>
                                             <label>price: </label><span>{{$video->prijs}}</span>
                                             <label>level: </label><span>{{$video->level}}</span>
                                             <label>author: </label><span> <a href="{{ URL::route('author_show', $video->author->user->name) }}"> {{$video->author->user->name}}</a></span>
                                             <a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>
                                         </div>
                                     </div>
-                                    <hr>
-
-                                    @foreach($video->author as $author)
-                                        {{--{{dd($author)}}--}}
-                                    @endforeach
+                                    <hr style=" width:100%; border-top: 1px solid #ddd !important;">
                                 @endforeach
                             </div>
                         </div>

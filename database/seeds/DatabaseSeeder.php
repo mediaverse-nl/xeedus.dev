@@ -12,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
+
+        $this->call('VideoTableSeeder');
+        $this->call('CommentTableSeeder');
+
         DB::table('users')->insert([
             ['name' => 'bert', 'voornaam' => 'bert', 'email' => 'bleh@gmail.com', 'password' => bcrypt('admin'), 'role' => 'admin', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
             ['name' => 'admin', 'voornaam' => 'deveron', 'email' => 'admin@mail.com', 'password' => bcrypt('admin'), 'role' => 'admin', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
@@ -56,9 +61,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('reviews')->insert([
-            ['user_id' => 1, 'video_id' => 1, 'rating' => 3, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['user_id' => 1, 'video_id' => 2, 'rating' => 3, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['user_id' => 1, 'video_id' => 3, 'rating' => 2, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['user_id' => 1, 'author_id' => 1, 'rating_1' => rand(1, 5), 'rating_2' => rand(1, 5), 'rating_3' => rand(1, 5), 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['user_id' => 1, 'author_id' => 2, 'rating_1' => rand(1, 5), 'rating_2' => rand(1, 5), 'rating_3' => rand(1, 5), 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['user_id' => 1, 'author_id' => 3, 'rating_1' => rand(1, 5), 'rating_2' => rand(1, 5), 'rating_3' => rand(1, 5), 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
         ]);
 
         DB::table('author')->insert([

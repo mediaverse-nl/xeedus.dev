@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class Author
+class notBlocked
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,13 @@ class Author
      */
     public function handle($request, Closure $next)
     {
-        if (\Auth::user()->role == 'author')
-        {
-            return $next($request);
-        }
+//        if ( Auth::check() && Auth::user()->isBlocked() )
+//        {
+//            return true;            // Do what you need here
+//            // the User is blocked!
+//           //return redirect()->route('page_contact');
+//        }
 
-        return redirect()->route('home_page');
+        return $next($request);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Order;
 
 use Auth;
 
@@ -18,8 +19,8 @@ class VideoController extends Controller
 
     public function __construct()
     {
-        $this->user = User::find(Auth::user()->id)
-            ->first();
+        $this->order = Order::where('user_id', Auth::user()->id)->get();
+
     }
 
     /**
@@ -29,7 +30,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('auth.courses.index')->with('user', $this->user);
+        return view('auth.courses.index')->with('orders', $this->order);
     }
 
     /**

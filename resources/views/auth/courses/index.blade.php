@@ -33,17 +33,15 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>id</th>
                                         <th>date</th>
                                         <th>author</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    @foreach($user->order as $order)
+{{--{{$orders}}--}}
+                                    @foreach($orders as $order)
                                         <tr>
-                                            <td>{{$order->id}}</td>
                                             <td>{{date_format($order->created_at, "Y/m/d")}}</td>
                                             <td>{{$order->user->name}}</td>
                                             <td><a href="{{URL::route('video_show', $order->video->video_key)}}" class="btn btn-default btn-xs">show</a></td>

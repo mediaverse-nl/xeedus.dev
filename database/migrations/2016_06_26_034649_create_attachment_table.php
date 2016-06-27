@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderTable extends Migration
+class CreateAttachmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::create('attachment', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('video_id')->unsigned();
-            $table->foreign('video_id')->references('id')->on('video');
+            $table->foreign('video_id')->references('id')->on('video')->onDelete('cascade');;
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::drop('order');
+        Schema::drop('attachment');
     }
 }

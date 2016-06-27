@@ -13,8 +13,19 @@
 
 Route::auth();
 
-//home page
-Route::get('/', ['as' => 'home_page', 'uses' => 'HomeController@index']);
+
+//static pages
+//Route::get('/', ['as' => 'home_page', 'uses' => 'PagesController@home', 'middleware' => ['notBlocked']]);
+Route::get('/', ['as' => 'home_page', 'uses' => 'PagesController@home']);
+Route::get('/about', ['as' => 'page_about', 'uses' => 'PagesController@about']);
+Route::get('/faq', ['as' => 'page_faq', 'uses' => 'PagesController@faq']);
+Route::get('/privacy', ['as' => 'page_privacy', 'uses' => 'PagesController@privacy']);
+Route::get('/terms', ['as' => 'page_terms', 'uses' => 'PagesController@terms']);
+Route::get('/sitemap', ['as' => 'page_sitemap', 'uses' => 'PagesController@sitemap']);
+Route::get('/cookie', ['as' => 'page_cookie', 'uses' => 'PagesController@cookie']);
+Route::get('/support', ['as' => 'page_support', 'uses' => 'PagesController@support']);
+Route::get('/contact', ['as' => 'page_contact', 'uses' => 'PagesController@contact']);
+
 //main and sub categories
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
 //author profile
@@ -88,7 +99,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/', ['as' => 'admin_panel', 'uses' => 'AdminController@index']);
-        Route::get('profiles', ['as' => 'admin_profile_all', 'uses' => 'Admin\UserController@index']);
 
         Route::get('author', ['as' => 'admin_authors_all', 'uses' => 'Admin\AuthorController@index']);
         Route::get('author/{id}', ['as' => 'admin_authors_show', 'uses' => 'Admin\AuthorController@show']);
@@ -112,6 +122,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         //orders
         Route::get('orders', ['as' => 'admin_orders_all', 'uses' => 'Admin\OrderController@index']);
+
+        //users
+        Route::get('users', ['as' => 'admin_profile_all', 'uses' => 'Admin\UserController@index']);
+        Route::get('users/{id}/edit', ['as' => 'admin_user_edit', 'uses' => 'Admin\UserController@edit']);
+        Route::post('users/{id}', ['as' => 'admin_user_update', 'uses' => 'Admin\UserController@update']);
+        Route::delete('users/{id}', ['as' => 'admin_user_destroy', 'uses' => 'Admin\UserController@destroy']);
 
     });
 

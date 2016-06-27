@@ -11,9 +11,9 @@ class Review extends Model
 
     public $timestamps = false;
     //
-    public function video()
+    public function author()
     {
-        return $this->belongsTo('App\Video', 'id');
+        return $this->belongsTo('App\Author', 'id');
     }
 
     public function user()

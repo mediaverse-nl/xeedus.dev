@@ -30,7 +30,5 @@ class VideoTableSeeder extends Seeder
                 'created_at' => $faker->date,
             ]);
         }
-
-
     }
 }

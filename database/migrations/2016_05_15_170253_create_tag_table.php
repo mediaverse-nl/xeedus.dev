@@ -13,7 +13,6 @@ class CreateTagTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('video_id')->unsigned();
             $table->foreign('video_id')->references('id')->on('video');
             $table->string('tag_name');

@@ -8,6 +8,7 @@ use Auth;
 use Validator;
 use Input;
 use Session;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->users = User::all();
-        $this->this_user = User::find(Auth::user()->id);
+        $this->this_user = Auth::user();
     }
 
     /**

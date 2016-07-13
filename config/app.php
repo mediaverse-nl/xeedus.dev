@@ -163,6 +163,7 @@ return [
 
         'Maatwebsite\Excel\ExcelServiceProvider',
 
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
     ],
 
@@ -219,6 +220,8 @@ return [
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
 
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

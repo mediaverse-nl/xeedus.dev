@@ -26,13 +26,15 @@
                             }
                         </style>
 
-                        <table class="table-condensed table-bordered table-bordered table-hover">
+                        <table class="table table-condensed table-bordered table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Nr</th>
                                     <th>username</th>
                                     <th>email</th>
-                                    <th>status</th>
+                                    <th>role</th>
+                                    <th>credits</th>
+                                    <th>joined at</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +44,8 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role }}</td>
+                                        <td>{{ $user->credits }}</td>
+                                        <td>{{ $user->created_at }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

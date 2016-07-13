@@ -15,6 +15,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome</div>
 
+                {!! Breadcrumbs::render('profile') !!}
+
                 <div class="panel-body">
 
                     @include('layouts.menus.user_menu')

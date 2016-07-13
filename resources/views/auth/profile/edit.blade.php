@@ -17,6 +17,8 @@
 
                 <div class="panel-body">
 
+                    {!! Breadcrumbs::render('profile.edit') !!}
+
                     @include('layouts.menus.user_menu')
 
                     <style>

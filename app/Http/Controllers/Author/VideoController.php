@@ -68,7 +68,7 @@ class VideoController extends Controller
             'thumbnail.mimes'           => 'file type must be (JPEG, PNG, JNG or BMP) ',
             'beschrijving.required'     => 'Description required',
         ];
-
+       
         $rules = [
             'name'          => 'required|max:40',
             'beschrijving'  => 'required|max:550|min:20',
@@ -101,7 +101,7 @@ class VideoController extends Controller
         $this->new_video->category_id    =  $request->category_id;
         $this->new_video->name           =  $request->name;
         $this->new_video->video_key      =  str_random(20);
-        $this->new_video->thumbnail      =  $full_path;
+        $this->new_video->thumbnails      =  $full_path;
         $this->new_video->beschrijving   =  $request->beschrijving;
         $this->new_video->prijs          =  $request->prijs;
         $this->new_video->level          =  $request->level;

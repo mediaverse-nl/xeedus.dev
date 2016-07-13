@@ -13,7 +13,6 @@
 
 Route::auth();
 
-
 //static pages
 //Route::get('/', ['as' => 'home_page', 'uses' => 'PagesController@home', 'middleware' => ['notBlocked']]);
 Route::get('/', ['as' => 'home_page', 'uses' => 'PagesController@home']);

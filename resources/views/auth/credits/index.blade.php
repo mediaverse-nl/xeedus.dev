@@ -4,10 +4,6 @@
     allo
 @endsection
 
-@section('description')
-
-@stop
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -19,7 +15,7 @@
 
                         @include('errors.message')
 
-                        {!! Form::model(array('route' => 'credits_store')) !!}
+                        {!! Form::open(array('method' => 'post', 'route' => 'credits_store')) !!}
                         {!! method_field('patch') !!}
                             <div class="form-group">
                                 {!! Form::label('order', 'credits') !!}

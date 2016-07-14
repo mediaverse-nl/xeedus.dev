@@ -26,6 +26,13 @@ Breadcrumbs::register('profile.edit', function($breadcrumbs)
     $breadcrumbs->push('edit', route('profile_edit'));
 });
 
+// Home > profile > courses
+Breadcrumbs::register('profile.courses', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('My courses', route('profile_show'));
+});
+
 //// Home > Blog > [Category]
 //Breadcrumbs::register('category', function($breadcrumbs, $category)
 //{

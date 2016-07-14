@@ -59,7 +59,7 @@ class UserController extends Controller
     {
 
         $messages = [
-            'b_name.required' => 'please fill Broadcast Name field',
+//            'b_name.required' => 'please fill Broadcast Name field',
         ];
 
         $rules = [
@@ -97,21 +97,11 @@ class UserController extends Controller
 
             $this->this_user->save();
 
-            \Session::flash('succes_message','successfully saved.');
+            \Session::flash('succes_message', 'successfully saved.');
 
             return redirect()->route('profile_show');
         }
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

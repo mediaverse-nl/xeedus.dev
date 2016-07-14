@@ -165,6 +165,8 @@ return [
 
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
+        Mollie\Laravel\MollieServiceProvider::class,
+
     ],
 
     /*
@@ -222,6 +224,7 @@ return [
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
     ],
 
 ];

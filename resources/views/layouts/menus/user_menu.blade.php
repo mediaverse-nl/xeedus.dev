@@ -1,8 +1,5 @@
 <div class="col-sm-4 col-md-3 sidebar">
     <div class="list-group">
-        <span href="#" class="list-group-item active">
-            Submenu
-        </span>
         <a href="{{URL::route('profile_show')}}" class="list-group-item {{ Request::is( str_replace('http://localhost:8000/', '', URL::route('profile_show'))) ? ' active' : NULL}}">
             <i class=" glyphicon glyphicon-user"></i> Profile
         </a>

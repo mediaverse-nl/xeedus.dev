@@ -40,7 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/review', ['as' => 'review_show', 'uses' => 'Auth\ReviewController@index']);
 
-    Route::get('/credits', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@index']);
+    Route::get('/credits/order/{id}', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@show']);
+    Route::post('mollie/webhook/{paymentId}', ['as' => 'credits_mollie', 'uses' => 'Auth\CreditController@mollie']);
+    Route::resource('mollie/webhook', 'Auth\CreditController@mollie');
+
+    Route::get('/credits', ['as' => 'credits_index', 'uses' => 'Auth\CreditController@index']);
     Route::post('/credits', ['as' => 'credits_update', 'uses' => 'Auth\CreditController@update']);
     Route::patch('/credits', ['as' => 'credits_store', 'uses' => 'Auth\CreditController@store']);
 

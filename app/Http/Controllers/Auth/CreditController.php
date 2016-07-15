@@ -103,19 +103,28 @@ class CreditController extends Controller
      */
     public function update(Request $request)
     {
-        $this->user->credits = $this->user->credits + $request->order;
-        $this->user->save();
+//        $this->user->credits = $this->user->credits + $request->order;
+//        $this->user->save();
     }
     
     
-    public function mollie($paymentId){
+    public function mollie($paymentId)
+    {
+        $order = $this->order->where('order_id', $paymentId)->first();
 
-        $payment = Mollie::api()->payments()->get($paymentId);
+        $payment = Mollie::api()->payments()->get($order->mollie_id);
+
 
         if ($payment->isPaid())
         {
 
-            return 'paid';
+            $order->status = 'paid';
+            $order->save();
+
+            $this->user->credits = $this->user->credits + $order->credits;
+            $this->user->save();
+
+            return 'paid <a href="'.route('credits_index').'">credits</a> ';
             /*
              * At this point you'd probably want to start the process of delivering the product
              * to the customer.
@@ -123,6 +132,9 @@ class CreditController extends Controller
         }
         elseif (! $payment->isOpen())
         {
+            $order->status = 'aborted';
+            $order->save();
+
             return 'not paid yet';
             /*
              * The payment isn't paid and isn't open anymore. We can assume it was aborted.
@@ -155,31 +167,27 @@ class CreditController extends Controller
             $item = collect($this->currency)
                 ->where('id', $request->order);
 
+            $order = time();
+
+            $payment = Mollie::api()->payments()->create([
+//                "amount"      => $order->price,
+                "amount"      => $item->implode('price'),
+                "description" => "My first API payment",
+                "redirectUrl" => route('credits_mollie', array($order)),
+            ]);
+
             $this->order->user_id   = Auth::user()->id;
             $this->order->credits   = $item->implode('credits');
             $this->order->price     = $item->implode('price');
             $this->order->status    = $this->status;
+            $this->order->order_id    = $order;
+            $this->order->mollie_id    = $payment->id;
 
             $this->order->save();
-
-            $order = $this->order;
-
-//            \Session::flash('succes_message', 'asd');
-
-//            return redirect()->route('credits_show', $order_id);
-
-            $payment = Mollie::api()->payments()->create([
-                "amount"      => $order->price,
-                "description" => "My first API payment",
-                "redirectUrl" => route('credits_mollie', array($order->id)),
-            ]);
 
             $payment = Mollie::api()->payments()->get($payment->id);
 
             return redirect($payment->getPaymentUrl());
-//            return redirect()->route('credits_show', $payment->id);
-
-
         }
     }
 

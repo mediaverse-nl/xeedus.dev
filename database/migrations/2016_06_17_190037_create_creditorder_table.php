@@ -19,6 +19,8 @@ class CreateCreditorderTable extends Migration
             $table->decimal('price', 19, 4);
             $table->integer('credits');
             $table->string('status');
+            $table->string('order_id');
+            $table->string('mollie_id');
             $table->timestamps();
         });
     }

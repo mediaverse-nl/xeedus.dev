@@ -58,40 +58,32 @@ class CreditController extends Controller
      */
     public function show($id)
     {
-//        $mollie = new Mollie_API_Client;
-//        $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-        $payment = Mollie::api()->payments()->get($id);
+
+        $order = $this->order->where('order_id', $id)->first();
+        $payment = Mollie::api()->payments()->get($order->mollie_id);
+
 //
+//        $payment = Mollie::api()->payments()->get($order->mollie_id);
+////
         $msg = '';
-//
+
 //        if ($payment->isPaid())
 //        {
 //            $msg .= "Payment received.";
 //        }
-        // List Methods
-        $methods = \Mollie::getMethods()->all();
-
-        foreach ($methods as $method)
-        {
-            $msg .=  '<div style="line-height:40px; vertical-align:top">';
-            $msg .=  '<img src="' . htmlspecialchars($method->image->normal) . '"> ';
-            $msg .=  htmlspecialchars($method->description);
-            $msg .=  ' (' .  htmlspecialchars($method->id). ')';
-            $msg .=  '</div>';
-        }
+//         List Methods
+//        $methods = Mollie::getMethods()->all();
+//
+//        foreach ($methods as $method)
+//        {
+//            $msg .=  '<div style="line-height:40px; vertical-align:top">';
+//            $msg .=  '<img src="' . htmlspecialchars($method->image->normal) . '"> ';
+//            $msg .=  htmlspecialchars($method->description);
+//            $msg .=  ' (' .  htmlspecialchars($method->id). ')';
+//            $msg .=  '</div>';
+//        }
 
         return view('auth.credits.show')->with('creditOrder', $this->order->find($id))->with('msg', $msg);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -113,8 +105,7 @@ class CreditController extends Controller
         $order = $this->order->where('order_id', $paymentId)->first();
 
         $payment = Mollie::api()->payments()->get($order->mollie_id);
-
-
+        
         if ($payment->isPaid())
         {
 

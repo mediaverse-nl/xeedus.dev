@@ -125,6 +125,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         //orders
         Route::get('orders', ['as' => 'admin_orders_all', 'uses' => 'Admin\OrderController@index']);
+        Route::get('orders/{id}/edit', ['as' => 'admin_orders_edit', 'uses' => 'Admin\OrderController@edit']);
+        Route::post('orders/{id}', ['as' => 'admin_orders_update', 'uses' => 'Admin\OrderController@update']);
 
         //users
         Route::get('users', ['as' => 'admin_profile_all', 'uses' => 'Admin\UserController@index']);

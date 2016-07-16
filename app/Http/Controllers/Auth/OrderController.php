@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+
 use App\CreditOrder;
 use App\Order;
 use Illuminate\Http\Request;
@@ -18,7 +20,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = CreditOrder::where('status', 'paid')->get();
+        $orders = CreditOrder::where('user_id', Auth::user()->id)->get();
 
         return view('auth.orders.index')
             ->with('orders', $orders);

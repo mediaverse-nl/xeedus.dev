@@ -33,6 +33,37 @@ Breadcrumbs::register('profile.courses', function($breadcrumbs)
     $breadcrumbs->push('My courses', route('profile_show'));
 });
 
+// Home > profile > orders
+Breadcrumbs::register('profile.orders', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('My orders', route('orders_show'));
+});
+
+//admin panel
+/////////////
+
+// dashboard
+Breadcrumbs::register('dashboard', function($breadcrumbs)
+{
+    $breadcrumbs->push('Dashboard', route('admin_panel'));
+});
+
+// dashboard > orders
+Breadcrumbs::register('dashboard.orders', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Orders', route('admin_orders_all'));
+});
+
+// dashboard > orders > edit
+Breadcrumbs::register('dashboard.orders.edit', function($breadcrumbs, $id)
+{
+    $breadcrumbs->parent('dashboard.orders');
+    $breadcrumbs->push('Edit', route('admin_orders_edit', $id));
+});
+
+
 //// Home > Blog > [Category]
 //Breadcrumbs::register('category', function($breadcrumbs, $category)
 //{

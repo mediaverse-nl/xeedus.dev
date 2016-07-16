@@ -9,8 +9,8 @@
         <a href="{{URL::route('orders_show')}}" class="list-group-item {{ Request::is( str_replace('http://localhost:8000/', '', URL::route('orders_show'))) ? ' active' : NULL }}">
             <i class="glyphicon glyphicon-shopping-cart"></i> My Orders
         </a>
-        <a href="{{URL::route('review_show')}}" class="list-group-item {{ Request::is( str_replace('http://localhost:8000/', '', URL::route('review_show'))) ? ' active' : NULL }}">
-            <i class="glyphicon glyphicon-shopping-cart"></i> My Reviews
-        </a>
+        {{--<a href="{{URL::route('review_show')}}" class="list-group-item {{ Request::is( str_replace('http://localhost:8000/', '', URL::route('review_show'))) ? ' active' : NULL }}">--}}
+            {{--<i class="glyphicon glyphicon-shopping-cart"></i> My Reviews--}}
+        {{--</a>--}}
     </div>
 </div>

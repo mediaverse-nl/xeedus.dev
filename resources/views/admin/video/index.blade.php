@@ -19,7 +19,7 @@
 
                         @include('layouts.menus.admin_menu')
 
-                        <table class="table-condensed table-bordered table-bordered table-hover">
+                        <table class="table table-condensed table-bordered table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>id</th>
@@ -36,7 +36,9 @@
                                         <td>{{$video->id}}</td>
                                         <td>{{$video->name}}</td>
                                         <td>{{$video->prijs}}</td>
-                                        <td>{{$video->author->user->name}}</td>
+                                        <td>
+                                            {{--{{$video->author->name}}--}}
+                                        </td>
                                         <td>{{$video->order->count()}}</td>
                                         <td>{{$video->order->count() * $video->prijs}}</td>
                                     </tr>

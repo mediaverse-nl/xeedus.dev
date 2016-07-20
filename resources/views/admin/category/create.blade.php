@@ -1,41 +1,38 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title')
-    admin panel index
-@endsection
-
-@section('description')
-
-@stop
+@section('title', 'new category')
+@section('breadcrumb', Breadcrumbs::render('dashboard.videos'))
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading">categories</div>
+                    <div class="panel-heading">category</div>
 
                     <div class="panel-body">
-
-                        @include('layouts.menus.admin_menu')
-
                         @include('errors.message')
 
                         {!! Form::open(['route' => 'admin_category_store']) !!}
-                        {!! Form::label('name', 'name') !!}
-                        {!! Form::text('name') !!}
-    <br>
-                        {!! Form::Label('cate_id', 'cate_id:') !!}
-                            <select class="cate_id" name="cate_id">
-                                <option value="0">main</option>
-                                @foreach($categories as $item)
-                                    <option value="{{$item->id}}">
-                                        {{$item->name}}
-                                    </option>
-                                @endforeach
-                            </select>
 
-                        {!! Form::submit('submit')!!}
+                        <!-- created_at -->
+                        <div class="form-group">
+                            {!! Form::label('name', 'name') !!}
+                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+                        </div>
+
+                        <!-- category id -->
+                        <div class="form-group">
+                            {!! Form::label('cate_id', 'category') !!}
+                            {!! Form::select('category_id', array_merge(array('' => '----- select -----', '0' => 'main'), \App\Category::where('cate_id', 0)->pluck('name', 'id')->toArray()), null, ['class' => 'form-control'] ) !!}
+                        </div>
+
+                        {!! Form::submit('submit', ['class' => 'btn btn-primary pull-right'])!!}
+
+                        <div class="form-group">
+                            <a class="btn btn-default pull-right" style="margin-right: 10px;">cancel</a>
+                        </div>
 
                         {!! Form::close() !!}
 
@@ -43,9 +40,10 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
 
+    </div>
+
+@endsection
 
 @section('javascript')
 

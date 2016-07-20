@@ -18,13 +18,14 @@ class CreateVideosTable extends Migration
             $table->foreign('author_id')->references('id')->on('author');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('name');
-            $table->string('video_key');
-            $table->string('thumbnails');
+            $table->string('name', 40);
+            $table->string('video_key', 30);
+            $table->string('thumbnails', 30);
+            $table->string('video', 30);
             $table->string('beschrijving');
-            $table->string('prijs');
-            $table->string('level');
-            $table->string('status');
+            $table->number('prijs');
+            $table->enum('level', ['beginner', 'intermediate', 'advanced', 'expert']);
+            $table->enum('status', ['no', 'off', 'banned']);
             $table->timestamps();
         });
     }

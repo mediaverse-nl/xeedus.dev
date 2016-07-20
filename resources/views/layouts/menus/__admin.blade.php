@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin</a>
+        <a class="navbar-brand" href="{{route('admin_panel')}}">Admin</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -22,7 +22,7 @@
                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
                             </span>
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>{{ Auth::user()->name }}</strong>
                                 </h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -37,7 +37,7 @@
                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
                             </span>
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>{{ Auth::user()->name }}</strong>
                                 </h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -52,7 +52,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong></strong>{{ Auth::user()->name }}</strong>
                                 </h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -93,20 +93,14 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -114,23 +108,39 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="{{ Request::is('admin') ? 'active' : null }}">
+            <li class="{{ Request::url() == route('admin_panel') ? 'active' : null }}">
                 <a href="{{route('admin_panel')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
-            <li class="{{ Request::is('admin/orders') ? 'active' : null }}">
+            <li class="{{ Request::is(route('admin_category_all').'*') == route('admin_category_all') ? 'active' : null }}">
+                <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i>{{route('admin_category_all').'*'}} Category</a>
+            </li>
+            <li class="{{ Request::url() == route('admin_orders_all') ? 'active' : null }}">
                 <a href="{{route('admin_orders_all')}}"><i class="fa fa-fw fa-shopping-cart"></i> Orders</a>
             </li>
-            <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo" class="collapse">
-                    <li>
-                        <a href="#">Dropdown Item</a>
-                    </li>
-                    <li>
-                        <a href="#">Dropdown Item</a>
-                    </li>
-                </ul>
+            <li class="{{ Request::url() == route('admin_videos_all') ? 'active' : null }}">
+                <a href="{{route('admin_videos_all')}}"><i class="fa fa-fw fa-film"></i> Videos</a>
             </li>
+            <li class="{{ Request::url() == route('admin_profile_all') ? 'active' : null }}">
+                <a href="{{route('admin_profile_all')}}"><i class="fa fa-fw fa-user"></i> Users</a>
+            </li>
+            <li class="{{ Request::url() == route('admin_authors_all') ? 'active' : null }}">
+                <a href="{{route('admin_authors_all')}}"><i class="fa fa-fw fa-graduation-cap"></i> Authors</a>
+            </li>
+            <li class="{{ Request::url() == route('admin_reviews_all') ? 'active' : null }}">
+                <a href="{{route('admin_reviews_all')}}"><i class="fa fa-fw fa-comments"></i> Reviews</a>
+            </li>
+            {{--<li>--}}
+                {{--<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>--}}
+                {{--<ul id="demo" class="collapse">--}}
+                    {{--<li>--}}
+                        {{--<a href="#"><i class="fa fa-fw fa-user"></i> Users</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="{{ Request::is('admin/orders') ? 'active' : null }}">--}}
+                        {{--<a href="{{route('admin_orders_all')}}"><i class="fa fa-fw fa-graduation-cap"></i> Authors</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+            {{--</li>--}}
         </ul>
     </div>
     <!-- /.navbar-collapse -->

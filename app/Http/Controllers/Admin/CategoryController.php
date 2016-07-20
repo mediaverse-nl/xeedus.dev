@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.category.index')->with('categories', $this->category->where('cate_id', 0)->get());
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
 
         $rules = [
             'name'     => 'required|max:25',
-            'cate_id'     => 'required|max:20',
+            'category_id'     => 'required|max:20',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -69,13 +69,11 @@ class CategoryController extends Controller
         } else {
 
             $this->category->name = $request->name;
-            $this->category->cate_id = $request->cate_id;
+            $this->category->cate_id = $request->category_id;
             $this->category->save();
 
             return redirect()->route('admin_category_all');
         }
-        
-        
     }
 
     /**
@@ -119,8 +117,6 @@ class CategoryController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-
-
 
             $category->name = $request->name;
 

@@ -36,6 +36,11 @@
                 {!! $orders->render() !!}
             </div>
         </div>
+
+        <div class="col-lg-6">
+            asdasd
+        </div>
+
     </div>
 
 @endsection

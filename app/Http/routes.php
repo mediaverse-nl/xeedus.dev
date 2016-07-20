@@ -25,6 +25,11 @@ Route::get('/cookie', ['as' => 'page_cookie', 'uses' => 'PagesController@cookie'
 Route::get('/support', ['as' => 'page_support', 'uses' => 'PagesController@support']);
 Route::get('/contact', ['as' => 'page_contact', 'uses' => 'PagesController@contact']);
 
+
+route::get('/video/thumbnail/{filename}', ['as' => 'get_thumbnail', 'uses' => 'VideoController@GetImage']);
+route::get('/video/stream/{filename}', ['as' => 'get_video', 'uses' => 'VideoController@GetVideo']);
+
+
 //main and sub categories
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
 //author profile
@@ -109,9 +114,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 //        Route::get('author/requests', ['as' => 'admin_authors_requests', 'uses' => 'Admin\AuthorController@index']);
 
         Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
-//        Route::get('videos', ['as' => 'admin_videos_all', 'uses' => 'Admin\VideoController@index']);
+        Route::get('videos/{id}/edit', ['as' => 'admin_videos_edit', 'uses' => 'Admin\VideoController@edit']);
+        Route::post('videos/{id}', ['as' => 'admin_videos_update', 'uses' => 'Admin\VideoController@update']);
 
-        Route::get('categories', ['as' => 'admin_category_all', 'uses' => 'CategoryController@index']);
+        Route::get('categories', ['as' => 'admin_category_all', 'uses' => 'Admin\CategoryController@index']);
         Route::get('categories/{category}/edit', ['as' => 'admin_category_edit', 'uses' => 'Admin\CategoryController@edit']);
 
         Route::get('categories/create', ['as' => 'admin_category_create', 'uses' => 'Admin\CategoryController@create']);

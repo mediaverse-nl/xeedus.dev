@@ -17,4 +17,9 @@
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    upload_max_filesize = 20M
+    post_max_size = 20M
+    memory_limit = 32M
+
 </IfModule>

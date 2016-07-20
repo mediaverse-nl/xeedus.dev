@@ -22,10 +22,12 @@
                         @include('errors.message')
 
                         {!! Form::open(['route' => 'admin_category_store']) !!}
+
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
     <br>
                         {!! Form::Label('cate_id', 'cate_id:') !!}
+
                             <select class="cate_id" name="cate_id">
                                 <option value="0">main</option>
                                 @foreach($categories as $item)

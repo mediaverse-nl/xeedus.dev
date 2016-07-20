@@ -1,34 +1,31 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title')
-    admin panel index
-@endsection
-
-@section('description')
-
-@stop
+@section('title', 'videos')
+@section('breadcrumb', Breadcrumbs::render('dashboard.videos'))
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading">categories</div>
+                    <div class="panel-heading">category</div>
 
                     <div class="panel-body">
-
-                        @include('layouts.menus.admin_menu')
 
                         @include('errors.message')
 
                         {!! Form::model($cate, array('route' => 'admin_category_update', 'method' => 'patch', 'method' => 'patch')) !!}
 
-                            {!! Form::hidden('id', $cate->id) !!}
+                        {!! Form::hidden('id', $cate->id) !!}
 
+                        <!-- name -->
+                        <div class="form-group">
                             {!! Form::label('name', 'name') !!}
-                            {!! Form::text('name') !!}
-                            <br>
-                            {!! Form::submit('edit category', ['class' => 'btn btn-primary'])!!}
+                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+                        </div>
+
+                        {!! Form::submit('edit', ['class' => 'btn btn-primary pull-right'])!!}
 
                         {!! Form::close() !!}
 
@@ -36,10 +33,7 @@
                 </div>
             </div>
         </div>
+
     </div>
-@endsection
-
-
-@section('javascript')
 
 @endsection

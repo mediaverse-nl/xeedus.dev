@@ -111,8 +111,8 @@
             <li class="{{ Request::url() == route('admin_panel') ? 'active' : null }}">
                 <a href="{{route('admin_panel')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
-            <li class="{{ Request::is(route('admin_category_all').'*') == route('admin_category_all') ? 'active' : null }}">
-                <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i>{{route('admin_category_all').'*'}} Category</a>
+            <li class="{{ Request::is(route('admin_category_all')->getPath) ? 'active' : null }}">
+                <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i>{{( var_dump(Request::is(route('admin_category_all'))))}} - {{route('admin_category_all')}} Category</a>
             </li>
             <li class="{{ Request::url() == route('admin_orders_all') ? 'active' : null }}">
                 <a href="{{route('admin_orders_all')}}"><i class="fa fa-fw fa-shopping-cart"></i> Orders</a>

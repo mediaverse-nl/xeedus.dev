@@ -225,6 +225,7 @@ return [
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+
     ],
 
 ];

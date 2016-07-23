@@ -6,7 +6,7 @@ use App\Order;
 use App\Category;
 use App\Video;
 
-use App\VideoStream;
+use App\Helpers\VideoStream;
 
 use Auth;
 use Illuminate\Support\Facades\Storage;
@@ -88,11 +88,14 @@ class VideoController extends Controller
     public function GetVideo($filename){
 
         $entry = Video::where('video', '=', $filename)->firstOrFail();
-        $file = Storage::disk('local')->get($entry->video);
+//        $file = Storage::disk('local')->get($entry->video);
+
+//        return var_dump($entry);
+//        return fopen($file, 'r');
 
 //        return 'asdasd';
 //        return $file;
-        return new VideoStream($file);
+        return  VideoStream(public_path().'\videos\media'."\\".$entry->video);
 ////
 //
 ////

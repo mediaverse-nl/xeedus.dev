@@ -27,7 +27,36 @@ Route::get('/contact', ['as' => 'page_contact', 'uses' => 'PagesController@conta
 
 
 route::get('/video/thumbnail/{filename}', ['as' => 'get_thumbnail', 'uses' => 'VideoController@GetImage']);
-route::get('/video/stream/{filename}', ['as' => 'get_video', 'uses' => 'VideoController@GetVideo']);
+//route::get('/video/stream/{filename}', ['as' => 'get_video', 'uses' => 'VideoController@GetVideo']);
+route::get('/video/stream/{filename}', ['as' => 'get_video', function($filename){
+    $videosDir = base_path('public\videos\media\\');
+    if (file_exists($filePath = $videosDir."/".$filename)) {
+        $stream = new VideoStream($filePath);
+        return response()->stream(function() use ($stream) {
+            $stream->start();
+        });
+    }
+    return response("File doesn't exists".$videosDir, 404);
+}]);
+
+Route::get('/player', function () {
+    $video = "videos/media/obng6bDpV5.mp4";
+    $mime = "video/mp4";
+    $title = "Os Simpsons";
+    return view('player')->with(compact('video', 'mime', 'title'));
+});
+
+Route::get('/video/{filename}', function ($filename) {
+    // Pasta dos videos.
+    $videosDir = base_path('public\videos\media\\');
+    if (file_exists($filePath = $videosDir."/".$filename)) {
+        $stream = new App\Http\VideoStream($filePath);
+        return response()->stream(function() use ($stream) {
+            $stream->start();
+        });
+    }
+    return response("File doesn't exists".$videosDir, 404);
+});
 
 
 //main and sub categories

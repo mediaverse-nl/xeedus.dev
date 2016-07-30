@@ -35,7 +35,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {!! $videos->render() !!}
+                {!! $videos->appends(Input::except('page'))->render() !!}
             </div>
         </div>
 
@@ -43,6 +43,8 @@
             <ul class="list-group">
                 <li class="list-group-item"><a href="{{route('admin_panel')}}">asdas</a></li>
                 <li class="list-group-item"><a href="{{route('admin_panel')}}">asdas</a></li>
+                <li class="list-group-item"><a href="{{ url(route('admin_videos_all'),['game' => 1,'category' => 3,'page' => 6]) }}">asdas</a></li>
+
             </ul>
         </div>
 

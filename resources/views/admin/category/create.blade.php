@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'new category')
-@section('breadcrumb', Breadcrumbs::render('dashboard.videos'))
+@section('breadcrumb', Breadcrumbs::render('dashboard.category.edit'))
 
 @section('content')
 
@@ -25,7 +25,7 @@
                         <!-- category id -->
                         <div class="form-group">
                             {!! Form::label('cate_id', 'category') !!}
-                            {!! Form::select('category_id', array_merge(array('' => '----- select -----', '0' => 'main'), \App\Category::where('cate_id', 0)->pluck('name', 'id')->toArray()), null, ['class' => 'form-control'] ) !!}
+                            {!! Form::select('category_id', array('' => '----- select -----', '0' => 'new main category', 'for sub categories' => \App\Category::where('cate_id', 0)->pluck('name', 'id')->toArray() ), null, ['class' => 'form-control'] ) !!}
                         </div>
 
                         {!! Form::submit('submit', ['class' => 'btn btn-primary pull-right'])!!}

@@ -78,6 +78,20 @@ Breadcrumbs::register('dashboard.videos.edit', function($breadcrumbs, $id)
 });
 
 
+// dashboard > Category
+Breadcrumbs::register('dashboard.category', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Category', route('admin_category_all'));
+});
+
+// dashboard > Category > edit
+Breadcrumbs::register('dashboard.category.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.category');
+    $breadcrumbs->push('New', route('admin_category_create'));
+});
+
 //// Home > Blog > [Category]
 //Breadcrumbs::register('category', function($breadcrumbs, $category)
 //{

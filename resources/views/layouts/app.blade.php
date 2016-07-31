@@ -187,7 +187,7 @@
                         @endif
 
                         @if(Auth::user()->isAuthor())
-                            <li><a href="{{ url('/partner') }}">author panel</a></li>
+                            <li><a href="{{ route('author_home') }}">author panel</a></li>
                         @endif
 
                         <li class="dropdown">

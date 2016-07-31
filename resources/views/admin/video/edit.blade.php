@@ -7,7 +7,7 @@
 
     <div class="row">
 
-        {!! Form::model($video, array('route' => array('admin_videos_update', $video->id), 'class' => '', 'method' => 'post', 'files' => true )) !!}
+        {!! Form::model($video, array('route' => array('admin_videos_update', $video->id), 'class' => '', 'method' => 'post', 'files'=> true )) !!}
 
             <div class="col-lg-6">
 
@@ -99,11 +99,11 @@
             </div>
 
             <div class="col-lg-2">
-
+                {{--<img src="{{route('get_thumbnail', $video->thumbnails)}}">--}}
                 <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
                        poster="{{route('get_thumbnail', $video->thumbnails)}}" data-setup="{}">
                     {{--<source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>--}}
-                    <source src="{{route('get_video', $video->video)}}" type='video/mp4'>
+                    <source src="{{route('get_video', $video->video_key)}}" type='video/mp4'>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -112,13 +112,12 @@
                 {{--<script src="http://vjs.zencdn.net/5.10.4/video.js"></script>--}}
 
                 {{--@if(Storage::disk('local')->has($video->thumbnails))--}}
-                    {{--<img src="}" alt="ALT NAME" class="img-responsive" />--}}
-                    {{--{{route('get_thumbnail', $video->thumbnails)}}--}}
+                    {{--<img src="{{route('get_thumbnail', $video->thumbnails)}}" alt="ALT NAME" class="img-responsive" />--}}
                 {{--@endif--}}
 
                 <!-- thumbnails -->
                 <div class="form-group">
-                    {!! Form::label('thumbnails', 'thumbnail') !!}
+                    {!! Form::label('thumbnails', 'thumbnails') !!}
                     {!! Form::file('thumbnails') !!}
                 </div>
 

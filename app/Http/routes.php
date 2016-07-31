@@ -28,36 +28,15 @@ Route::get('/contact', ['as' => 'page_contact', 'uses' => 'PagesController@conta
 
 route::get('/video/thumbnail/{filename}', ['as' => 'get_thumbnail', 'uses' => 'VideoController@GetImage']);
 //route::get('/video/stream/{filename}', ['as' => 'get_video', 'uses' => 'VideoController@GetVideo']);
-route::get('/video/stream/{filename}', ['as' => 'get_video', function($filename){
-    $videosDir = base_path('public\videos\media\\');
-    if (file_exists($filePath = $videosDir."/".$filename)) {
-        $stream = new VideoStream($filePath);
-        return response()->stream(function() use ($stream) {
-            $stream->start();
-        });
-    }
-    return response("File doesn't exists".$videosDir, 404);
-}]);
 
-Route::get('/player', function () {
-    $video = "videos/media/obng6bDpV5.mp4";
-    $mime = "video/mp4";
-    $title = "Os Simpsons";
-    return view('player')->with(compact('video', 'mime', 'title'));
-});
+route::get('/video/stream/{video_key}', ['as' => 'get_video', 'uses' => 'VideoController@GetVideo']);
 
-Route::get('/video/{filename}', function ($filename) {
-    // Pasta dos videos.
-    $videosDir = base_path('public\videos\media\\');
-    if (file_exists($filePath = $videosDir."/".$filename)) {
-        $stream = new App\Http\VideoStream($filePath);
-        return response()->stream(function() use ($stream) {
-            $stream->start();
-        });
-    }
-    return response("File doesn't exists".$videosDir, 404);
-});
-
+//Route::get('/player', function () {
+//    $video = "videos/media/obng6bDpV5.mp4";
+//    $mime = "video/mp4";
+//    $title = "Os Simpsons";
+//    return view('player')->with(compact('video', 'mime', 'title'));
+//});
 
 //main and sub categories
 Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
@@ -105,9 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth', 'author']], function () {
 
     //author panel
-    Route::get('partner', ['as' => '', 'uses' => 'Controller@index']);
+//    Route::get('author', ['as' => '', 'uses' => 'Controller@index']);
 
-    Route::group(['prefix' => 'partner'], function () {
+    Route::group(['prefix' => 'author'], function () {
         //author panel video management
         Route::get('/', ['as' => 'author_home', 'uses' => 'Author\HomeController@index']);
 
@@ -169,6 +148,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('users/{id}', ['as' => 'admin_user_update', 'uses' => 'Admin\UserController@update']);
         Route::delete('users/{id}', ['as' => 'admin_user_destroy', 'uses' => 'Admin\UserController@destroy']);
 
+        Route::get('events', ['as' => 'admin_events_all', 'uses' => 'Admin\EventController@index']);
+
+        
     });
 
 });

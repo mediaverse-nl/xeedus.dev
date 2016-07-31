@@ -15,9 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::where('cate_id', 0)->get();
+//        $categories = Category::where('cate_id', 0)->get();
+//
+//        view()->share('categories', $categories);
 
-        view()->share('categories', $categories);
+        view()->composer('layouts.app', function($view)
+        {
+            $view->with('categories', Category::all());
+        });
     }
 
     /**

@@ -18,6 +18,11 @@ class Review extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'id');
+    }
+
+    public function video()
+    {
+        return $this->belongsTo('App\Video', 'id');
     }
 }

@@ -6,6 +6,8 @@ use App\Category;
 
 use Validator;
 
+use Log;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -62,6 +64,8 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
+//            log::error('.');
+
             return redirect()
                 ->route('admin_category_create')
                 ->withErrors($validator)
@@ -71,6 +75,8 @@ class CategoryController extends Controller
             $this->category->name = $request->name;
             $this->category->cate_id = $request->category_id;
             $this->category->save();
+
+            Log::info('made new category', ['name' => $request->name]);
 
             return redirect()->route('admin_category_all');
         }

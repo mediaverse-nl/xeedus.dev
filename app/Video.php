@@ -22,6 +22,11 @@ class Video extends Model
         return $this->belongsTo('App\Author');
     }
 
+    public function review()
+    {
+        return $this->hasMany('App\Review');
+    }
+
     public function order()
     {
         return $this->hasMany('App\Order');

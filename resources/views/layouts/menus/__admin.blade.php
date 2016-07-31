@@ -108,26 +108,29 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="{{ Request::url() == route('admin_panel') ? 'active' : null }}">
+            <li class="{{ Request::is('admin') ? 'active' : null }}">
                 <a href="{{route('admin_panel')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
-            <li class="{{ Request::is(route('admin_category_all')) ? 'active' : null }}">
-                <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i>{{( var_dump(Request::is(route('admin_category_all'))))}} - {{route('admin_category_all')}} Category</a>
+            <li class="{{ Request::is('admin/categories*') ? 'active' : null }}">
+                <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i> Categories</a>
             </li>
-            <li class="{{ Request::url() == route('admin_orders_all') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/orders*') ? 'active' : null }}">
                 <a href="{{route('admin_orders_all')}}"><i class="fa fa-fw fa-shopping-cart"></i> Orders</a>
             </li>
-            <li class="{{ Request::url() == route('admin_videos_all') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/videos*') ? 'active' : null }}">
                 <a href="{{route('admin_videos_all')}}"><i class="fa fa-fw fa-film"></i> Videos</a>
             </li>
-            <li class="{{ Request::url() == route('admin_profile_all') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/users*') ? 'active' : null }}">
                 <a href="{{route('admin_profile_all')}}"><i class="fa fa-fw fa-user"></i> Users</a>
             </li>
-            <li class="{{ Request::url() == route('admin_authors_all') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/authors*') ? 'active' : null }}">
                 <a href="{{route('admin_authors_all')}}"><i class="fa fa-fw fa-graduation-cap"></i> Authors</a>
             </li>
-            <li class="{{ Request::url() == route('admin_reviews_all') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/reviews*') ? 'active' : null }}">
                 <a href="{{route('admin_reviews_all')}}"><i class="fa fa-fw fa-comments"></i> Reviews</a>
+            </li>
+            <li class="{{ Request::is('admin/events*') ? 'active' : null }}">
+                <a href="{{route('admin_events_all')}}"><i class="fa fa-fw fa-comments"></i> Events</a>
             </li>
             {{--<li>--}}
                 {{--<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>--}}

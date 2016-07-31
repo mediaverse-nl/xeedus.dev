@@ -23,7 +23,7 @@ class CreateVideosTable extends Migration
             $table->string('thumbnails', 30);
             $table->string('video', 30);
             $table->string('beschrijving');
-            $table->number('prijs');
+            $table->integer('prijs');
             $table->enum('level', ['beginner', 'intermediate', 'advanced', 'expert']);
             $table->enum('status', ['no', 'off', 'banned']);
             $table->timestamps();

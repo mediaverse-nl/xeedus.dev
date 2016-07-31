@@ -5,14 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Video;
 
 use Validator;
+use Storage;
+use File;
+use Response;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+//use Request;
+
+//use Illuminate\Support\Facades\Storage;
+//use Illuminate\Support\Facades\File;
+//use Illuminate\Http\Response;
+
 
 class VideoController extends Controller
 {
@@ -79,7 +87,7 @@ class VideoController extends Controller
         if($image){
             $extension = $image->getClientOriginalExtension();
             $new_filename = str_random(10).'.'.$extension;
-            Storage::disk('local')->put($new_filename, $request->file('thumbnails'));
+            Storage::disk('local')->put($new_filename, \Input::file('thumbnails'));
             $video->thumbnails =  $new_filename;
         }
 
@@ -87,7 +95,7 @@ class VideoController extends Controller
             $extension_v = $video_file->getClientOriginalExtension();
             $new_filename_v = str_random(10).'.'.$extension_v;
 //            Storage::disk('local')->put($new_filename_v,  file_get_contents($video_file->getRealPath()));
-            Storage::disk('local')->put($new_filename_v,  $request->file('video'));
+            Storage::disk('local')->put($new_filename_v, Input::file('video'));
             $video->video =  $new_filename_v;
         }
 

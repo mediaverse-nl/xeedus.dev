@@ -2,24 +2,39 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Video;
-
-use Validator;
-use Storage;
-use File;
-use Response;
-
-use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Request;
-
-use App\Http\Requests;
-
-use App\Http\Controllers\Controller;
+//use App\Video;
+//
+//use Validator;
+//use Storage;
+//use File;
+//use Input;
+//use Response;
+//
+//use Illuminate\Http\Request;
+////use Illuminate\Support\Facades\Request;
+//
+//use App\Http\Requests;
+//
+//use App\Http\Controllers\Controller;
 //use Request;
 
 //use Illuminate\Support\Facades\Storage;
 //use Illuminate\Support\Facades\File;
 //use Illuminate\Http\Response;
+
+use App\Video;
+use Auth;
+
+use Storage;
+use Validator;
+use Input;
+use Session;
+use File;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 
 class VideoController extends Controller
@@ -66,8 +81,8 @@ class VideoController extends Controller
         ];
         $rules = [
 //            'status'          => 'required',
-//            'thumbnails'          => 'required|mimes:mp4,webm',
-//            'video'          => 'required|mimes:mp4,webm',
+            'thumbnails'     => 'mimes:jpg,jpeg',
+            'video'          => 'mimes:mp4,webm',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -81,23 +96,28 @@ class VideoController extends Controller
 
         $video = $this->videos->find($id);
 
-        $image = $request->file('thumbnails');
-        $video_file = $request->file('video');
-
+        $image = Input::file('thumbnails');
         if($image){
             $extension = $image->getClientOriginalExtension();
             $new_filename = str_random(10).'.'.$extension;
-            Storage::disk('local')->put($new_filename, \Input::file('thumbnails'));
+            $image->move(public_path().'/videos/thumbnail/', $new_filename);
             $video->thumbnails =  $new_filename;
         }
 
+        $video_file = Input::file('video');
         if($video_file){
             $extension_v = $video_file->getClientOriginalExtension();
             $new_filename_v = str_random(10).'.'.$extension_v;
-//            Storage::disk('local')->put($new_filename_v,  file_get_contents($video_file->getRealPath()));
-            Storage::disk('local')->put($new_filename_v, Input::file('video'));
+            $video_file->move(public_path().'/videos/media/', $new_filename_v);
             $video->video =  $new_filename_v;
         }
+
+        $video->name = $request->name;
+        $video->category_id = $request->category_id;
+        $video->prijs = $request->prijs;
+        $video->level = $request->level;
+        $video->status = $request->status;
+        $video->beschrijving = $request->beschrijving;
 
         $video->save();
 

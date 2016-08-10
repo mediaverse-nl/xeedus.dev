@@ -24,9 +24,9 @@
                     {{--{{dd($best_video)}}--}}
                     <div>
                         <h2>categories</h2>
-                        @foreach($categories as $category)
-                            <a class="btn btn-default" href="{{ URL::route('video_categories_sub', str_replace(' ', '-', $category->name) ) }}">{{ $category->name  }}</a>
-                        @endforeach
+                        {{--@foreach($categories as $category)--}}
+                            {{--<a class="btn btn-default" href="{{ URL::route('video_categories_sub', str_replace(' ', '-', $category->name) ) }}">{{ $category->name  }}</a>--}}
+                        {{--@endforeach--}}
                     </div>
 
                     <h2>recently</h2>

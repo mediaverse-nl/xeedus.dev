@@ -26,9 +26,7 @@
                             <td>{{$video->id}}</td>
                             <td>{{$video->name}}</td>
                             <td>{{$video->prijs}}</td>
-                            <td>
-                                {{--{{$video->author->name}}--}}
-                            </td>
+                            <td>{{$video->author->user->name}}</td>
                             <td>{{$video->order->count()}}</td>
                             <td>{{$video->order->count() * $video->prijs}}</td>
                         </tr>

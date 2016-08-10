@@ -6,8 +6,10 @@ use Auth;
 
 use App\Video;
 use App\User;
-use Xeedus\Author;
+use App\Author;
 use App\Category;
+
+use Input;
 
 use Validator;
 use Session;
@@ -27,10 +29,11 @@ class VideoController extends Controller
 
     public function __construct()
     {
-        $this->author = User::find(Auth::user()->id)->author()->first();
+//        $this->author = User::find(Auth::user()->id)->author()->first();
+        $this->author = Author::where('user_id', Auth::user()->id)->first();
 //        $this->videos = Video::all()->where();
 //        $this->this_user = Auth::user()->id;
-        $this->new_video = new Video;
+        $this->video = new Video;
     }
 
     /**
@@ -41,7 +44,7 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::where('author_id', '=', $this->author->id)->get();
-
+//        return dd($videos);
         return view('author.video.index')->with('videos', $videos);
     }
 
@@ -72,7 +75,9 @@ class VideoController extends Controller
         $rules = [
             'name'          => 'required|max:40',
             'beschrijving'  => 'required|max:550|min:20',
-            'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
+//            'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
+            'thumbnails'     => 'mimes:jpg,jpeg',
+            'video'          => 'mimes:mp4,webm',
             'category_id'   => 'required',
             'level'         => 'required',
             'prijs'         => 'required|numeric',
@@ -88,26 +93,59 @@ class VideoController extends Controller
                 ->withInput();
         }
 
-        $destinationPath = base_path().'\public\videos\thumbnail';
-        $fileName = str_random(20);
-        $minetype = $request->file('thumbnail')->getClientOriginalExtension();
+//
+//        $image = Input::file('thumbnails');
+//        if($image){
+//            $extension = $image->getClientOriginalExtension();
+//            $new_filename = str_random(10).'.'.$extension;
+//            $image->move(public_path().'/videos/thumbnail/', $new_filename);
+//            $this->video->thumbnails =  $new_filename;
+//        }
+//
+//        $video_file = Input::file('video');
+//        if($video_file){
+//            $extension_v = $video_file->getClientOriginalExtension();
+//            $new_filename_v = str_random(10).'.'.$extension_v;
+////            Storage::disk('local')->put($new_filename_v,  file_get_contents($video_file->getRealPath()));
+////            $video_file->move($new_filename_v, Input::file('video'));
+//            $video_file->move(public_path().'/videos/media/', $new_filename_v);
+//            $this->video->video =  $new_filename_v;
+//        }
 
-        $full_path = $fileName.'.'.$minetype;
+//        $destinationPath = base_path().'\public\videos\thumbnail';
+//        $fileName = str_random(20);
+//        $minetype = $request->file('thumbnail')->getClientOriginalExtension();
+//
+//        $full_path = $fileName.'.'.$minetype;
+//
+//        $request->file('thumbnail')->move($destinationPath, $full_path);
+        $image = Input::file('thumbnails');
+        if($image){
+            $extension = $image->getClientOriginalExtension();
+            $new_filename = str_random(10).'.'.$extension;
+            $image->move(public_path().'/videos/thumbnail/', $new_filename);
+            $this->video->thumbnails =  $new_filename;
+        }
 
-        $request->file('thumbnail')->move($destinationPath, $full_path);
+        $video_file = Input::file('video');
+        if($video_file){
+            $extension_v = $video_file->getClientOriginalExtension();
+            $new_filename_v = str_random(10).'.'.$extension_v;
+            $video_file->move(public_path().'/videos/media/', $new_filename_v);
+            $this->video->video =  $new_filename_v;
+        }
 
         //
-        $this->new_video->author_id      =  Auth::user()->id;
-        $this->new_video->category_id    =  $request->category_id;
-        $this->new_video->name           =  $request->name;
-        $this->new_video->video_key      =  str_random(20);
-        $this->new_video->thumbnails      =  $full_path;
-        $this->new_video->beschrijving   =  $request->beschrijving;
-        $this->new_video->prijs          =  $request->prijs;
-        $this->new_video->level          =  $request->level;
-        $this->new_video->status         =  $request->status;
+        $this->video->author_id      =  $this->author->id;
+        $this->video->category_id    =  $request->category_id;
+        $this->video->name           =  $request->name;
+        $this->video->video_key      =  str_random(10);
+        $this->video->beschrijving   =  $request->beschrijving;
+        $this->video->prijs          =  $request->prijs;
+        $this->video->level          =  $request->level;
+        $this->video->status         =  $request->status;
 
-        $this->new_video->save();
+        $this->video->save();
 
         \Session::flash('succes_message','successfully.');
 

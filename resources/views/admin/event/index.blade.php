@@ -21,7 +21,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                        {{(var_dump($log))}}
+                        {{(dd($log))}}
+{{--                        @foreach($log as $logged)--}}
+                            {{--{{dd($logged)}}<br>--}}
+                        {{--@endforeach--}}
                     </tbody>
                 </table>
                 {{--{!! $videos->appends(Input::except('page'))->render() !!}--}}

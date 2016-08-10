@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
 
     <style>
         /* Sticky footer styles
@@ -127,6 +128,30 @@
             left: 0;
             /* fill parent */
             background-color: deepskyblue;
+            /* let's see it! */
+            color: white;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            /* whatever width you want */
+            display: inline-block;
+            position: relative;
+        }
+        .video-wrapper:after {
+            padding-top: 56.25%;
+            /* 16:9 ratio */
+            display: block;
+            content: '';
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            /* fill parent */
+            background-color: black;
             /* let's see it! */
             color: white;
         }
@@ -247,6 +272,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
+    <script type="text/javascript">
+        <!--
+
+        $(document).ready(function () {
+
+            window.setTimeout(function() {
+                $(".alert").fadeTo(1500, 0).slideUp(500, function(){
+                    $(this).remove();
+                });
+            }, 5000);
+
+        });
+        //-->
+    </script>
 
     @yield('javascript')
 

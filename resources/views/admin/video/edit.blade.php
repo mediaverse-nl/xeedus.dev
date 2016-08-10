@@ -9,9 +9,9 @@
 
         {!! Form::model($video, array('route' => array('admin_videos_update', $video->id), 'class' => '', 'method' => 'post', 'files'=> true )) !!}
 
-            <div class="col-lg-6">
+            @include('errors.message')
 
-                @include('errors.message')
+            <div class="col-lg-6">
 
                 <fieldset>
 
@@ -30,7 +30,7 @@
                     <!-- category id -->
                     <div class="form-group">
                         {!! Form::label('cate_id', 'category') !!}
-                        {!! Form::select('category_id', \App\Category::where('cate_id', '!=', 0)->pluck('name', 'id'), null, ['class' => 'form-control'] ) !!}
+                        {!! Form::select('category_id', \App\Category::where('cate_id', '!=', 0)->groupBy('name')->pluck('name', 'id'), null, ['class' => 'form-control'] ) !!}
                     </div>
 
                     <!-- name -->
@@ -66,10 +66,11 @@
                     <div class="form-group">
                         {!! Form::label('level', 'level') !!}<br>
 
-                        {!! Form::radio('level', 1) !!}
+                        {{--{!! Form::radio('level', 1) !!}--}}
 
-                        {!! Form::label('level', 'beginner') !!}
                         {!! Form::radio('level', 'beginner') !!}
+                        {!! Form::label('level', 'beginner') !!}
+                        {!! Form::radio('level', 'intermediate') !!}
                         {!! Form::label('level', 'intermediate') !!}
                         {!! Form::radio('level', 'advanced') !!}
                         {!! Form::label('level', 'advanced') !!}
@@ -85,8 +86,15 @@
 
                     <!-- status -->
                     <div class="form-group">
-                        {!! Form::label('status', 'status') !!}
-                        {!! Form::select('status', \App\Video::lists('status', 'status'), null, ['class' => 'form-control'] ) !!}
+                        {!! Form::label('status', 'status') !!}<br>
+                        {{--{!! Form::select('status', \App\Video::lists('status', 'status'), null, ['class' => 'form-control'] ) !!}--}}
+
+                        {!! Form::radio('status', 'public') !!}
+                        {!! Form::label('status', 'public') !!}
+                        {!! Form::radio('status', 'private') !!}
+                        {!! Form::label('status', 'private') !!}
+                        {!! Form::radio('status', 'banned') !!}
+                        {!! Form::label('status', 'banned') !!}
                     </div>
 
                     <!-- Submit Button -->
@@ -99,9 +107,10 @@
             </div>
 
             <div class="col-lg-2">
+                <link href="http://vjs.zencdn.net/5.10.7/video-js.css" rel="stylesheet">
                 {{--<img src="{{route('get_thumbnail', $video->thumbnails)}}">--}}
                 <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                       poster="{{route('get_thumbnail', $video->thumbnails)}}" data-setup="{}">
+                       poster="{{'/videos/thumbnail/'.$video->thumbnails}}" data-setup="{}">
                     {{--<source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>--}}
                     <source src="{{route('get_video', $video->video_key)}}" type='video/mp4'>
                     <p class="vjs-no-js">
@@ -109,11 +118,7 @@
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
-                {{--<script src="http://vjs.zencdn.net/5.10.4/video.js"></script>--}}
-
-                {{--@if(Storage::disk('local')->has($video->thumbnails))--}}
-                    {{--<img src="{{route('get_thumbnail', $video->thumbnails)}}" alt="ALT NAME" class="img-responsive" />--}}
-                {{--@endif--}}
+                <script src="http://vjs.zencdn.net/5.10.7/video.js"></script>
 
                 <!-- thumbnails -->
                 <div class="form-group">

@@ -25,7 +25,7 @@ class CreateVideosTable extends Migration
             $table->string('beschrijving');
             $table->integer('prijs');
             $table->enum('level', ['beginner', 'intermediate', 'advanced', 'expert']);
-            $table->enum('status', ['no', 'off', 'banned']);
+            $table->enum('status', ['public', 'private', 'banned']);
             $table->timestamps();
         });
     }

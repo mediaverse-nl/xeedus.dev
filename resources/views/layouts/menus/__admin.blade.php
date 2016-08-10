@@ -111,6 +111,35 @@
             <li class="{{ Request::is('admin') ? 'active' : null }}">
                 <a href="{{route('admin_panel')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">privacy policy</a>
+                    </li>
+                    <li>
+                        <a href="#">Terms</a>
+                    </li>
+                    <li>
+                        <a href="#">cookie policy</a>
+                    </li>
+                    <li>
+                        <a href="#"> Support</a>
+                    </li>
+                    <li>
+                        <a href="#"> FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#"> partner</a>
+                    </li>
+                    <li>
+                        <a href="#"> contact</a>
+                    </li>
+                </ul>
+            </li>
             <li class="{{ Request::is('admin/categories*') ? 'active' : null }}">
                 <a href="{{route('admin_category_all')}}"><i class="fa fa-fw fa-bars"></i> Categories</a>
             </li>
@@ -123,7 +152,7 @@
             <li class="{{ Request::is('admin/users*') ? 'active' : null }}">
                 <a href="{{route('admin_profile_all')}}"><i class="fa fa-fw fa-user"></i> Users</a>
             </li>
-            <li class="{{ Request::is('admin/authors*') ? 'active' : null }}">
+            <li class="{{ Request::is('admin/author*') ? 'active' : null }}">
                 <a href="{{route('admin_authors_all')}}"><i class="fa fa-fw fa-graduation-cap"></i> Authors</a>
             </li>
             <li class="{{ Request::is('admin/reviews*') ? 'active' : null }}">

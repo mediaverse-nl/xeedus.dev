@@ -16,6 +16,8 @@
     <!-- Morris Charts CSS -->
     <link href="/css/plugins/morris.css" rel="stylesheet">
 
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -67,6 +69,9 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+@yield('javascript')
+
 <script type="text/javascript">
     $(document).ready(function($) {
         $( "#datepicker" ).datepicker();
@@ -85,6 +90,7 @@
 <script src="/js/plugins/morris/raphael.min.js"></script>
 <script src="/js/plugins/morris/morris.min.js"></script>
 <script src="/js/plugins/morris/morris-data.js"></script>
+
 
 </body>
 

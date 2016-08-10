@@ -58,7 +58,12 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">{{$orders->count()}}</div>
+                            <div class="huge">{{$orders->where('created_at', '>=', \Carbon\Carbon::now()->startOfMonth())}}</div>
+                            {{--<div class="huge">{{\Carbon\Carbon::now()->startOfMonth()->toDateTimeString()}}</div>--}}
+                            {{--<div class="huge">{{\Carbon\Carbon::now()->endOfMonth()}}</div>--}}
+                            {{--<div class="huge"></div>--}}
+                            <div class="huge">{{$orders->where('created_at', '<', \Carbon\Carbon::now()->startOfMonth()->toDateTimeString())->count()}}</div>
                             <div>New Orders!</div>
                         </div>
                     </div>

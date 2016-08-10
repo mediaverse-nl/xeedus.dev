@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Category;
+use App\User;
 
+use Input;
+use App\Video;
 use DB;
 
 use Illuminate\Http\Request;
@@ -14,11 +18,14 @@ class CategoryController extends Controller
 {
     protected $category;
     protected $main_categories;
+    protected $video;
 
     public function __construct()
     {
-        $this->category = Category::all();
+        $this->category = new Category();
         $this->main_categories = Category::where('cate_id', 0)->get();
+        $this->video = new Video();
+        $this->users = new User();;
     }
 
     /**
@@ -40,21 +47,53 @@ class CategoryController extends Controller
     public function show($name)
     {
         $name = str_replace('-', ' ', $name);
+        $subCategories = $this->category->where('name', $name)->first();
 
-        $authors = DB::table('users')
-            ->select('users.name')
-            ->join('author', 'author.user_id', '=', 'users.id')
-            ->join('videos', 'videos.author_id', '=', 'author.id')
-            ->join('categories as c1', 'c1.id', '=', 'videos.category_id')
-            ->join('categories as c2', 'c1.cate_id', '=', 'c2.cate_id')
-            ->where('c2.name', $name)
-            ->groupBy('users.name')
-            ->get();
-        
+        $users = $this->users;
+//        $users = $subCategories->video->author->where('category_id', $subCategories->id)->get();
+
+        $videos = $this->video->where(function($query) use ($users){
+            $price = Input::has('price') ? Input::get('price') : $price = null;
+            $level = Input::has('level') ? Input::get('level') : null;
+            $author = Input::has('author') ? Input::get('author') : null;
+
+            if($price){
+                $price = explode(',', $price);
+
+                if(isset($level)){
+                    foreach ($level as $lvl) {
+                        $query->orWhere('prijs','>=',$price[0]);
+                        $query->where('prijs','<=',$price[1]);
+                        $query->where('level','=', $lvl);
+                    }
+                }
+                $query->where('prijs','>=',$price[0]);
+                $query->where('prijs','<=',$price[1]);
+
+                if (isset($author)){
+                    foreach ($author as $auth){
+                        $user = $users->where('name', $auth)->first();
+                        $query->where('author_id', $user->author->id);
+                    }
+                }
+            }
+
+        })->where('category_id', $subCategories->id)->get();
+
+//        $authors = DB::table('users')
+//            ->select('users.name')
+//            ->join('author', 'author.user_id', '=', 'users.id')
+//            ->join('videos', 'videos.author_id', '=', 'author.id')
+//            ->join('categories as c1', 'c1.id', '=', 'videos.category_id')
+//            ->join('categories as c2', 'c1.cate_id', '=', 'c2.cate_id')
+//            ->where('c2.name', $name)
+//            ->groupBy('users.name')
+//            ->get();
+
 //        return $authors;
-        $category = Category::where('name', $name)->first();
+        $category = Category::where('name', str_replace('-', ' ', $name))->first();
 
-        $subCategories = Category::where('cate_id', $category->cate_id)->get();
+//        $subCategories = Category::where('cate_id', $category->cate_id)->get();
 
 
         if($category->cate_id == 0){
@@ -63,8 +102,9 @@ class CategoryController extends Controller
         }
         return view('courses.index')
             ->with('category', $category)
-            ->with('subCategories', $subCategories)
-            ->with('authors', $authors);
+            ->with('videos', $videos)
+            ->with('subCategories', $subCategories->children)
+            ->with('authors', $subCategories->video->first());
     }
     
 }

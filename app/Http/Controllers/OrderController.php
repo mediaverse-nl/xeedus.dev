@@ -38,11 +38,15 @@ class OrderController extends Controller
 
         $video = Video::where('video_key', $request->video_key)->first();
 
+        $messages = [
+            'prijs.min' => 'you are ('.str_replace('-', '', Auth::user()->credits - $video->prijs).') credits short',
+        ];
+
         $rules = [
             'prijs' => 'required|integer|min:'.$video->prijs,
         ];
 
-        $validator = Validator::make(array('prijs' => $this->user->credits), $rules);
+        $validator = Validator::make(array('prijs' => $this->user->credits), $rules, $messages);
 
         if ($validator->fails()) {
             return redirect()

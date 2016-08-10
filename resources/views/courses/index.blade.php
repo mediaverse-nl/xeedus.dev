@@ -9,9 +9,10 @@
 @stop
 
 @section('content')
+
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Author profile panel</div>
 
@@ -22,34 +23,78 @@
                         <div class="col-lg-12">
                             <div class="col-lg-3">
 
-                                <h3>menu</h3>
                                 <ul class="nav of nav-stacked">
-                                    <h4>Author</h4>
-                                    @foreach($authors as $author)
-                                        <li>- {{$author->name}}</li>
+                                    <h3>Categories</h3>
+                                    @foreach($subCategories as $cate)
+                                        {{--@if()--}}
+                                        <li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-', $cate->name))}}">{{$cate->name}}</a></li>
                                     @endforeach
                                 </ul>
 
+                                <h3>menu</h3>
                                 <ul class="nav of nav-stacked">
-                                    <h4>Categories</h4>
-                                    @foreach($subCategories as $cate)
-                                        {{--@if()--}}
-                                        <li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-',$cate->name))}}">{{$cate->name}}</a></li>
-                                    @endforeach
+                                    <form action="{{URL::current()}}">
+
+                                        <ul class="nav of nav-stacked">
+                                            <h4>Author</h4>
+                                            <?php $auth = \Input::has('author') ? \Input::get('author'): [] ?>
+                                            @foreach($authors->author->get() as $author)
+                                                <input type="radio" name="author[]" value="{{$author->user->name}}" {{in_array($author->user->name, $auth ) ? 'checked' :'' }}>
+                                                {{$author->user->name}}
+                                                <br>
+                                            @endforeach
+                                        </ul>
+
+                                        <h4>Price</h4>
+                                        <div class="form-control">
+                                            <input id="ex2" type="text" class="span2" name="price" value="" data-slider-min="{{\App\Video::min('prijs')}}" data-slider-max="{{\App\Video::max('prijs', 'desc')}}" data-slider-step="5" data-slider-value="[{{ \Input::get('price') == null ? $videos->min('prijs').','.$videos->max('prijs') : \Input::get('price')}}]"/>
+
+                                        </div>
+                                        <br>
+                                        <b>{{\App\Video::min('prijs')}}</b>
+                                        <b class="pull-right">{{\App\Video::max('prijs')}}</b>
+                                        <br>
+                                        {{--min: <input type="text" name="min_price" value="">--}}
+                                        {{--<br>--}}
+                                        {{--max: <input type="text" name="max_price" value="{{\Input::get('max_price')}}">--}}
+                                        <h4>Level</h4>
+                                        <?php $level = \Input::has('level') ? \Input::get('level'): [] ?>
+                                        <input type="checkbox" name="level[]" value="beginner" {{in_array('beginner', $level ) ? 'checked' :'' }}>
+                                        beginner <br>
+                                        <input type="checkbox" name="level[]" value="intermediate" {{in_array('intermediate', $level ) ? 'checked' :'' }}>
+                                        intermediate <br>
+                                        <input type="checkbox" name="level[]" value="advanced" {{in_array('advanced', $level ) ? 'checked' :'' }}>
+                                        advanced  <br>
+                                        <input type="checkbox" name="level[]" value="expert" {{in_array('expert', $level ) ? 'checked' :'' }}>
+                                        expert <br>
+                                        <br>
+
+                                        <button class="pull-right">Search</button>
+
+                                    </form>
                                 </ul>
 
                             </div>
                             <div class="col-lg-9">
+
                                 <h1>{{$category->name}}</h1>
-                                @foreach($category->video as $video)
+                                <hr>
+                                @if($videos->count() == 0)
+                                    <b>Sorry No Records Found..</b>
+                                @else
+                                    There Are {{count($videos)}} Record Found..
+                                @endif
+                                <br>
+                                <br>
+                                @foreach($videos as $video)
                                     <div class="col-lg-12" style="margin-bottom: 20px;">
                                         <div class="col-lg-5">
                                             <div class="video-wrapper">
                                                 <div class="video-main">
                                                     @if($video->thumbnails)
-                                                        <img width="100%" height="100%" src="/images/{{$video->thumbnails}}" rel="" >
+                                                        <img width="100%" height="100%" src="{{'/videos/thumbnail/'.$video->thumbnails}}" rel="" >
                                                     @else
-                                                        <img width="100%" height="100%" src="/images/test.png" rel="" >
+                                                        <img width="100%" height="100%" src="/images/video-icon-thumbnail.png" rel="" >
                                                     @endif
                                                 </div>
                                             </div>
@@ -65,35 +110,9 @@
                                     </div>
                                     <hr style=" width:100%; border-top: 1px solid #ddd !important;">
                                 @endforeach
+
                             </div>
                         </div>
-
-
-
-
-                        {{--@foreach($category->video as $video)--}}
-                            {{--<p style="color: #2b38cd">{{$video->category_id}}</p><br>--}}
-                            {{--@foreach($video->author as $author)--}}
-                                {{--{{($author->biography)}}--}}
-                            {{--@endforeach--}}
-
-                            {{--@foreach($video->author as $author)--}}
-                                {{--{{(var_dump($author))}}--}}
-                            {{--@endforeach--}}
-                        {{--@endforeach--}}
-                        {{--@foreach($videos->video as $video)--}}
-
-
-                            {{--{{dd($video->author)}}--}}
-
-                            {{--@foreach($video->author as $author)--}}
-                                {{--{{($video->author->count())}}--}}
-                                {{--{{$author->biography}}--}}
-                            {{--@endforeach--}}
-                            {{--@foreach($video->video as $vid)--}}
-                                {{--{{$vid->name}}--}}
-                            {{--@endforeach--}}
-                        {{--@endforeach--}}
 
                     </div>
                 </div>
@@ -107,6 +126,7 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/bootstrap-slider.js"></script>
     <script type="text/javascript">
         $(function() {
             $( "#datepicker" ).datepicker();
@@ -125,5 +145,19 @@
 
         });
         //-->
+        // With JQuery
+        $("#ex2").slider({
+            tooltip: 'always'
+
+        });
+
+        // Without JQuery
+        var slider = new Slider('#ex2', {
+            tooltip: 'always'
+        });
+
+
     </script>
+
+
 @endsection

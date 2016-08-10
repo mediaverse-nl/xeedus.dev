@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'videos')
-@section('breadcrumb', Breadcrumbs::render('dashboard.videos'))
+@section('breadcrumb', Breadcrumbs::render('dashboard.category.edit'))
 
 @section('content')
 

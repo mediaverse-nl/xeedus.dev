@@ -82,14 +82,43 @@ Breadcrumbs::register('dashboard.videos.edit', function($breadcrumbs, $id)
 Breadcrumbs::register('dashboard.category', function($breadcrumbs)
 {
     $breadcrumbs->parent('dashboard');
-    $breadcrumbs->push('Category', route('admin_category_all'));
+    $breadcrumbs->push('Categories', route('admin_category_all'));
 });
 
 // dashboard > Category > edit
 Breadcrumbs::register('dashboard.category.edit', function($breadcrumbs)
 {
     $breadcrumbs->parent('dashboard.category');
-    $breadcrumbs->push('New', route('admin_category_create'));
+    $breadcrumbs->push('Edit', route('admin_category_create'));
+});
+
+
+// dashboard > Users
+Breadcrumbs::register('dashboard.user', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Users', route('admin_profile_all'));
+});
+
+// dashboard > Users > edit
+Breadcrumbs::register('dashboard.user.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.user');
+    $breadcrumbs->push('Edit', route('admin_user_edit'));
+});
+
+// dashboard > Authors
+Breadcrumbs::register('dashboard.author', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Author', route('admin_authors_all'));
+});
+
+// dashboard > Authors > edit
+Breadcrumbs::register('dashboard.author.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.author');
+    $breadcrumbs->push('Edit', route('admin_authors_update'));
 });
 
 //// Home > Blog > [Category]

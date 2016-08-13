@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Category;
+use App\Review;
 use App\Video;
 
 use App\Http\Controllers\VideoStream;
+
+use Validator;
 
 use File;
 use Image;
@@ -39,6 +42,7 @@ class VideoController extends Controller
         $this->video = Video::where('video_key', $this->video_key)->first();
         $this->category = '';
         $this->order = Order::all();
+        $this->videos = new Video();
     }
 
     /**
@@ -70,15 +74,48 @@ class VideoController extends Controller
         $videos = Video::where('author_id', $author_id)
             ->get();
 
-
         $orders = Order::where('user_id', $this->user->id)
             ->get();
+
+        $review = Review::where('user_id', $this->user->id)
+            ->where('video_id', $this->video->id)
+            ->exists();
 
         return view('video.index')
             ->with('video', $this->video)
             ->with('list', $videos)
+            ->with('review', $review)
             ->with('status', $order)
             ->with('orders', $orders);
+    }
+
+    public function search(Request $request){
+
+        $rules = [
+            'keyword' => 'required'
+        ];
+
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()
+//                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $keyword = \Input::get('keyword');
+
+        if ($keyword != '') {
+            $videos = $this->videos->where(function ($query) use ($keyword) {
+                $query->where("name", "LIKE", "%$keyword%")
+                    ->orWhere("beschrijving", "LIKE", "%$keyword%");
+            })->get();
+        }
+
+        return view('courses.search')
+            ->with('videos', $videos);
+
     }
 
     public function GetImage($filename = null){
@@ -91,9 +128,9 @@ class VideoController extends Controller
 //        }else{
 //            return 'error';
 //        }
-
+//
 //        return Image::make('foo/bar.jpg')->response('png');
-
+//
 //        $path = storage_path() . '/' . $filename;
 //        $path = Image::canvas(800, 600, '#ff0000');
 //
@@ -113,17 +150,17 @@ class VideoController extends Controller
 //        $type = File::mimeType($destinationPath);
 //        return Image::make(storage_path() . '/' . $filename)->response();
 //        return Response($destinationPath, 200);
-
+//
 //        $path = storage_path() . '\public\videos\thumbnail\\' . $filename;
 //
 //        if(!File::exists($path)) abort(404);
 //
 //        $file = File::get($path);
 //        $type = File::mimeType($path);
-
+//
 //        $response = Response::make($path, 200);
 //        $response->header("Content-Type", 'image/jpg');
-
+//
 //        return $response;
         return $path;
     }

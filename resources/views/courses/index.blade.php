@@ -25,7 +25,7 @@
 
                                 <ul class="nav of nav-stacked">
                                     <h3>Categories</h3>
-                                    @foreach($subCategories as $cate)
+                                    @foreach($category->parent->children as $cate)
                                         {{--@if()--}}
                                         <li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-', $cate->name))}}">{{$cate->name}}</a></li>
                                     @endforeach
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-9">
 
-                                <h1>{{$category->name}}</h1>
+                                <h1>{{$category->parent->name}} > {{$category->name}} </h1>
                                 <hr>
                                 @if($videos->count() == 0)
                                     <b>Sorry No Records Found..</b>

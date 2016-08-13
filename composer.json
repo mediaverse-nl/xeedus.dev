@@ -14,7 +14,8 @@
         "maatwebsite/excel": "2.1.x-dev",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "mollie/mollie-api-php": "1.6.x",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "kartik-v/bootstrap-star-rating": "@dev"
     }
     ,
     "require-dev": {

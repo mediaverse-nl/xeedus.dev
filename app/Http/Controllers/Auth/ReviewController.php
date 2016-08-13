@@ -44,7 +44,7 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $video_key)
     {
 
         $messages = [
@@ -65,15 +65,16 @@ class ReviewController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('author_show', $request->segment)
+                ->back()
                 ->withErrors($validator)
                 ->withInput();
         } else {
 
-            $video = User::where('name', $request->segment)->first();
+            $video = Video::where('video_key', $video_key)->first();
 
-            $this->review->user_id      = Auth::user()->id;
-            $this->review->author_id     = $video->author->id;
+            $this->review->user_id      = $this->user->id;
+//            $this->review->author_id     = $video->author->id;
+            $this->review->video_id     = $video->id;
             $this->review->tekst        = $request->tekst;
             $this->review->rating_1       = $request->rating_1;
             $this->review->rating_2       = $request->rating_2;
@@ -83,7 +84,7 @@ class ReviewController extends Controller
 
             \Session::flash('succes_message', 'successfully.');
 
-            return redirect()->route('author_show', $request->segment);
+            return redirect()->route('video_show', $video_key);
         }
 
     }

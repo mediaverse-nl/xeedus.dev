@@ -14,12 +14,10 @@ class CreateReviewTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-//            $table->integer('videos_id')->unsigned();
-//            $table->foreign('videos_id')->references('id')->on('videos');
-            $table->integer('user_id')->unsigned();
+            $table->integer('video_id')->unsigned();
+            $table->foreign('video_id')->references('id')->on('videos');
+            $table->integer('user_id')->unsigned()->unique();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('author_id')->unsigned();
-            $table->foreign('author_id')->references('id')->on('author');
             $table->string('tekst');
             $table->decimal('rating_1', 5, 2);
             $table->decimal('rating_2', 5, 2);

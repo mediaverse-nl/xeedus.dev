@@ -20,6 +20,11 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/rating/css/star-rating.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-fa/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-svg/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-uni/theme.css" media="all" type="text/css"/>
+
     <style>
         /* Sticky footer styles
        -------------------------------------------------- */
@@ -56,11 +61,9 @@
             color: black !important;
             margin-right: 30px;
         }
-
         .fa-btn {
             margin-right: 6px;
         }
-
         ul.menu{ list-style:none;}
         ul.menu > li {
             float: left;
@@ -85,20 +88,16 @@
         }
         ul.menu > li:hover > ul > li:first-child,
         ul.menu > li > ul:hover > li:first-child {margin-left: 0px}
-
         .dropdown-menu-large{
             width: 40px;
         }
-
         .dropdown-menu-large > li{
             float: left !important;
             height: 20px;
         }
-
         .sub-menu{
           margin-left: 50px;
         }
-
         .navbar-brand {
             padding: 0px; /* firefox bug fix */
         }
@@ -107,7 +106,6 @@
             padding: 10px; /* firefox bug fix */
             width: auto;
         }
-
         .video-wrapper {
             width: 100%;
             /* whatever width you want */
@@ -131,7 +129,6 @@
             /* let's see it! */
             color: white;
         }
-
         .video-wrapper {
             width: 100%;
             /* whatever width you want */
@@ -155,10 +152,73 @@
             /* let's see it! */
             color: white;
         }
+        #custom-search-input {
+            margin:0;
+            margin-top: 10px;
+            padding: 0;
+        }
+        #custom-search-input .search-query {
+            padding-right: 3px;
+            padding-right: 4px \9;
+            padding-left: 3px;
+            padding-left: 4px \9;
+            /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+            margin-bottom: 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+        #custom-search-input button {
+            border: 0;
+            background: none;
+            /** belows styles are working good */
+            padding: 2px 5px;
+            margin-top: 2px;
+            position: relative;
+            left: -28px;
+            /* IE7-8 doesn't have border-radius, so don't indent the padding */
+            margin-bottom: 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            color:#D9230F;
+        }
+        .search-query:focus + button {
+            z-index: 3;
+        }
+        .thumbnail {
+            padding:0px;
+        }
+        .panel {
+            position:relative;
+        }
+        .panel>.panel-heading:after,.panel>.panel-heading:before{
+            position:absolute;
+            top:11px;left:-16px;
+            right:100%;
+            width:0;
+            height:0;
+            display:block;
+            content:" ";
+            border-color:transparent;
+            border-style:solid solid outset;
+            pointer-events:none;
+        }
+        .panel>.panel-heading:after{
+            border-width:7px;
+            border-right-color:#f7f7f7;
+            margin-top:1px;
+            margin-left:2px;
+        }
+        .panel>.panel-heading:before{
+            border-right-color:#ddd;
+            border-width:8px;
+        }
     </style>
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+<body id="app-layout" style="margin-top: 100px;">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -193,11 +253,27 @@
                                         @endforeach()
                                     </ul>
                                 </li>
-                            @endforeach()
+                            @endforeach
                         </ul>
 
                     </li>
-
+                    <li>
+                        {!! Form::open( array('route' => 'search_videos', 'method' => 'get' )) !!}
+                            <div id="custom-search-input" class="form-group {{ $errors->has('keyword') ? ' has-error' : '' }}" style="width: 250px;">
+                                <div class="input-group">
+                                    <input type="text" name="keyword" class="search-query form-control" placeholder="Search" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button">
+                                            <span class=" glyphicon glyphicon-search"></span>
+                                        </button>
+                                        @if ($errors->has('keyword'))
+                                            <strong>{{ $errors->first('keyword') }}</strong>
+                                        @endif
+                                    </span>
+                                </div>
+                            </div>
+                        {!! Form::close() !!}
+                    </li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -275,6 +351,12 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+    <script src="/rating/js/star-rating.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-fa/theme.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-svg/theme.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-uni/theme.js" type="text/javascript"></script>
+
     <script type="text/javascript">
         $(function() {
             $( "#datepicker" ).datepicker();

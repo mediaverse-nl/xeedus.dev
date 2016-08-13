@@ -42,6 +42,8 @@ Route::get('/courses/{name}', ['as' => 'video_categories_sub', 'uses' => 'Catego
 //author profile
 Route::get('/author/p/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
 
+Route::get('/search', ['as' => 'search_videos', 'uses' => 'VideoController@search']);
+
 //authorized user
 Route::group(['middleware' => 'auth'], function () {
 
@@ -50,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/orders', ['as' => 'orders_show', 'uses' => 'Auth\OrderController@index']);
 
-    Route::get('/review', ['as' => 'review_show', 'uses' => 'Auth\ReviewController@index']);
+//    Route::get('/review', ['as' => 'review_show', 'uses' => 'Auth\ReviewController@index']);
 
     Route::get('/credits/order/{id}', ['as' => 'credits_show', 'uses' => 'Auth\CreditController@show']);
     Route::post('mollie/webhook/{paymentId}', ['as' => 'credits_mollie', 'uses' => 'Auth\CreditController@mollie']);
@@ -60,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/credits', ['as' => 'credits_update', 'uses' => 'Auth\CreditController@update']);
     Route::patch('/credits', ['as' => 'credits_store', 'uses' => 'Auth\CreditController@store']);
 
-    Route::patch('/review', ['as' => 'review_store', 'uses' => 'Auth\ReviewController@store']);
+    Route::post('/review/{video_key}', ['as' => 'review_store', 'uses' => 'Auth\ReviewController@store']);
 
     Route::get('/profile/courses', ['as' => 'profile_courses_index', 'uses' => 'Auth\VideoController@index']);
     

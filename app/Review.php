@@ -6,23 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    protected $table = 'reviews';
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-    //
-    public function author()
-    {
-        return $this->belongsTo('App\Author', 'id');
-    }
-
     public function user()
     {
-        return $this->belongsTo('App\User', 'id');
+        return $this->belongsTo('App\User');
     }
 
     public function video()
     {
-        return $this->belongsTo('App\Video', 'id');
+        return $this->belongsTo('App\Video');
     }
 }

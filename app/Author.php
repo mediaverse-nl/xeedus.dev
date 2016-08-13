@@ -21,8 +21,4 @@ class Author extends Model
         return $this->hasMany('App\Video');
     }
 
-    public function review()
-    {
-        return $this->hasMany('App\Review');
-    }
 }

@@ -14,7 +14,6 @@
             <div class="col-lg-6">
 
                 <fieldset>
-
                     <!-- id -->
                     <div class="form-group">
                         {!! Form::label('id', 'id') !!}

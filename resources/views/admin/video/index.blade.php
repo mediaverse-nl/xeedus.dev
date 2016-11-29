@@ -34,7 +34,6 @@
                     </tbody>
                 </table>
                 {!! $videos->appends(Input::except('page'))->render() !!}
-
             </div>
         </div>
 

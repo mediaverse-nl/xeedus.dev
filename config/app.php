@@ -167,6 +167,8 @@ return [
 
         Mollie\Laravel\MollieServiceProvider::class,
 
+//        ElephantIO\
+
     ],
 
     /*

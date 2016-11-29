@@ -17,7 +17,7 @@
 
                     <div class="panel-body">
 
-                        @include('layouts.menus.admin_menu')
+                        {{--@include('layouts.menus._admin')--}}
 
                         {{--<a class="btn btn-primary" href="{{ URL::route('admin_authors_requests') }}">requests</a>--}}
 

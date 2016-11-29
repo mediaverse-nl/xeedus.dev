@@ -2,7 +2,7 @@
 
 @section('title')
     allo
-@endsection
+@stop
 
 @section('description')
 
@@ -161,102 +161,98 @@
 
                     <hr>
 
-@foreach($video->review as $review)
-<div class="row">
-<div class="col-sm-1">
-<div class="thumbnail">
-   <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-</div><!-- /thumbnail -->
-</div><!-- /col-sm-1 -->
+                    @foreach($video->review as $review)
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <div class="thumbnail">
+                                   <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                </div><!-- /thumbnail -->
+                            </div><!-- /col-sm-1 -->
 
-<div class="col-sm-11">
-<div class="panel panel-default">
-   <div class="panel-heading">
+                            <div class="col-sm-11">
+                                <div class="panel panel-default">
+                                   <div class="panel-heading">
 
-       <strong>{{$review->user->name}}</strong>
-       <span class="text-muted">commented {{$review->created_at}}</span>
+                                       <strong>{{$review->user->name}}</strong>
+                                       <span class="text-muted">commented {{$review->created_at}}</span>
 
-   </div>
-   <div class="panel-body">
-       <div class="col-sm-12">
-           <div class="col-sm-1">
-               <label class="pull-left">rating_1</label>
-           </div>
-           <div class="col-sm-3" style="margin-top: -15px;">
-               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
-           </div>
-           <div class="col-sm-1">
-               <label>rating_1</label>
-           </div>
-           <div class="col-sm-3" style="margin-top: -15px;">
-               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
-           </div>
-           <div class="col-sm-1">
-               <label class="pull-left">rating_1</label>
-           </div>
-           <div class="col-sm-3" style="margin-top: -15px;">
-               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
-           </div>
-       </div>
-       <hr>
-       {{$review->tekst}}
-   </div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div><!-- /col-sm-5 -->
-</div><!-- /row -->
-@endforeach
+                                   </div>
+                                   <div class="panel-body">
+                                       <div class="col-sm-12">
+                                           <div class="col-sm-1">
+                                               <label class="pull-left">rating_1</label>
+                                           </div>
+                                           <div class="col-sm-3" style="margin-top: -15px;">
+                                               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
+                                           </div>
+                                           <div class="col-sm-1">
+                                               <label>rating_1</label>
+                                           </div>
+                                           <div class="col-sm-3" style="margin-top: -15px;">
+                                               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
+                                           </div>
+                                           <div class="col-sm-1">
+                                               <label class="pull-left">rating_1</label>
+                                           </div>
+                                           <div class="col-sm-3" style="margin-top: -15px;">
+                                               <input class="rating input-display" value="{{$review->rating_1}}" name="rating_1" type="text" data-size="xs" data-min="0.5" data-max="10" data-step="0.5" >
+                                           </div>
+                                       </div>
+                                       <hr>
+                                       {{$review->tekst}}
+                                   </div><!-- /panel-body -->
+                                </div><!-- /panel panel-default -->
+                            </div><!-- /col-sm-5 -->
+                        </div><!-- /row -->
+                    @endforeach
 
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
-</div>
-
-</div>
-
-</div>
-</div>
-
-@endsection
+@stop
 
 @section('javascript')
 
 <script type="text/javascript">
 <!--
+    $(document).ready(function () {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(1500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 5000);
+    });
+    //-->
 
-$(document).ready(function () {
+    $(".input-id").rating({'showCaption':false, 'stars':'5', 'min':'0', 'max':'10', 'step':'1', 'size':'xs'});
+    $(".input-display").rating({'displayOnly':true, 'size':'xs'});
 
-window.setTimeout(function() {
-$(".alert").fadeTo(1500, 0).slideUp(500, function(){
-$(this).remove();
-});
-}, 5000);
+    var adManager = function () {
+        var vid = document.getElementById("myVid"),
+        adSrc = "videos/epic_rap_battles_of_history_16_adolf_hitler_vs_darth_vader_2_1280x720.mp4",
+        src;
 
-});
-//-->
+        var adEnded = function () {
+        vid.removeEventListener("ended", adEnded, false);
+        vid.src = src;
+        vid.load();
+        vid.play();
+    };
 
-$(".input-id").rating({'showCaption':false, 'stars':'5', 'min':'0', 'max':'10', 'step':'1', 'size':'xs'});
-$(".input-display").rating({'displayOnly':true, 'size':'xs'});
-
-var adManager = function () {
-var vid = document.getElementById("myVid"),
-adSrc = "videos/epic_rap_battles_of_history_16_adolf_hitler_vs_darth_vader_2_1280x720.mp4",
-src;
-
-var adEnded = function () {
-vid.removeEventListener("ended", adEnded, false);
-vid.src = src;
-vid.load();
-vid.play();
-};
-
-return {
-init: function () {
-src = vid.src;
-vid.src = adSrc;
-vid.load();
-vid.addEventListener("ended", adEnded, false);
-}
-};
-}();
+    return {
+        init: function () {
+            src = vid.src;
+            vid.src = adSrc;
+            vid.load();
+            vid.addEventListener("ended", adEnded, false);
+        }};
+    }();
 
 </script>
-@endsection
+@stop

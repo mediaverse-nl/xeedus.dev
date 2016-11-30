@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    allo
-@endsection
-
-@section('description')
-    Here is you description. You can else echo content and use your foreach in here.
-@stop
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -39,15 +31,15 @@
                                         {!! Form::file('image', null, ['class' => 'form-control']) !!}
                                     </div>
 
-                                    <div class="form-group">
-                                        {!! Form::label('bank_credentials', 'bank credentials') !!}
-                                        {!! Form::text('bank_credentials', null, ['class' => 'form-control']) !!}
-                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--{!! Form::label('bank_credentials', 'bank credentials') !!}--}}
+                                        {{--{!! Form::text('bank_credentials', null, ['class' => 'form-control']) !!}--}}
+                                    {{--</div>--}}
 
-                                    <div class="form-group">
-                                        {!! Form::label('bank_number', 'bank number') !!}
-                                        {!! Form::text('bank_number', null, ['class' => 'form-control']) !!}
-                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--{!! Form::label('bank_number', 'bank number') !!}--}}
+                                        {{--{!! Form::text('bank_number', null, ['class' => 'form-control']) !!}--}}
+                                    {{--</div>--}}
 
                                     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 

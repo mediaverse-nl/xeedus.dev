@@ -166,6 +166,7 @@ return [
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
         Mollie\Laravel\MollieServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
 //        ElephantIO\
 
@@ -227,6 +228,7 @@ return [
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

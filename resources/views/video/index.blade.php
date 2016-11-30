@@ -1,19 +1,9 @@
 @extends('layouts.app')
 
-@section('title')
-    allo
-@stop
-
-@section('description')
-
-@stop
-
 @section('content')
 
     <div class="container">
         <div class="row">
-
-            @include('errors.message')
 
             <style>
                 .star{

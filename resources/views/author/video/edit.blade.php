@@ -17,7 +17,7 @@
 
                 <div class="panel-body">
 
-                    @include('layouts.menus.author_menu')
+                    @include('layouts.menus.__author')
 
                     @include('errors.message')
 

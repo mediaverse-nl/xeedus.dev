@@ -16,7 +16,8 @@
         "mollie/mollie-api-php": "1.6.x",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "kartik-v/bootstrap-star-rating": "@dev",
-        "wisembly/elephant.io": "~3.0"
+        "wisembly/elephant.io": "~3.0",
+        "barryvdh/laravel-debugbar": "^2.3"
     }
     ,
     "require-dev": {

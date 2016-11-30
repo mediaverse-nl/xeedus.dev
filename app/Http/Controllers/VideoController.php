@@ -9,6 +9,7 @@ use App\Video;
 
 use App\Http\Controllers\VideoStream;
 
+use Illuminate\Support\Facades\Input;
 use Validator;
 
 use File;
@@ -37,7 +38,8 @@ class VideoController extends Controller
 
     public function __construct()
     {
-        $this->video_key = Route::current()->getParameter('key');
+        $this->video_key = Input::get('w');
+//        $this->video_key = Route::current()->getParameter('key');
         $this->user = Auth::user();
         $this->video = Video::where('video_key', $this->video_key)->first();
         $this->category = '';
@@ -65,28 +67,30 @@ class VideoController extends Controller
      */
     public function show()
     {
-        $author_id = $this->video->author->id;
 
-        $order = Order::where('user_id', $this->user->id)
-            ->where('video_id', $this->video->id)
-            ->exists();
-
-        $videos = Video::where('author_id', $author_id)
-            ->get();
-
-        $orders = Order::where('user_id', $this->user->id)
-            ->get();
-
-        $review = Review::where('user_id', $this->user->id)
-            ->where('video_id', $this->video->id)
-            ->exists();
-
-        return view('video.index')
-            ->with('video', $this->video)
-            ->with('list', $videos)
-            ->with('review', $review)
-            ->with('status', $order)
-            ->with('orders', $orders);
+        dd( Input::get('w'));
+//        $author_id = $this->video->author->id;
+//
+//        $order = Order::where('user_id', $this->user->id)
+//            ->where('video_id', $this->video->id)
+//            ->exists();
+//
+//        $videos = Video::where('author_id', $author_id)
+//            ->get();
+//
+//        $orders = Order::where('user_id', $this->user->id)
+//            ->get();
+//
+//        $review = Review::where('user_id', $this->user->id)
+//            ->where('video_id', $this->video->id)
+//            ->exists();
+//
+//        return view('video.index')
+//            ->with('video', $this->video)
+//            ->with('list', $videos)
+//            ->with('review', $review)
+//            ->with('status', $order)
+//            ->with('orders', $orders);
     }
 
     public function search(Request $request){

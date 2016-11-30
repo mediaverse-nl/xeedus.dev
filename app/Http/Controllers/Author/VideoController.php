@@ -67,21 +67,21 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'thumbnail.required'        => 'Select a profile image',
-            'thumbnail.mimes'           => 'file type must be (JPEG, PNG, JNG or BMP) ',
-            'beschrijving.required'     => 'Description required',
+//            'thumbnail.required'        => 'Select a profile image',
+//            'thumbnail.mimes'           => 'file type must be (JPEG, PNG, JNG or BMP) ',
+//            'beschrijving.required'     => 'Description required',
         ];
        
         $rules = [
-            'name'          => 'required|max:40',
-            'beschrijving'  => 'required|max:550|min:20',
-//            'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
-            'thumbnails'     => 'mimes:jpg,jpeg',
-            'video'          => 'mimes:mp4,webm',
-            'category_id'   => 'required',
-            'level'         => 'required',
-            'prijs'         => 'required|numeric',
-            'status'        => 'required',
+//            'name'          => 'required|max:40',
+//            'beschrijving'  => 'required|max:550|min:20',
+////            'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
+//            'thumbnails'     => 'mimes:jpg,jpeg',
+//            'video'          => 'mimes:mp4,webm',
+//            'category_id'   => 'required',
+//            'level'         => 'required',
+//            'prijs'         => 'required|numeric',
+//            'status'        => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

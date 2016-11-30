@@ -21,7 +21,23 @@
 
                         {!! Form::open( array('route' => 'author_video_store', 'class' => '', 'method' => 'post', 'files'=> true )) !!}
 
-                        @include('errors.message')
+                        {{--@include('errors.message')--}}
+
+                        <div class="modal " id="progressDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>Please wait while we update your topic. You will be redirected automatically!</p>
+
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                    <span class="sr-only">/span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
 
                         <div class="col-lg-12">
 
@@ -92,7 +108,7 @@
 
                                 <!-- Submit Button -->
                                 <div class="form-group">
-                                    {!! Form::submit('Submit', ['class' => 'btn btn-sm btn-primary pull-right'] ) !!}
+                                    {!! Form::submit('Submit', ['class' => 'btn btn-sm btn-primary aaa pull-right'] ) !!}
                                 </div>
 
                             </fieldset>
@@ -112,5 +128,12 @@
 @endsection
 
 @section('javascript')
-
+<script>
+    function OnProgress(event, position, total, percentComplete){
+        //Progress bar
+        console.log(total);
+        $('#pb').width(percentComplete + '%') //update progressbar percent complete
+        $('#pt').html(percentComplete + '%'); //update status text
+    }
+</script>
 @endsection

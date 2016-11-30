@@ -11,7 +11,7 @@
             {!! Breadcrumbs::render('profile') !!}
         </div>
 
-        {{--@include('layouts.menus.user_menu')--}}
+        @include('layouts.menus.__user')
 
         <div class="col-lg-9">
             @include('errors.message')

@@ -14,11 +14,32 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
 
+                <div class="container">
+                    <h2>categories</h2>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="slider">
+                        @foreach($video as $vid )
+                            <div class="thumbnail">
+                                <img src="/{{$vid->thumbnails}}" alt="">
+                                <div class="caption">
+                                    <h3>{{$vid->name}}</h3>
+                                    <p>...</p>
+                                    <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
     <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
+
+
 
                 <div class="panel-body">
                     {{--{{dd($best_video)}}--}}

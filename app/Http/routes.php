@@ -67,7 +67,7 @@ Route::group(['middleware' => ['web']], function () {
     //authorized user
     Route::group(['middleware' => 'auth'], function () {
 
-        Route::get('/video?w={key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
+        Route::get('/video/{key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
         Route::post('/video/{key}', ['as' => 'order_store', 'uses' => 'OrderController@store']);
 
         Route::get('/orders', ['as' => 'orders_show', 'uses' => 'Auth\OrderController@index']);

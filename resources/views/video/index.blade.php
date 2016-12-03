@@ -207,7 +207,7 @@
 
 @stop
 
-@section('javascript')
+@push('javascript')
 
 <script type="text/javascript">
 <!--
@@ -245,4 +245,4 @@
     }();
 
 </script>
-@stop
+@endpush

@@ -17,7 +17,7 @@ class Category extends Model
 
     public function video()
     {
-        return $this->hasMany('App\Video', 'category_id');
+        return $this->hasMany('App\Video');
     }
 
     public function parent()

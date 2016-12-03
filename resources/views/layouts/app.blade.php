@@ -16,7 +16,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
 
@@ -215,7 +214,30 @@
             border-right-color:#ddd;
             border-width:8px;
         }
+.navbar-default {
+    background: #FF9100 !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: 1px #E65100 solid !important;
+    height: 70px !important;
+}
+
+.search {
+    width: 100%;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0;
+    border-radius: 5px;
+    padding: 0px 22px 0px;
+    box-sizing: border-box;
+    line-height: 44px;
+    font-size: 11px;
+    color: white;
+    z-index: 9;
+    font-weight: 300;
+    outline: none;
+}
     </style>
+
 </head>
 <body id="app-layout" style="margin-top: 100px;">
     <nav class="navbar navbar-default navbar-fixed-top">

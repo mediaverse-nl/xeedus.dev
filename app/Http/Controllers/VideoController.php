@@ -52,11 +52,33 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($name, $subname, $id)
     {
-        $category = Category::where('cate_id', '>=', '0')->first();
+        $videos = Video::where(function($q) use ($id){
+//            $max = Input::has('max') ? Input::get('max') : $max = 0;
+            $price = Input::has('price') ? Input::get('price') : $max = 0;
+//
+            if ($price != 0){
+                $price = explode(',',$price);
+                $q->whereBetween('prijs', $price);
+            }
+            $q->whereIn('level', ['beginner', 'intermediate']);
+            $q->where('status', 'public');
+            $q->where('category_id', $id);
+        })->get();
 
-        return view('courses.index')->with('category', $category);
+        $base = Video::where(function($q) use ($id){
+            $q->where('status', 'public');
+            $q->where('category_id', $id);
+        });
+
+        return view('courses.index')
+            ->with('videos', $videos)
+            ->with('base_level', $base->groupBy('level'))
+            ->with('base_author', $base->groupBy('author_id'))
+            ->with('base_max', $base->max('prijs'))
+            ->with('base_min', $base->min('prijs'))
+            ->with('base', $base);
     }
 
     /**

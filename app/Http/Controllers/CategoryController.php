@@ -46,31 +46,12 @@ class CategoryController extends Controller
      */
     public function show($name)
     {
+        $name = str_replace('-', ' ', $name);
+        $subCategories = $this->category->where('name', $name)->first();
 
+        $users = $this->users;
+//        $users = $subCategories->video->author->where('category_id', $subCategories->id)->get();
 
-        $videos = Video::where(function($q) {
-
-            $price = Input::has('price') ? Input::get('price') : $price = null;
-            $level = Input::has('level') ? Input::get('level') : null;
-            $author = Input::has('author') ? Input::get('author') : null;
-
-            if($price) {
-                $price = explode(',', $price);
-                $q->where('prijs', '>=', $price[0]);
-                $q->where('prijs', '<=', $price[1]);
-            }
-
-        })->get();
-
-        dd($videos);
-
-//
-//        $name = str_replace('-', ' ', $name);
-//        $subCategories = $this->category->where('name', $name)->first();
-//
-//        $users = $this->users;
-////        $users = $subCategories->video->author->where('category_id', $subCategories->id)->get();
-//
 //        $videos = $this->video->where(function($q) use ($users){
 //
 ////            $max = Input::has('max') ? Input::get('max') : $max = 0;
@@ -85,10 +66,14 @@ class CategoryController extends Controller
 //                $q->where('prijs', '<=', $price[1]);
 //            }
 //
-//            if(isset($level)) {
-//                foreach ($level as $genre) {
-//                    $q->where('level', '=', $genre);
-//                    $q->orWhere('level', '=', $genre);
+//            if(isset($level))
+//            {
+//                foreach ($level as $genre)
+//                {
+////                    $q->whereHas('video', function ($f) use ($genre)
+////                    {
+//                        $q->where('level', $genre);
+////                    });
 //                }
 //            }
 //
@@ -125,6 +110,29 @@ class CategoryController extends Controller
 ////            }
 //
 //        })->get();
+        $price = Input::has('price') ? Input::get('price') : $price = null;
+
+        $videos = Video::where(function($q) {
+            $price = Input::has('price') ? Input::get('price') : $price = null;
+
+            $level = Input::has('level') ? Input::get('level') : null;
+            $author = Input::has('author') ? Input::get('author') : null;
+            dd($price);
+            if($price) {
+                $price = explode(',', $price);
+//                $q->where('prijs', '>=', $price[0]);
+                $q->whereBetween('prijs', $price);
+            }
+
+
+            if(isset($level)) {
+                foreach ($level as $genre) {
+                    $q->where('level', '=', $genre);
+                    $q->orWhere('level', '=', $genre);
+                }
+            }
+
+        })->get();
 //            ->where('category_id', $subCategories->id)->get();
 
 //        $authors = DB::table('users')
@@ -140,14 +148,13 @@ class CategoryController extends Controller
 //        return $authors;
         $category = Category::where('name', str_replace('-', ' ', $name))->first();
 
-        $subCategories = Category::where('cate_id', $category->cate_id)->get();
+//        $subCategories = Category::where('cate_id', $category->cate_id)->get();
 
 
         if($category->cate_id == 0){
             return view('courses.index_sub')
                 ->with('category', $category);
         }
-
         return view('courses.index')
             ->with('category', $category)
             ->with('videos', $videos)

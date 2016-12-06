@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    allo
-@endsection
-
-@section('description')
-
-@stop
-
 @section('content')
 
     <div class="container">
@@ -25,10 +17,10 @@
 
                                 <ul class="nav of nav-stacked">
                                     <h3>Categories</h3>
-                                    @foreach($category->parent->children as $cate)
+                                    {{--@foreach($category->parent->children as $cate)--}}
                                         {{--@if()--}}
-                                        <li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-', $cate->name))}}">{{$cate->name}}</a></li>
-                                    @endforeach
+                                        {{--<li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-', $cate->name))}}">{{$cate->name}}</a></li>--}}
+                                    {{--@endforeach--}}
                                 </ul>
 
                                 <h3>menu</h3>
@@ -37,37 +29,35 @@
 
                                         <ul class="nav of nav-stacked">
                                             <h4>Author</h4>
-                                            <?php $auth = \Input::has('author') ? \Input::get('author'): [] ?>
-                                            @foreach($authors->author->get() as $author)
-                                                <input type="radio" name="author[]" value="{{$author->user->name}}" {{in_array($author->user->name, $auth ) ? 'checked' :'' }}>
-                                                {{$author->user->name}}
+                                            @foreach($base_author->select('author_id', DB::raw('count(*) as total_a'))->groupBy('author_id')->get() as $author)
+                                                {{$author}}
+
+                                                {{--<input type="checkbox" name="author[]" value="{{$author->author->user->name}}" {{in_array($author->author->user->name, $auth ) ? 'checked' :'' }}>--}}
+                                                {{--{{$author->author->user->name}}--}}
+                                                {{$author->total_a}}
                                                 <br>
                                             @endforeach
                                         </ul>
 
                                         <h4>Price</h4>
                                         <div class="form-control">
-                                            <input id="ex2" type="text" class="span2" name="price" value="" data-slider-min="{{\App\Video::min('prijs')}}" data-slider-max="{{\App\Video::max('prijs', 'desc')}}" data-slider-step="5" data-slider-value="[{{ \Input::get('price') == null ? $videos->min('prijs').','.$videos->max('prijs') : \Input::get('price')}}]"/>
-
+                                            <input id="ex2" type="text" class="span2" name="price" value="" data-slider-min="{{$base_min}}" data-slider-max="{{$base_max}}" data-slider-step="5" data-slider-value="[{{ \Input::get('price') == null ? $base_min.','.$base_max : \Input::get('price')}}]"/>
                                         </div>
+
                                         <br>
-                                        <b>{{\App\Video::min('prijs')}}</b>
-                                        <b class="pull-right">{{\App\Video::max('prijs')}}</b>
+                                        <b>{{$base_min}}</b>
+                                        <b class="pull-right">{{$base_max}}</b>
                                         <br>
-                                        {{--min: <input type="text" name="min_price" value="">--}}
-                                        {{--<br>--}}
-                                        {{--max: <input type="text" name="max_price" value="{{\Input::get('max_price')}}">--}}
-                                        <h4>Level</h4>
-                                        <?php $level = \Input::has('level') ? \Input::get('level'): [] ?>
-                                        <input type="checkbox" name="level[]" value="beginner" {{in_array('beginner', $level ) ? 'checked' :'' }}>
-                                        beginner <br>
-                                        <input type="checkbox" name="level[]" value="intermediate" {{in_array('intermediate', $level ) ? 'checked' :'' }}>
-                                        intermediate <br>
-                                        <input type="checkbox" name="level[]" value="advanced" {{in_array('advanced', $level ) ? 'checked' :'' }}>
-                                        advanced  <br>
-                                        <input type="checkbox" name="level[]" value="expert" {{in_array('expert', $level ) ? 'checked' :'' }}>
-                                        expert <br>
-                                        <br>
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                            @foreach($base->select('level', DB::raw('count(*) as total'))->groupBy('level')->get() as $level)
+                                                <input type="checkbox" name="level[]" value="{{$level->level}}" {{ Input::has('level') ? ( in_array($level->level, \Input::get('level')) ? 'checked' : '') : ''}}>
+                                                {{--<input type="checkbox" name="level[]" value="expert" {{in_array($level->level, \Input::get('level') ? [] : \Input::get('level')) ? '' :'checked'}}>--}}
+                                                <label>{{$level->level}}</label>
+                                                <label class="text-muted pull-right">{{$level->total}}</label><br>
+                                            @endforeach
+                                            </div>
+                                        </div>
 
                                         <button class="pull-right">Search</button>
 
@@ -77,15 +67,16 @@
                             </div>
                             <div class="col-lg-9">
 
-                                <h1>{{$category->parent->name}} > {{$category->name}} </h1>
-                                <hr>
-                                @if($videos->count() == 0)
-                                    <b>Sorry No Records Found..</b>
-                                @else
-                                    There Are {{count($videos)}} Record Found..
-                                @endif
+                                {{--<h1>{{$category->parent->name}} > {{$category->name}} </h1>--}}
+                                {{--<hr>--}}
+                                {{--@if($videos->count() == 0)--}}
+                                    {{--<b>Sorry No Records Found..</b>--}}
+                                {{--@else--}}
+                                    {{--There Are {{count($videos)}} Record Found..--}}
+                                {{--@endif--}}
                                 <br>
                                 <br>
+
                                 @foreach($videos as $video)
                                     <div class="col-lg-12" style="margin-bottom: 20px;">
                                         <div class="col-lg-5">
@@ -104,6 +95,7 @@
                                             <p><small>{{str_limit($video->beschrijving, 100)}}</small></p>
                                             <label>price: </label><span>{{$video->prijs}}</span>
                                             <label>level: </label><span>{{$video->level}}</span>
+                                            {{$video->author_id}}
                                             <label>author: </label><span> <a href="{{ URL::route('author_show', $video->author->user->name) }}"> {{$video->author->user->name}}</a></span>
                                             <a href="{{ URL::route('video_show', $video->video_key) }}" class="btn btn-primary pull-right">Show</a>
                                         </div>
@@ -142,20 +134,17 @@
                     $(this).remove();
                 });
             }, 5000);
-
         });
         //-->
         // With JQuery
         $("#ex2").slider({
             tooltip: 'always'
-
         });
 
         // Without JQuery
         var slider = new Slider('#ex2', {
             tooltip: 'always'
         });
-
 
     </script>
 

@@ -17,10 +17,10 @@
 
                                 <ul class="nav of nav-stacked">
                                     <h3>Categories</h3>
-                                    {{--@foreach($category->parent->children as $cate)--}}
-                                        {{--@if()--}}
-                                        {{--<li> <a href="{{ URL::route('video_categories_sub',str_replace(' ','-', $cate->name))}}">{{$cate->name}}</a></li>--}}
-                                    {{--@endforeach--}}
+                                    @foreach($videos->first()->category->parent->children as $cate)
+                                        {{--{{$cate->name}}--}}
+                                        <li> <a href="{{ URL::route('video_index',[str_replace(' ','-', $cate->parent->name),str_replace(' ','-', $cate->name),$cate->id])}}">{{$cate->name}}</a></li>
+                                    @endforeach
                                 </ul>
 
                                 <h3>menu</h3>
@@ -29,13 +29,11 @@
 
                                         <ul class="nav of nav-stacked">
                                             <h4>Author</h4>
-                                            @foreach($base_author->select('author_id', DB::raw('count(*) as total_a'))->groupBy('author_id')->get() as $author)
-                                                {{$author}}
-
-                                                {{--<input type="checkbox" name="author[]" value="{{$author->author->user->name}}" {{in_array($author->author->user->name, $auth ) ? 'checked' :'' }}>--}}
-                                                {{--{{$author->author->user->name}}--}}
-                                                {{$author->total_a}}
-                                                <br>
+                                            @foreach($base_author->select('author_id', DB::raw('count(*) as total_a'))->groupBy(DB::raw('author_id'))->get() as $author)
+                                                <input type="checkbox" name="author[]" value="{{$author->author->id }}" {{ Input::has('author') ? ( in_array($author->author->id, \Input::get('author')) ? 'checked' : '') : ''}}>
+                                                {{--<input type="checkbox" name="level[]" value="expert" {{in_array($level->level, \Input::get('level') ? [] : \Input::get('level')) ? '' :'checked'}}>--}}
+                                                <label>{{$author->author->user->name}}</label>
+                                                <label class="text-muted pull-right">{{$author->total_a}}</label><br>
                                             @endforeach
                                         </ul>
 
@@ -50,7 +48,7 @@
                                         <br>
                                         <div class="col-xs-12">
                                             <div class="row">
-                                            @foreach($base->select('level', DB::raw('count(*) as total'))->groupBy('level')->get() as $level)
+                                            @foreach($base->select('level', DB::raw('count(*) as total'))->groupBy(DB::raw('level'))->get() as $level)
                                                 <input type="checkbox" name="level[]" value="{{$level->level}}" {{ Input::has('level') ? ( in_array($level->level, \Input::get('level')) ? 'checked' : '') : ''}}>
                                                 {{--<input type="checkbox" name="level[]" value="expert" {{in_array($level->level, \Input::get('level') ? [] : \Input::get('level')) ? '' :'checked'}}>--}}
                                                 <label>{{$level->level}}</label>
@@ -67,13 +65,13 @@
                             </div>
                             <div class="col-lg-9">
 
-                                {{--<h1>{{$category->parent->name}} > {{$category->name}} </h1>--}}
-                                {{--<hr>--}}
-                                {{--@if($videos->count() == 0)--}}
-                                    {{--<b>Sorry No Records Found..</b>--}}
-                                {{--@else--}}
-                                    {{--There Are {{count($videos)}} Record Found..--}}
-                                {{--@endif--}}
+{{--                                <h1>{{$category->parent->name}} > {{$category->name}} </h1>--}}
+                                <hr>
+                                @if($videos->count() == 0)
+                                    <b>Sorry No Records Found..</b>
+                                @else
+                                    There Are {{count($videos)}} Record Found..
+                                @endif
                                 <br>
                                 <br>
 

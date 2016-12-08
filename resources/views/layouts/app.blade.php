@@ -268,11 +268,11 @@
                         <ul class="menu dropdown-menu dropdown-menu-large row ">
                             @foreach($categories as $category)
                                 <li>
-                                    <a href="{{ url('courses/'.str_replace(' ', '-', $category->name).'')  }}">{{ $category->name }}</a>
+                                    <a href="{{ route('category_index', [str_replace(' ', '-', $category->name), $category->id]) }}">{{ $category->name }}</a>
                                     <ul class="sub-menu">
                                         @foreach($category->children as $child)
-                                            <li class="sub"><a href="{{ url('courses/'.str_replace(' ', '-', $child->name).'') }}">{{ $child->name }}</a></li>
-                                        @endforeach()
+                                            <li class="sub"><a href="{{route('video_index',[str_replace(' ','-', $child->parent->name),str_replace(' ','-', $child->name),$child->id])}}">{{ $child->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                             @endforeach

@@ -75,17 +75,11 @@
                         <h1>{{$video->name}}</h1><br>
                         <label>description</label>
                         <p>{{$video->beschrijving}}</p>
-                        <label>price: </label><span>{{$video->prijs}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <label>price: </label><span>{{$video->prijs == 0 ? 'free video' : $video->prijs}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
                         <label>level: </label><span>{{$video->level}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
 {{--                        <label>average rating: </label><span>{{number_format($video->author->review->where('video_key', Request::segment(2))->avg('rating'), 1)}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;--}}
                         <label>author: </label><span><a href="{{URL::route('author_show', $video->author->user->name)}}">{{$video->author->user->name}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                        @if($status === true || $video->prijs === 0)
-                            @if($video->prijs === 0)
-                                free video
-                            @else
-                                bought
-                            @endif
-                        @else
+                        @if($status != true)
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" role="dialog">
                                 <div class="modal-dialog">

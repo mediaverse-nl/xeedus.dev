@@ -23,7 +23,6 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->category = new Category();
-        $this->main_categories = Category::where('cate_id', 0)->get();
         $this->video = new Video();
         $this->users = new User();;
     }
@@ -33,9 +32,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($name, $id)
     {
-        return view('admin.category.index')->with('categories', $this->main_categories);
+        return view('category.index')->with('categories', $this->category->find($id));
     }
 
     /**

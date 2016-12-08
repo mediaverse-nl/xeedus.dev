@@ -58,7 +58,7 @@ class VideoController extends Controller
             $level = Input::has('level') ? Input::get('level') : 0;
             $author = Input::has('author') ? Input::get('author') : 0;
             $price = Input::has('price') ? Input::get('price') : 0;
-            if ($price != 0){
+            if (!empty($price)){
                 $q->whereBetween('prijs', explode(',',$price));
             }
             if($level != 0){
@@ -71,22 +71,18 @@ class VideoController extends Controller
             $q->where('category_id', $id);
         })->get();
 
-        $base = Video::where(function($q) use ($id){
-            $q->where('status', 'public');
-            $q->where('category_id', $id);
-        });
-        $level = Video::where(function($q) use ($id){
-            $q->where('status', 'public');
-            $q->where('category_id', $id);
-        });
+        $base = Video::where('status', 'public')->where('category_id', $id);
+        $level = Video::where('status', 'public')->where('category_id', $id);
+        $author = Video::where('status', 'public')->where('category_id', $id);
+        $category = Category::find($id);
 
         return view('courses.index')
             ->with('videos', $videos)
+            ->with('category', $category)
             ->with('base_level', $level)
-            ->with('base_author', $base)
+            ->with('base_author', $author)
             ->with('base_max', $base->max('prijs'))
-            ->with('base_min', $base->min('prijs'))
-            ->with('base', $base);
+            ->with('base_min', $base->min('prijs'));
     }
 
     /**

@@ -129,6 +129,8 @@ class AuthorController extends Controller
      */
     public function show($name)
     {
+
+
 //        $videos = Video::where('author_id', $this->author->where('user_id', Auth::user()->id))->findOrFail();
 //        $author = User::where('name', str_replace(' ', '-', $name))->first();
 //        $reviews = Review::where('author_id', $author->id)->get();

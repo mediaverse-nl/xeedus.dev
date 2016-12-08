@@ -40,12 +40,12 @@ Route::group(['middleware' => ['web']], function () {
     //});
 
     //main and sub categories
-    Route::get('/courses/{name}/c-{id}', ['as' => 'video_categories_sub', 'uses' => 'CategoryController@show']);
+    Route::get('/courses/{name}/c-{id}', ['as' => 'category_index', 'uses' => 'CategoryController@index']);
     Route::get('/courses/{name}/{subname}/c-{id}', ['as' => 'video_index', 'uses' => 'VideoController@index']);
 
 
     //author profile
-    Route::get('/author/p/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
+    Route::get('/author/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
 
     Route::get('/search', ['as' => 'search_videos', 'uses' => 'VideoController@search']);
 

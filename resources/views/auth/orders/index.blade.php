@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    profile
-@endsection
-
-@section('description')
-
-@stop
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -15,7 +7,7 @@
                 {!! Breadcrumbs::render('profile.orders') !!}
             </div>
 
-            @include('layouts.menus.user_menu')
+            {{--@include('layouts.menus.user_menu')--}}
 
             <div class="col-lg-9">
                 @include('errors.message')
@@ -82,7 +74,7 @@
     </div>
 </div>
 
-@endsection
+@stop
 
 
 @section('javascript')

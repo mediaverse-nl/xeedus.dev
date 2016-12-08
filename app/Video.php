@@ -4,8 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Nicolaslopezj\Searchable\SearchableTrait;
+
 class Video extends Model
 {
+    use SearchableTrait;
+
+    protected $searchable = [
+//        'columns' => [
+//            'users.name' => 10,
+//            'profiles.username' => 5,
+//            'profiles.bio' => 3,
+//            'profiles.country' => 2,
+//            'profiles.city' => 1,
+//        ],
+//        'joins' => [
+//            'profiles' => ['users.id','profiles.user_id'],
+//        ],
+    ];
+
     protected $table = 'videos';
 
     protected $fillable = [

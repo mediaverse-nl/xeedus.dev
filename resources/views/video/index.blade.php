@@ -201,42 +201,45 @@
 
 @stop
 
+@push('css')
+    <link rel="stylesheet" href="/rating/css/star-rating.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-fa/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-svg/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="/rating/themes/krajee-uni/theme.css" media="all" type="text/css"/>
+@endpush
+
 @push('javascript')
 
-<script type="text/javascript">
-<!--
-    $(document).ready(function () {
-        window.setTimeout(function() {
-            $(".alert").fadeTo(1500, 0).slideUp(500, function(){
-                $(this).remove();
-            });
-        }, 5000);
-    });
-    //-->
+    <script src="/rating/js/star-rating.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-fa/theme.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-svg/theme.js" type="text/javascript"></script>
+    <script src="/rating/themes/krajee-uni/theme.js" type="text/javascript"></script>
 
-    $(".input-id").rating({'showCaption':false, 'stars':'5', 'min':'0', 'max':'10', 'step':'1', 'size':'xs'});
-    $(".input-display").rating({'displayOnly':true, 'size':'xs'});
+    <script type="text/javascript">
 
-    var adManager = function () {
-        var vid = document.getElementById("myVid"),
-        adSrc = "videos/epic_rap_battles_of_history_16_adolf_hitler_vs_darth_vader_2_1280x720.mp4",
-        src;
+        $(".input-id").rating({'showCaption':false, 'stars':'5', 'min':'0', 'max':'10', 'step':'1', 'size':'xs'});
+        $(".input-display").rating({'displayOnly':true, 'size':'xs'});
 
-        var adEnded = function () {
-        vid.removeEventListener("ended", adEnded, false);
-        vid.src = src;
-        vid.load();
-        vid.play();
-    };
+        var adManager = function () {
+            var vid = document.getElementById("myVid"),
+            adSrc = "videos/epic_rap_battles_of_history_16_adolf_hitler_vs_darth_vader_2_1280x720.mp4",
+            src;
 
-    return {
-        init: function () {
-            src = vid.src;
-            vid.src = adSrc;
+            var adEnded = function () {
+            vid.removeEventListener("ended", adEnded, false);
+            vid.src = src;
             vid.load();
-            vid.addEventListener("ended", adEnded, false);
-        }};
-    }();
+            vid.play();
+        };
 
-</script>
+        return {
+            init: function () {
+                src = vid.src;
+                vid.src = adSrc;
+                vid.load();
+                vid.addEventListener("ended", adEnded, false);
+            }};
+        }();
+
+    </script>
 @endpush

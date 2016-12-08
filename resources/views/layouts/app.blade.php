@@ -19,10 +19,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/rating/css/star-rating.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="/rating/themes/krajee-fa/theme.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="/rating/themes/krajee-svg/theme.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="/rating/themes/krajee-uni/theme.css" media="all" type="text/css"/>
+    @stack('css')
 
     <style>
         /* Sticky footer styles
@@ -280,21 +277,9 @@
 
                     </li>
                     <li>
-                        {!! Form::open( array('route' => 'search_videos', 'method' => 'get' )) !!}
-                            <div id="custom-search-input" class="form-group {{ $errors->has('keyword') ? ' has-error' : '' }}" style="width: 250px;">
-                                <div class="input-group">
-                                    <input type="text" name="keyword" class="search-query form-control" placeholder="Search" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-danger" type="button">
-                                            <span class=" glyphicon glyphicon-search"></span>
-                                        </button>
-                                        @if ($errors->has('keyword'))
-                                            <strong>{{ $errors->first('keyword') }}</strong>
-                                        @endif
-                                    </span>
-                                </div>
-                            </div>
-                        {!! Form::close() !!}
+                        <form class="typeahead form-group" role="search">
+                            <input type="search" name="q" class="form-control search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
+                        </form>
                     </li>
                 </ul>
                 <!-- Right Side Of Navbar -->
@@ -371,35 +356,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    {{--bloodhound--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js" type="text/javascript"></script>
 
-    <script src="/rating/js/star-rating.js" type="text/javascript"></script>
-    <script src="/rating/themes/krajee-fa/theme.js" type="text/javascript"></script>
-    <script src="/rating/themes/krajee-svg/theme.js" type="text/javascript"></script>
-    <script src="/rating/themes/krajee-uni/theme.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $(function() {
-            $( "#datepicker" ).datepicker();
+    <script>
+        jQuery(document).ready(function($) {
+            // Set the Options for "Bloodhound" suggestion engine
+            var engine = new Bloodhound({
+                remote: {
+                    url: '/find?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: name
+            });
+            $(".search-input").typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                name: 'product',
+                displayKey: 'name',
+                source: engine.ttAdapter(),
+                // the key from the array we want to display (name,id,email,etc...)
+                templates: {
+                    empty: [
+                        '<div class="list-group search-results-dropdown" style="margin-top: 20px; color: #231f20;"> <div class="list-group-item">Er zijn geen producten gevonden...</div>  </div>'
+                    ],
+                    header: [
+                        '<div class="list-group search-results-dropdown" style="margin-top: 0px; color: #231f20;">'
+                    ],
+                    suggestion: function (data) {
+                        return '<a href="/' + data.name.replace(/ /g,"-") + '/p-' + data.id + '" class="list-group-item" style="height: 50px; line-height: 25px; width: 350px;">' + data.name + '<label class="pull-right">' + data.author_id + '</label></a>'
+                    }
+                }
+            });
         });
     </script>
-    <script type="text/javascript">
-        <!--
 
-        $(document).ready(function () {
-
-            window.setTimeout(function() {
-                $(".alert").fadeTo(1500, 0).slideUp(500, function(){
-                    $(this).remove();
-                });
-            }, 5000);
-
-        });
-        //-->
-    </script>
-
-    @yield('javascript')
+    @stack('javascript')
 
 </body>
 </html>

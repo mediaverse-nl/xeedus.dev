@@ -43,6 +43,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/courses/{name}/c-{id}', ['as' => 'category_index', 'uses' => 'CategoryController@index']);
     Route::get('/courses/{name}/{subname}/c-{id}', ['as' => 'video_index', 'uses' => 'VideoController@index']);
 
+    Route::get('/find', 'SearchController@find');
 
     //author profile
     Route::get('/author/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);

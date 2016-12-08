@@ -17,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/james-heinrich/getid3" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
@@ -31,6 +32,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mtdowling/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nicolaslopezj/searchable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -106,6 +108,7 @@
           <root url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+          <root url="file://$MODULE_DIR$/vendor/james-heinrich/getid3" />
           <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
           <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
@@ -120,6 +123,7 @@
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/mtdowling/cron-expression" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/nicolaslopezj/searchable" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -181,6 +185,7 @@
           <root url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+          <root url="file://$MODULE_DIR$/vendor/james-heinrich/getid3" />
           <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
           <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
@@ -195,6 +200,7 @@
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/mtdowling/cron-expression" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/nicolaslopezj/searchable" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />

@@ -136,6 +136,7 @@ class AuthorController extends Controller
 //        $reviews = Review::where('author_id', $author->id)->get();
 
 
+
 //        $averages = $author->review()
 //            ->select(
 //                array('reviews.*',

@@ -21,10 +21,19 @@
                             @else
                                 {!! Form::open(array('route' => array('author_store'), 'files' => true )) !!}
 
+                                    About you
+
+                                    <div class="form-group">
+                                        {!! Form::label('biography', 'biography') !!}
+                                        {!! Form::text('biography', null, ['class' => 'form-control']) !!}
+                                    </div>
+
                                     <div class="form-group">
                                         {!! Form::label('biography', 'biography') !!}
                                         {!! Form::textarea('biography', null, ['class' => 'form-control']) !!}
                                     </div>
+
+
 
                                     <div class="form-group">
                                         {!! Form::label('image', 'image') !!}

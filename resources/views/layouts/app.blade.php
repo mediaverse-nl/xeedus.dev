@@ -226,10 +226,19 @@ footer {
             border-width:8px;
         }
 .navbar-default {
-    background: linear-gradient(141deg, #FF9100 0%, #FDB556 51%, #FF9100 75%);
+    background: linear-gradient(141deg, #DF9028 0%, #FDB556 51%, #E19839 75%);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
     border-bottom: 0px;
     height: 70px !important;
+}
+
+h2 {
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    margin: 10px 0px 10px 0px;
 }
 
 .search {

@@ -32,7 +32,7 @@
             /* Margin bottom by footer height */
             margin-bottom: 250px;
             font-family: 'Lato';
-            background: #f1f1f1;
+            background: #f5f5f5;
         }
 footer {
     width: 100%;
@@ -43,7 +43,7 @@ footer {
 }
 #-footer {
     height: 180px;
-    background: #f5f5f5;
+    background: #f1f1f1;
     padding: 40px 0px;
 }
 #-footer .-footer-label {
@@ -199,11 +199,6 @@ footer {
         }
         .thumbnail {
             padding:0px;
-            box-shadow: 0 1px 2px rgba(0,0,0,.1);
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border-radius: 0px !important;
-    border: 0px !important;
         }
         .panel {
             position:relative;
@@ -231,9 +226,9 @@ footer {
             border-width:8px;
         }
 .navbar-default {
-    background: linear-gradient(141deg, #FF9100 0%, #FDB556 51%, #E4A655 75%);
+    background: linear-gradient(141deg, #FF9100 0%, #FDB556 51%, #FF9100 75%);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
-    border-bottom: 1px #E65100 solid !important;
+    border-bottom: 0px;
     height: 70px !important;
 }
 
@@ -246,11 +241,15 @@ footer {
     padding: 0px 22px 0px;
     box-sizing: border-box;
     line-height: 44px;
-    font-size: 11px;
-    color: white;
+    font-size: 14px !important;
     z-index: 9;
     font-weight: 300;
-    outline: none;
+    outline: none !important;
+    color: white !important;
+}
+
+input[placeholder], [placeholder], *[placeholder] {
+    color: white !important;
 }
     </style>
 
@@ -297,7 +296,7 @@ footer {
                     </li>
                     <li>
                         <form class="typeahead form-group" role="search">
-                            <input type="search" name="q" class="form-control search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
+                            <input type="search" name="q" class="form-control search search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
                         </form>
                     </li>
                 </ul>

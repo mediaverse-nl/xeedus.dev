@@ -1,19 +1,20 @@
 @extends('layouts.app')
 
-@section('title')
-    allo
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-lg-12">
+                {!! Breadcrumbs::render('profile.courses') !!}
+            </div>
+
+            @include('layouts.menus.__user')
+
+            <div class="col-lg-9">
+                @include('errors.message')
                 <div class="panel panel-default">
                     <div class="panel-heading">Author profile panel</div>
 
                     <div class="panel-body">
-
-                        @include('errors.message')
 
                         {!! Form::open(array('method' => 'post', 'route' => 'credits_store')) !!}
                         {!! method_field('patch') !!}
@@ -37,9 +38,9 @@
         </div>
     </div>
 
-@endsection
+@stop
 
-@section('javascript')
+@push('javascript')
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -62,4 +63,4 @@
         });
         //-->
     </script>
-@endsection
+@endpush

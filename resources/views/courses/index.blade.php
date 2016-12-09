@@ -47,7 +47,7 @@
                                         <br>
                                         <hr>
                                         <ul class="nav of nav-stacked">
-                                                <h4>Level</h4>
+                                            <h4>Level</h4>
 
                                             @foreach($base_level->select('level', DB::raw("count(level) as total"))->groupBy('level')->havingRaw('COUNT(*) > 1')->get() as $level)
                                                 <input type="checkbox" name="level[]" value="{{$level->level}}" {{ Input::has('level') ? ( in_array($level->level, \Input::get('level')) ? 'checked' : '') : ''}}>
@@ -55,11 +55,8 @@
                                                 <label>{{$level->level}}</label>
                                                 <label class="text-muted pull-right">{{$level->total}}</label><br>
                                             @endforeach
-                                                                                        <hr>
+                                            <hr>
                                         </ul>
-
-
-
                                         <button class="pull-right">Search</button>
 
                                     </form>
@@ -112,9 +109,9 @@
         </div>
     </div>
 
-@endsection
+@stop
 
-@section('javascript')
+@push('javascript')
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -148,5 +145,4 @@
 
     </script>
 
-
-@endsection
+@endpush

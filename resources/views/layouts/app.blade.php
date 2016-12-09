@@ -404,6 +404,10 @@ input[placeholder], [placeholder], *[placeholder] {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js" type="text/javascript"></script>
 
     <script>
+
+    </script>
+
+    <script>
         jQuery(document).ready(function($) {
             // Set the Options for "Bloodhound" suggestion engine
             var engine = new Bloodhound({

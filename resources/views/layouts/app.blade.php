@@ -30,33 +30,47 @@
         }
         body {
             /* Margin bottom by footer height */
-            margin-bottom: 100px;
+            margin-bottom: 250px;
             font-family: 'Lato';
+            background: #f1f1f1;
         }
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            /* Set the fixed height of the footer here */
-            height: 60px;
-            background-color: #f5f5f5;
-        }
-        .footer-content {
-            height: 200px;
-            background-color: #222;
-        }
-        .footer-links {
-
-            background: #E7A456;
-            height: 50px;;
-        }
-        .footer-links > div > div > p {
-            margin: 15px;
-        }
-        .footer-links a {
-            color: black !important;
-            margin-right: 30px;
-        }
+footer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 215px;
+}
+#-footer {
+    height: 180px;
+    background: #f5f5f5;
+    padding: 40px 0px;
+}
+#-footer .-footer-label {
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0px 0px 8px 0px;
+    padding: 0;
+}
+#-footer .-footer-list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 13px;
+}
+#-footer .-footer-list li {
+    padding: 2px 0px;
+}
+#-subfooter {
+    background-color: #333;
+    width: 100%;
+    height: 35px;
+    line-height: 34px;
+    color: #fff;
+    font-size: 11px;
+}
         .fa-btn {
             margin-right: 6px;
         }
@@ -185,6 +199,11 @@
         }
         .thumbnail {
             padding:0px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 0px !important;
+    border: 0px !important;
         }
         .panel {
             position:relative;
@@ -212,7 +231,7 @@
             border-width:8px;
         }
 .navbar-default {
-    background: #FF9100 !important;
+    background: linear-gradient(141deg, #FF9100 0%, #FDB556 51%, #E4A655 75%);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
     border-bottom: 1px #E65100 solid !important;
     height: 70px !important;
@@ -251,7 +270,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ URL::route('home_page') }}">
-                    <img class="logo" src="/sitefiles/logo.png">
+                    <img class="logo" src="/sitefiles/logo-white.png">
                 </a>
             </div>
 
@@ -318,38 +337,54 @@
 
     @yield('content')
 
-    <footer class="footer">
-        <div class="footer-basic-centered" style="background-color: #F8F8F8;">
-            <div class="footer-content">
-                <div class="container">
-                    <a href="{{URL::route('author_create')}}" class="">partner</a>
-                    <a href="{{URL::route('page_faq')}}">FAQ</a>
-                    <a href="{{URL::route('page_contact')}}">Contact</a>
-                    <a href="{{URL::route('page_about')}}">About us</a>
-                    <a href="{{URL::route('page_support')}}">Support</a>
-                    <div class="col-lg-4 pull-right">
-                        <a>Facebook</a>
-                        <a>Twitter</a>
-                        <a>Google+</a>
-                        <a>Linkedin</a>
-                    </div>
+<footer>
+    <div id="-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <label class="-footer-label">Xeedus</label>
+                    <ul class="-footer-list">
+                        <li><a href="{{URL::route('author_create')}}">Partners</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">FAQ</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">Privacy policy & Cookiebeleid</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="footer-links">
-                <div class="container">
-                    <div class="col-lg-12">
-                        <p class="">
-                            <span class="pull-right"> © 2016 Xeedus B.V.</span>
+                <div class="col-md-3 col-sm-4">
+                    <label class="-footer-label">Verzending</label>
+                    <ul class="-footer-list">
                             <a href="{{URL::route('page_privacy')}}">privacy policy</a>
                             <a href="{{URL::route('page_terms')}}">Terms </a>
                             <a href="{{URL::route('page_cookie')}}">cookie policy</a>
                             <a href="{{URL::route('page_sitemap')}}">site map</a>
-                        </p>
-                    </div>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <label class="-footer-label">Bedrijf</label>
+                    <ul class="-footer-list">
+                        <li><a href="{{URL::route('page_about')}}">Over ons</a></li>
+                        <li><a href="{{URL::route('page_support')}}">Support</a></li>
+                        <li><a href="{{URL::route('page_contact')}}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+    <div id="-subfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <a href="http://www.mediaverse.nl" class="text-muted pull-right">Mediaverse © 2016 All rights reserved.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

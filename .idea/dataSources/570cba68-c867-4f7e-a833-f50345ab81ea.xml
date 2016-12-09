@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - xeedus@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="xeedus">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <schema id="3" name="laravel-webshop"/>
+    <schema id="4" name="mediaverse"/>
+    <schema id="5" name="mysql"/>
+    <schema id="6" name="performance_schema"/>
+    <schema id="7" name="primera"/>
+    <schema id="8" name="repairplace"/>
+    <schema id="9" name="superangel"/>
+    <schema id="10" name="sys"/>
+    <schema id="11" name="webshop"/>
+    <schema id="12" name="yourgiftcards"/>
+    <table id="13" parent="1" name="attachment"/>
+    <table id="14" parent="1" name="author"/>
+    <table id="15" parent="1" name="categories"/>
+    <table id="16" parent="1" name="chatbox"/>
+    <table id="17" parent="1" name="chatmessage"/>
+    <table id="18" parent="1" name="comment"/>
+    <table id="19" parent="1" name="creditorder"/>
+    <table id="20" parent="1" name="migrations"/>
+    <table id="21" parent="1" name="order"/>
+    <table id="22" parent="1" name="password_resets"/>
+    <table id="23" parent="1" name="reviews"/>
+    <table id="24" parent="1" name="tags"/>
+    <table id="25" parent="1" name="tussentabelchat"/>
+    <table id="26" parent="1" name="users"/>
+    <table id="27" parent="1" name="videos"/>
+    <table id="28" parent="1" name="views"/>
+    <column id="29" parent="13" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="30" parent="13" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="31" parent="13" name="path">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="32" parent="13" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="33" parent="13" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="34" parent="13" name="attachment_video_id_foreign">
+      <columns>video_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="35" parent="13" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="36" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="37" parent="14" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="38" parent="14" name="biography">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="39" parent="14" name="image">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="40" parent="14" name="credit_bank">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="41" parent="14" name="bank_credentials">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="42" parent="14" name="bank_number">
+      <mandatory>1</mandatory>
+      <data-type>varchar(18)|0</data-type>
+    </column>
+    <column id="43" parent="14" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="44" parent="14" name="verified">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="45" parent="14" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="46" parent="14" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="47" parent="14" name="author_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="48" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="49" parent="15" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="50" parent="15" name="cate_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="51" parent="15" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="52" parent="15" name="image">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="53" parent="15" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="54" parent="15" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="55" parent="15" name="categories_cate_id_foreign">
+      <columns>cate_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="56" parent="15" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="57" parent="16" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="58" parent="16" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="59" parent="16" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="60" parent="16" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <key id="61" parent="16" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="62" parent="17" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="63" parent="17" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="64" parent="17" name="chatbox_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="65" parent="17" name="tekst">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="66" parent="17" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="67" parent="17" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="68" parent="17" name="chatmessage_chatbox_id_foreign">
+      <columns>chatbox_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="69" parent="17" name="chatmessage_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="70" parent="17" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="71" parent="18" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="72" parent="18" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="73" parent="18" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="74" parent="18" name="parent_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="75" parent="18" name="text">
+      <mandatory>1</mandatory>
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="76" parent="18" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="77" parent="18" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="78" parent="18" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="79" parent="18" name="comment_parent_id_foreign">
+      <columns>parent_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="80" parent="18" name="comment_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="81" parent="18" name="comment_video_id_foreign">
+      <columns>video_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="82" parent="18" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="83" parent="19" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="84" parent="19" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="85" parent="19" name="price">
+      <mandatory>1</mandatory>
+      <data-type>decimal(19,4)|0</data-type>
+    </column>
+    <column id="86" parent="19" name="credits">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="87" parent="19" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="88" parent="19" name="order_id">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="89" parent="19" name="mollie_id">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="90" parent="19" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="91" parent="19" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="92" parent="19" name="creditorder_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="93" parent="19" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="94" parent="20" name="migration">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="95" parent="20" name="batch">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="96" parent="21" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="97" parent="21" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="98" parent="21" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="99" parent="21" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="100" parent="21" name="order_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="101" parent="21" name="order_video_id_foreign">
+      <columns>video_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <column id="102" parent="22" name="email">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="103" parent="22" name="token">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="104" parent="22" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="105" parent="22" name="password_resets_email_index">
+      <columns>email</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="106" parent="22" name="password_resets_token_index">
+      <columns>token</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <column id="107" parent="23" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="108" parent="23" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="109" parent="23" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="110" parent="23" name="tekst">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="111" parent="23" name="rating_1">
+      <mandatory>1</mandatory>
+      <data-type>decimal(5,2)|0</data-type>
+    </column>
+    <column id="112" parent="23" name="rating_2">
+      <mandatory>1</mandatory>
+      <data-type>decimal(5,2)|0</data-type>
+    </column>
+    <column id="113" parent="23" name="rating_3">
+      <mandatory>1</mandatory>
+      <data-type>decimal(5,2)|0</data-type>
+    </column>
+    <column id="114" parent="23" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="115" parent="23" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="116" parent="23" name="reviews_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="117" parent="23" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="118" parent="24" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="119" parent="24" name="tag_name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="120" parent="24" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="121" parent="24" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="122" parent="24" name="tags_video_id_foreign">
+      <columns>video_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <column id="123" parent="25" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="124" parent="25" name="chatbox_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <index id="125" parent="25" name="tussentabelchat_chatbox_id_foreign">
+      <columns>chatbox_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="126" parent="25" name="tussentabelchat_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <column id="127" parent="26" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="128" parent="26" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="129" parent="26" name="voornaam">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="130" parent="26" name="tussenvoegsel">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="131" parent="26" name="achternaam">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="132" parent="26" name="geslacht">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="133" parent="26" name="land">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="134" parent="26" name="stad">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="135" parent="26" name="postcode">
+      <mandatory>1</mandatory>
+      <data-type>char(6)|0</data-type>
+    </column>
+    <column id="136" parent="26" name="straatnaam">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="137" parent="26" name="huisnummer">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="138" parent="26" name="credits">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="139" parent="26" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="140" parent="26" name="role">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="141" parent="26" name="geboortedatum">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="142" parent="26" name="email">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="143" parent="26" name="password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="144" parent="26" name="blocked_on">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="145" parent="26" name="remember_token">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="146" parent="26" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="147" parent="26" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="148" parent="26" name="users_email_unique">
+      <columns>email</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="149" parent="26" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="150" parent="26" name="users_email_unique">
+      <columns>email</columns>
+      <underlying-index>users_email_unique</underlying-index>
+    </key>
+    <column id="151" parent="27" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="152" parent="27" name="author_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="153" parent="27" name="category_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="154" parent="27" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(40)|0</data-type>
+    </column>
+    <column id="155" parent="27" name="video_key">
+      <mandatory>1</mandatory>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="156" parent="27" name="thumbnails">
+      <mandatory>1</mandatory>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="157" parent="27" name="video">
+      <mandatory>1</mandatory>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="158" parent="27" name="beschrijving">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="159" parent="27" name="prijs">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="160" parent="27" name="level">
+      <mandatory>1</mandatory>
+      <data-type>enum(&apos;beginner&apos;, &apos;intermediate&apos;, &apos;advanced&apos;, &apos;expert&apos;)|0</data-type>
+    </column>
+    <column id="161" parent="27" name="status">
+      <mandatory>1</mandatory>
+      <data-type>enum(&apos;public&apos;, &apos;private&apos;, &apos;banned&apos;)|0</data-type>
+    </column>
+    <column id="162" parent="27" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="163" parent="27" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="164" parent="27" name="videos_author_id_foreign">
+      <columns>author_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="165" parent="27" name="videos_category_id_foreign">
+      <columns>category_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="166" parent="27" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="167" parent="28" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="168" parent="28" name="video_id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <column id="169" parent="28" name="created_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="170" parent="28" name="updated_at">
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="171" parent="28" name="views_user_id_foreign">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="172" parent="28" name="views_video_id_foreign">
+      <columns>video_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+  </database-model>
+</dataSource>

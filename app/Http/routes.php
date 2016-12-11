@@ -47,7 +47,7 @@ Route::get('/courses/{name}/{subname}/c-{id}', ['as' => 'video_index', 'uses' =>
 Route::get('/find', 'SearchController@find');
 
 //author profile
-Route::get('/author/{name}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
+Route::get('/{name}/a-{id}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
 
 Route::get('/test', ['as' => 'test', function(){
     return view('test');

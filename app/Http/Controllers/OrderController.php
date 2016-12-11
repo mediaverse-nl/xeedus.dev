@@ -50,7 +50,7 @@ class OrderController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('video_show', $request->video_key)
+                ->route('credits_index')
                 ->withErrors($validator)
                 ->withInput();
         } else {

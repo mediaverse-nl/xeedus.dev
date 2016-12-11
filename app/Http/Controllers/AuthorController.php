@@ -127,11 +127,11 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($name, $id)
     {
-        
+        $author = $this->author->find($id);
 
-        return view('author.show');
+        return view('author.show')->with('author', $author);
     }
 
     /**

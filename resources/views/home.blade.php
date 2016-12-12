@@ -14,11 +14,9 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
 
-                <div class="container">
+                <div class="container fix-container">
                     <h2>categories</h2>
-                </div>
 
-                <div class="container-fluid">
                     <div class="slider">
                         @foreach($video as $vid )
                             <div class="thumbnail">
@@ -35,7 +33,7 @@
 
     <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 

@@ -34,6 +34,11 @@
             font-family: 'Lato';
             background: #f5f5f5;
         }
+
+        .fix-container {
+            margin-top: 90px;
+            margin-bottom: 50px;
+        }
 footer {
     width: 100%;
     position: absolute;
@@ -43,9 +48,10 @@ footer {
 }
 #-footer {
     height: 180px;
-    background: #f1f1f1;
+    background: #F0EEEE;
     padding: 40px 0px;
 }
+
 #-footer .-footer-label {
     font-weight: bold;
     font-size: 13px;
@@ -70,6 +76,10 @@ footer {
     line-height: 34px;
     color: #fff;
     font-size: 11px;
+}
+
+a {
+    color: #808080;
 }
         .fa-btn {
             margin-right: 6px;
@@ -112,7 +122,7 @@ footer {
             padding: 0px; /* firefox bug fix */
         }
         .navbar-brand>img {
-            height: 150%;
+            height: 70px;
             padding: 10px; /* firefox bug fix */
             width: auto;
         }
@@ -263,7 +273,7 @@ input[placeholder], [placeholder], *[placeholder] {
     </style>
 
 </head>
-<body id="app-layout" style="margin-top: 100px;">
+<body id="app-layout" style="margin-top: 70px;">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -278,7 +288,7 @@ input[placeholder], [placeholder], *[placeholder] {
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ URL::route('home_page') }}">
-                    <img class="logo" src="/sitefiles/logo-white.png">
+                    <img class="logo" src="/sitefiles/logo-white.png" height="60%">
                 </a>
             </div>
 
@@ -303,12 +313,12 @@ input[placeholder], [placeholder], *[placeholder] {
                         </ul>
 
                     </li>
-                    <li>
+                </ul>
+                    <div class="col-md-3">
                         <form class="typeahead form-group" role="search">
                             <input type="search" name="q" class="form-control search search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
                         </form>
-                    </li>
-                </ul>
+                    </div>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -349,7 +359,7 @@ input[placeholder], [placeholder], *[placeholder] {
     <div id="-footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="-footer-label">Xeedus</label>
                     <ul class="-footer-list">
                         <li><a href="{{URL::route('author_create')}}">Partners</a></li>
@@ -357,7 +367,7 @@ input[placeholder], [placeholder], *[placeholder] {
                         <li><a href="http://esigareteindhoven.com/privacy-policy">Privacy policy & Cookiebeleid</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="-footer-label">Verzending</label>
                     <ul class="-footer-list">
                             <a href="{{URL::route('page_privacy')}}">privacy policy</a>
@@ -366,7 +376,7 @@ input[placeholder], [placeholder], *[placeholder] {
                             <a href="{{URL::route('page_sitemap')}}">site map</a>
                     </ul>
                 </div>
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="-footer-label">Bedrijf</label>
                     <ul class="-footer-list">
                         <li><a href="{{URL::route('page_about')}}">Over ons</a></li>
@@ -374,8 +384,14 @@ input[placeholder], [placeholder], *[placeholder] {
                         <li><a href="{{URL::route('page_contact')}}">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    
+                <div class="col-md-3 col-sm-3">
+                    <label class="-footer-label">Verzending</label>
+                    <ul class="-footer-list">
+                            <a href="{{URL::route('page_privacy')}}">privacy policy</a>
+                            <a href="{{URL::route('page_terms')}}">Terms </a>
+                            <a href="{{URL::route('page_cookie')}}">cookie policy</a>
+                            <a href="{{URL::route('page_sitemap')}}">site map</a>
+                    </ul>
                 </div>
             </div>
         </div>

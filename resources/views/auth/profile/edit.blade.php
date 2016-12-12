@@ -11,7 +11,7 @@
             {!! Breadcrumbs::render('profile.edit') !!}
         </div>
 
-        @include('layouts.menus.user_menu')
+        @include('layouts.menus.__user')
 
         <div class="col-lg-9">
             @include('errors.message')
@@ -99,27 +99,6 @@
 
 @endsection
 
-@section('javascript')
+@push('javascript')
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
-    </script>
-    <script type="text/javascript">
-        <!--
-
-        $(document).ready(function () {
-
-            window.setTimeout(function() {
-                $(".alert").fadeTo(1500, 0).slideUp(500, function(){
-                    $(this).remove();
-                });
-            }, 5000);
-
-        });
-        //-->
-    </script>
-@endsection
+@endpush

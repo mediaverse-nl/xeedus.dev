@@ -24,6 +24,10 @@
 
 @stop
 
+@push('css')
+
+@endpush
+
 @push('javascript')
 
 @endpush

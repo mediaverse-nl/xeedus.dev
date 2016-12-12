@@ -32,19 +32,17 @@ class VideoController extends Controller
     protected $category;
     protected $video;
     protected $author;
-    protected $video_key;
     protected $order;
-    protected $user;
+//    protected $user;
 
     public function __construct()
     {
 //        $this->video_key = Input::get('w');
-        $this->video_key = Route::current()->getParameter('key');
-        $this->user = Auth::user();
-        $this->video = Video::where('video_key', $this->video_key)->first();
+//        $this->user = Auth::user();
+//        $this->video = Video::where('video_key', $this->video_key)->first();
         $this->category = '';
-        $this->order = Order::all();
-        $this->videos = new Video();
+        $this->order = new Order;
+        $this->video = new Video;
     }
 
     /**
@@ -91,114 +89,35 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($key)
     {
+        $video = $this->video->where('video_key', $key)->first();
+        $videos = $this->video->where('author_id', $video->author_id)->get();
+//        $order =  $this->order->where('user_id', Auth::user()->id)->where('video_id', $key)->exists();
 
-//        dd( Input::get('w'));
-        $author_id = $this->video->author->id;
+        $order = Auth::user()->order->where('video_id', $video->id)->isEmpty();
+//dd($order);
 
-        $order = Order::where('user_id', $this->user->id)
-            ->where('video_id', $this->video->id)
-            ->exists();
-
-        $videos = Video::where('author_id', $author_id)
-            ->get();
-
-        $orders = Order::where('user_id', $this->user->id)
-            ->get();
-
-        $review = Review::where('user_id', $this->user->id)
-            ->where('video_id', $this->video->id)
-            ->exists();
+//        dd($order);
+        $orders = Order::where('user_id', Auth::user()->id)->get();
 
         return view('video.index')
-            ->with('video', $this->video)
-            ->with('list', $videos)
-            ->with('review', $review)
-            ->with('status', $order)
-            ->with('orders', $orders);
+            ->with('video', $video)
+            ->with('videos', $videos)
+            ->with('status', $order);
+//            ->with('order', $orders)
+//            ->with('orders', $orders);
     }
 
-    public function search(Request $request){
-
-        $rules = [
-            'keyword' => 'required'
-        ];
-
-        $validator = \Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return redirect()
-//                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $keyword = \Input::get('keyword');
-
-        if ($keyword != '') {
-            $videos = $this->videos->where(function ($query) use ($keyword) {
-                $query->where("name", "LIKE", "%$keyword%")
-                    ->orWhere("beschrijving", "LIKE", "%$keyword%");
-            })->get();
-        }
-
-        return view('courses.search')
-            ->with('videos', $videos);
-
-    }
-
-    public function GetImage($filename = null){
-
-//        $path = public_path().'/videos/thumbnail/' . $filename;
+    public function GetImage($filename = null)
+    {
         $path = public_path('public\videos\thumbnail\\').$filename;
-
-//        if (file_exists($path)) {
-//            return Response::download($path);
-//        }else{
-//            return 'error';
-//        }
-//
-//        return Image::make('foo/bar.jpg')->response('png');
-//
-//        $path = storage_path() . '/' . $filename;
-//        $path = Image::canvas(800, 600, '#ff0000');
-//
-////        if(!File::exists($path)) abort(404);
-//
-//        $file = File::get($path);
-//        $type = File::mimeType($path);
-//
-//        $response = Response::make($file, 200);
-//        $response->header("Content-Type", $type);
-//
-//        return $response;
-//        $entry = Video::where('thumbnails', '=', $filename)->first();
-//        $file = Storage::disk('local')->get($entry->thumbnails);
-//        $destinationPath = base_path('\public\videos\thumbnail\\').$entry->thumbnails;
-//
-//        $type = File::mimeType($destinationPath);
-//        return Image::make(storage_path() . '/' . $filename)->response();
-//        return Response($destinationPath, 200);
-//
-//        $path = storage_path() . '\public\videos\thumbnail\\' . $filename;
-//
-//        if(!File::exists($path)) abort(404);
-//
-//        $file = File::get($path);
-//        $type = File::mimeType($path);
-//
-//        $response = Response::make($path, 200);
-//        $response->header("Content-Type", 'image/jpg');
-//
-//        return $response;
         return $path;
     }
-//
-    public function GetVideo($video_key){
 
-        $video = Video::where('video_key', '=', $video_key)->firstOrFail();
-//        $$video = Video::where('video_key', $filename)->first();
+    public function GetVideo($video_key)
+    {
+        $video = Video::where('video_key', $video_key)->firstOrFail();
         $videosDir = public_path('videos\media\\');
 
         if (file_exists($filePath = $videosDir."\\".$video->video)) {

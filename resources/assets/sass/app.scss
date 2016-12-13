@@ -1,23 +1,31 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "theme";
+@import "functions";
 
 
 body {
 	display: table;
 	width: 100%;
 	height: 100%;
-	font-family: 'Lato';
+	font-family: $font-family;
 	background-color: $primary-bg;
 }
 
-nav.navbar{
-	height: 70px !important;
-	line-height: 70px;
-	background: linear-gradient(141deg, #DF9028 0%, #FDB556 51%, #E19839 75%);
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
-	border-bottom: 0px;
+//Navigation
+nav {
+	
+	&.navbar{
+		height: 70px $ipt;
+		line-height: 70px;
+		background: linear-gradient(141deg, #DF9028 0%, #FDB556 51%, #E19839 75%);
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
+		border-bottom: 0px;
+	}
 }
 
+
+
+//Footer
 footer {
 	display: table-row;
 
@@ -59,8 +67,8 @@ footer {
 a {
 	&.back-to-top {
 		display: none;
-		width: 60px;
-		height: 60px;
+		width: 50px;
+		height: 50px;
 		text-indent: -9999px;
 		position: fixed;
 		z-index: 999;
@@ -71,6 +79,17 @@ a {
 	}
 }
 
+//Template fixes
+.container-fix {
+	margin-top: 30px; //Only use one on a page!
+	margin-bottom: 30px;
+}
+
+a {
+    color: #808080; //All <a></a> will have other font color
+}
+
+//Mobile fix
 @media(max-width: 768px) {
 	a {
 		&.back-to-top {
@@ -80,19 +99,8 @@ a {
 	}
 }
 
-
-//Template fixes
-.container-fix {
-	margin-top: 30px; //only use with content container!
-	margin-bottom: 30px;
-}
-
-a {
-    color: #808080; //All <a></a> will have other font color
-}
-
-//Fix h1, h2, h3, h4, h5, h6 overwrite bootstrap
-h1, h2, h3, h4, h5, h6 {
+//H1, H2, H3, H4, H5, H6 auto genereren!
+#{headings(1,6)} {
     font-weight: 400;
     text-transform: uppercase;
     margin: 0;
@@ -100,26 +108,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 0px 10px 0px;
 }
 
-h1 {
-	font-size: 35px;
-}
-
-h2 {
-	font-size: 31px;
-}
-
-h3 {
-	font-size: 26px;
-}
-
-h4 {
-	font-size: 20px;
-}
-
-h5 {
-	font-size: 16px;
-}
-
-h6 {
-	font-size: 11px;
+@for $i from 1 through 6 {
+    h#{7 - $i} {
+        fontsize: 50px / 6 * $i;
+    }
 }

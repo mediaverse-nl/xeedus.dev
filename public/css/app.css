@@ -2,7 +2,7 @@ body {
   display: table;
   width: 100%;
   height: 100%;
-  font-family: 'Lato';
+  font-family: "Lato";
   background-color: #F5F5F5; }
 
 nav.navbar {
@@ -41,8 +41,8 @@ footer {
 
 a.back-to-top {
   display: none;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   text-indent: -9999px;
   position: fixed;
   z-index: 999;
@@ -51,17 +51,17 @@ a.back-to-top {
   background: #DF9028 url("http://html-tuts.com/demo/back-to-top/up-arrow.png") no-repeat center 43%;
   border-radius: 5px; }
 
-@media (max-width: 768px) {
-  a.back-to-top {
-    height: 45px;
-    width: 45px; } }
-
 .container-fix {
   margin-top: 30px;
   margin-bottom: 30px; }
 
 a {
   color: #808080; }
+
+@media (max-width: 768px) {
+  a.back-to-top {
+    height: 45px;
+    width: 45px; } }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -70,22 +70,22 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 10px 0px 10px 0px; }
 
-h1 {
-  font-size: 35px; }
-
-h2 {
-  font-size: 31px; }
-
-h3 {
-  font-size: 26px; }
-
-h4 {
-  font-size: 20px; }
+h6 {
+  fontsize: 8.3333333333px; }
 
 h5 {
-  font-size: 16px; }
+  fontsize: 16.6666666667px; }
 
-h6 {
-  font-size: 11px; }
+h4 {
+  fontsize: 25px; }
+
+h3 {
+  fontsize: 33.3333333333px; }
+
+h2 {
+  fontsize: 41.6666666667px; }
+
+h1 {
+  fontsize: 50px; }
 
 /*# sourceMappingURL=app.css.map */

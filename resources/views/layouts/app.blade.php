@@ -18,260 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 
     @stack('css')
-
-    <style>
-        /* Sticky footer styles
-       -------------------------------------------------- */
-        html {
-            position: relative;
-            min-height: 100%;
-        }
-        body {
-            /* Margin bottom by footer height */
-            margin-bottom: 250px;
-            font-family: 'Lato';
-            background: #f5f5f5;
-        }
-
-        .fix-container {
-            margin-top: 90px;
-            margin-bottom: 50px;
-        }
-footer {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 215px;
-}
-#-footer {
-    height: 180px;
-    background: #F0EEEE;
-    padding: 40px 0px;
-}
-
-#-footer .-footer-label {
-    font-weight: bold;
-    font-size: 13px;
-    text-transform: uppercase;
-    margin: 0px 0px 8px 0px;
-    padding: 0;
-}
-#-footer .-footer-list {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    font-size: 13px;
-}
-#-footer .-footer-list li {
-    padding: 2px 0px;
-}
-#-subfooter {
-    background-color: #333;
-    width: 100%;
-    height: 35px;
-    line-height: 34px;
-    color: #fff;
-    font-size: 11px;
-}
-
-a {
-    color: #808080;
-}
-        .fa-btn {
-            margin-right: 6px;
-        }
-        ul.menu{ list-style:none;}
-        ul.menu > li {
-            float: left;
-            margin-left: 1em;
-            padding-bottom: 3em; /*make this the line-height space underneat the main menu, plus the heigh of the secondary menu, plus the extra space you wanna give the user to not lose focus on the second menu*/
-        }
-        ul.menu > li:first-child {margin-left: 0;}
-        ul.menu > li > ul {
-            display: none;
-        }
-        ul.menu> li:hover > ul {
-            position: absolute;
-            display: block;
-            left: 0;
-            list-style: none;
-        }
-        ul.menu > li:hover > ul > li,
-        ul.menu > li > ul:hover > li {
-            position: relative;
-            float: left;
-            margin-left: 1em;
-        }
-        ul.menu > li:hover > ul > li:first-child,
-        ul.menu > li > ul:hover > li:first-child {margin-left: 0px}
-        .dropdown-menu-large{
-            width: 40px;
-        }
-        .dropdown-menu-large > li{
-            float: left !important;
-            height: 20px;
-        }
-        .sub-menu{
-          margin-left: 50px;
-        }
-        .navbar-brand {
-            padding: 0px; /* firefox bug fix */
-        }
-        .navbar-brand>img {
-            height: 70px;
-            padding: 10px; /* firefox bug fix */
-            width: auto;
-        }
-        .video-wrapper {
-            width: 100%;
-            /* whatever width you want */
-            display: inline-block;
-            position: relative;
-        }
-        .video-wrapper:after {
-            padding-top: 56.25%;
-            /* 16:9 ratio */
-            display: block;
-            content: '';
-        }
-        .video-main {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            /* fill parent */
-            background-color: deepskyblue;
-            /* let's see it! */
-            color: white;
-        }
-        .video-wrapper {
-            width: 100%;
-            /* whatever width you want */
-            display: inline-block;
-            position: relative;
-        }
-        .video-wrapper:after {
-            padding-top: 56.25%;
-            /* 16:9 ratio */
-            display: block;
-            content: '';
-        }
-        .video-container {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            /* fill parent */
-            background-color: black;
-            /* let's see it! */
-            color: white;
-        }
-        #custom-search-input {
-            margin:0;
-            margin-top: 10px;
-            padding: 0;
-        }
-        #custom-search-input .search-query {
-            padding-right: 3px;
-            padding-right: 4px \9;
-            padding-left: 3px;
-            padding-left: 4px \9;
-            /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
-            margin-bottom: 0;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-        }
-        #custom-search-input button {
-            border: 0;
-            background: none;
-            /** belows styles are working good */
-            padding: 2px 5px;
-            margin-top: 2px;
-            position: relative;
-            left: -28px;
-            /* IE7-8 doesn't have border-radius, so don't indent the padding */
-            margin-bottom: 0;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            color:#D9230F;
-        }
-        .search-query:focus + button {
-            z-index: 3;
-        }
-        .thumbnail {
-            padding:0px;
-        }
-        .panel {
-            position:relative;
-        }
-        .panel>.panel-heading:after,.panel>.panel-heading:before{
-            position:absolute;
-            top:11px;left:-16px;
-            right:100%;
-            width:0;
-            height:0;
-            display:block;
-            content:" ";
-            border-color:transparent;
-            border-style:solid solid outset;
-            pointer-events:none;
-        }
-        .panel>.panel-heading:after{
-            border-width:7px;
-            border-right-color:#f7f7f7;
-            margin-top:1px;
-            margin-left:2px;
-        }
-        .panel>.panel-heading:before{
-            border-right-color:#ddd;
-            border-width:8px;
-        }
-.navbar-default {
-    background: linear-gradient(141deg, #DF9028 0%, #FDB556 51%, #E19839 75%);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
-    border-bottom: 0px;
-    height: 70px !important;
-}
-
-h2 {
-    font-weight: 400;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    margin: 10px 0px 10px 0px;
-}
-
-.search {
-    width: 100%;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 0;
-    border-radius: 5px;
-    padding: 0px 22px 0px;
-    box-sizing: border-box;
-    line-height: 44px;
-    font-size: 14px !important;
-    z-index: 9;
-    font-weight: 300;
-    outline: none !important;
-    color: white !important;
-}
-
-input[placeholder], [placeholder], *[placeholder] {
-    color: white !important;
-}
-    </style>
-
 </head>
 <body id="app-layout" style="margin-top: 70px;">
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -288,7 +37,7 @@ input[placeholder], [placeholder], *[placeholder] {
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ URL::route('home_page') }}">
-                    <img class="logo" src="/sitefiles/logo-white.png" height="60%">
+                    <img class="logo" src="/sitefiles/logo-white.png" height="50px">
                 </a>
             </div>
 
@@ -299,7 +48,7 @@ input[placeholder], [placeholder], *[placeholder] {
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 
-                        <ul class="menu dropdown-menu dropdown-menu-large row ">
+                        <ul class="menu dropdown-menu dropdown-menu-large row">
                             @foreach($categories as $category)
                                 <li>
                                     <a href="{{ route('category_index', [str_replace(' ', '-', $category->name), $category->id]) }}">{{ $category->name }}</a>
@@ -314,11 +63,12 @@ input[placeholder], [placeholder], *[placeholder] {
 
                     </li>
                 </ul>
-                    <div class="col-md-3">
+                <ul class="nav navbar-nav">
                         <form class="typeahead form-group" role="search">
                             <input type="search" name="q" class="form-control search search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
                         </form>
-                    </div>
+                </ul>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -356,47 +106,49 @@ input[placeholder], [placeholder], *[placeholder] {
     @yield('content')
 
 <footer>
-    <div id="-footer">
+    <div class="-footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-3">
-                    <label class="-footer-label">Xeedus</label>
-                    <ul class="-footer-list">
-                        <li><a href="{{URL::route('author_create')}}">Partners</a></li>
-                        <li><a href="{{URL::route('page_faq')}}">FAQ</a></li>
-                        <li><a href="http://esigareteindhoven.com/privacy-policy">Privacy policy & Cookiebeleid</a></li>
+                    <label class="-label">Xeedus inc.</label>
+                    <ul class="-list">
+                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
+                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-footer-label">Verzending</label>
-                    <ul class="-footer-list">
-                            <a href="{{URL::route('page_privacy')}}">privacy policy</a>
-                            <a href="{{URL::route('page_terms')}}">Terms </a>
-                            <a href="{{URL::route('page_cookie')}}">cookie policy</a>
-                            <a href="{{URL::route('page_sitemap')}}">site map</a>
+                    <label class="-label">Xeedus.dev</label>
+                    <ul class="-list">
+                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
+                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-footer-label">Bedrijf</label>
-                    <ul class="-footer-list">
-                        <li><a href="{{URL::route('page_about')}}">Over ons</a></li>
-                        <li><a href="{{URL::route('page_support')}}">Support</a></li>
-                        <li><a href="{{URL::route('page_contact')}}">Contact</a></li>
+                    <label class="-label">Xeedus co</label>
+                    <ul class="-list">
+                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
+                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-footer-label">Verzending</label>
-                    <ul class="-footer-list">
-                            <a href="{{URL::route('page_privacy')}}">privacy policy</a>
-                            <a href="{{URL::route('page_terms')}}">Terms </a>
-                            <a href="{{URL::route('page_cookie')}}">cookie policy</a>
-                            <a href="{{URL::route('page_sitemap')}}">site map</a>
+                    <label class="-label">Xeedus link</label>
+                    <ul class="-list">
+                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
+                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="-subfooter">
+    <div class="-subfooter">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -421,6 +173,28 @@ input[placeholder], [placeholder], *[placeholder] {
 
     <script>
 
+    </script>
+    
+    <script type="text/javascript">
+    // create the back to top button
+    $('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
+
+    var amountScrolled = 300;
+
+    $(window).scroll(function() {
+        if ( $(window).scrollTop() > amountScrolled ) {
+            $('a.back-to-top').fadeIn('slow');
+        } else {
+            $('a.back-to-top').fadeOut('slow');
+        }
+    });
+
+    $('a.back-to-top, a.simple-back-to-top').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 700);
+        return false;
+    });
     </script>
 
     <script>

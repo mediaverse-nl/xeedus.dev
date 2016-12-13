@@ -14,7 +14,10 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
 
-                <div class="container fix-container">
+
+    <div class="container container-fix">
+    <div class="row">
+        <div class="col-md-12">
                     <h2>categories</h2>
 
                     <div class="slider">
@@ -29,13 +32,7 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
-
-    <div class="container">
-    <div class="row">
-        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
 
 

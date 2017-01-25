@@ -5,30 +5,63 @@ body {
   font-family: "Lato";
   background-color: #F5F5F5; }
 
-nav.navbar {
-  height: 70px !important;
-  line-height: 70px;
-  background: linear-gradient(141deg, #DF9028 0%, #FDB556 51%, #E19839 75%);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
-  border-bottom: 0px; }
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999; }
+  header .navigatie {
+    height: 75px !important;
+    line-height: 70px;
+    background: #DF9028; }
+  header .populair {
+    height: 40px;
+    line-height: 30px;
+    background: white;
+    border-bottom: 1px #ECECEC solid; }
+
+nav {
+  width: 100; }
+  nav.navbar {
+    height: 70px !important;
+    line-height: 70px;
+    background: #DF9028;
+    border-bottom: 1px #D1831D solid; }
+    nav.navbar .navbar-brand {
+      padding: 12.5px;
+      height: 45px; }
+    nav.navbar .search {
+      width: 100%;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 0;
+      border-radius: 5px;
+      padding: 0px 22px 0px;
+      box-sizing: border-box;
+      line-height: 44px;
+      color: white !important;
+      z-index: 9;
+      font-size: 12px;
+      font-weight: 300; }
 
 footer {
   display: table-row; }
   footer .-footer {
     background-color: #F0EEEE;
-    padding: 40px 0px; }
+    padding: 40px 0px 25px 0px; }
     footer .-footer .-label {
       font-weight: bold;
       font-size: 13px;
       text-transform: uppercase;
-      margin: 15px 0px 8px 0px;
+      margin: 0px 0px 7.5px 0px;
       padding: 0px; }
     footer .-footer .-list {
       width: 100%;
       margin: 0;
       padding: 0;
       list-style-type: none;
-      font-size: 13px; }
+      font-size: 13px;
+      margin-bottom: 15px; }
       footer .-footer .-list li {
         padding: 2px 0px; }
   footer .-subfooter {
@@ -41,8 +74,8 @@ footer {
 
 a.back-to-top {
   display: none;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   text-indent: -9999px;
   position: fixed;
   z-index: 999;
@@ -51,8 +84,68 @@ a.back-to-top {
   background: #DF9028 url("http://html-tuts.com/demo/back-to-top/up-arrow.png") no-repeat center 43%;
   border-radius: 5px; }
 
+.breadcrumb .active {
+  font-weight: bold; }
+
+.ui-card {
+  max-width: 100%;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 290px;
+  min-height: 0;
+  background: #FFF;
+  padding: 0;
+  border: none;
+  border-radius: .28571429rem;
+  box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
+  transition: box-shadow .1s ease,transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease,-webkit-transform .1s ease;
+  z-index: ''; }
+  .ui-card .content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, 0.1);
+    background: 0 0;
+    margin: 0;
+    padding: 1em;
+    box-shadow: none;
+    font-size: 1em;
+    border-radius: 0; }
+  .ui-card .extra {
+    max-width: 100%;
+    min-height: 0 !important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    position: static;
+    background: 0 0;
+    width: auto;
+    margin: 0;
+    padding: .75em 1em;
+    top: 0;
+    left: 0;
+    color: rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+    transition: color .1s ease; }
+
+.ui-card:after {
+  display: block;
+  content: ' ';
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden; }
+
 .container-fix {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-bottom: 30px; }
 
 a {

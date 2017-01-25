@@ -37,7 +37,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ URL::route('home_page') }}">
-                    <img class="logo" src="/sitefiles/logo-white.png" height="50px">
+                    <img class="logo" src="/sitefiles/logo-white.png" height="45px">
                 </a>
             </div>
 
@@ -65,7 +65,7 @@
                 </ul>
                 <ul class="nav navbar-nav">
                         <form class="typeahead form-group" role="search">
-                            <input type="search" name="q" class="form-control search search-input typeahead" placeholder="Zoek op producten" autocomplete="off">
+                            <input type="search" name="q" class="form-control search search-input typeahead" value="Zoek op producten" autocomplete="off">
                         </form>
                 </ul>
 
@@ -131,7 +131,7 @@
                     <label class="-label">Xeedus co</label>
                     <ul class="-list">
                         <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
-                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
+                        <li><a href="{{URL::route('page_faq', '')}}">Lange test link waardoor</a></li>
                         <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
                         <li><a href="">zien hoe dit eruit gaat zien</a></li>
                     </ul>
@@ -174,7 +174,7 @@
     <script>
 
     </script>
-    
+
     <script type="text/javascript">
     // create the back to top button
     $('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');

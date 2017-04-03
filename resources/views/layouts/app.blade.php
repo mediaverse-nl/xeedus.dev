@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.1.3/css/bootstrap-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 
     @stack('css')
 </head>
@@ -110,25 +110,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-3">
-                    <label class="-label">Xeedus inc.</label>
+                    <label class="-label">Xeedus</label>
                     <ul class="-list">
-                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
-                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
-                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
-                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
+                        <li><a href="{{URL::route('author_create')}}">Over Xeedus</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Xeedus Guidelines</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">Vacatures</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-label">Xeedus.dev</label>
+                    <label class="-label">Help</label>
                     <ul class="-list">
-                        <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
-                        <li><a href="{{URL::route('page_faq')}}">Lange test link waardoor</a></li>
-                        <li><a href="http://esigareteindhoven.com/privacy-policy">wij precies kunnen gaan</a></li>
-                        <li><a href="">zien hoe dit eruit gaat zien</a></li>
+                        <li><a href="{{URL::route('author_create')}}">Help Center</a></li>
+                        <li><a href="{{URL::route('page_faq')}}">Video School</a></li>
+                        <li><a href="http://esigareteindhoven.com/privacy-policy">FAQ</a></li>
+                        <li><a href="">Forums</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-label">Xeedus co</label>
+                    <label class="-label"></label>
                     <ul class="-list">
                         <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
                         <li><a href="{{URL::route('page_faq', '')}}">Lange test link waardoor</a></li>

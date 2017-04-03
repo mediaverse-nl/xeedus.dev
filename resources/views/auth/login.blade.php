@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container container-fix">
 
 
     @include('errors.message')
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
@@ -64,6 +69,9 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6">
+            Informatie over het hebben van een account ofzo
         </div>
     </div>
 </div>

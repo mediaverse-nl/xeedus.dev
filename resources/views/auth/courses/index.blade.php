@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+    profile
+@endsection
+
 @section('content')
-    <div class="container">
+    <div class="container container-fix">
         <div class="row">
             <div class="col-lg-12">
                 {!! Breadcrumbs::render('profile.courses') !!}

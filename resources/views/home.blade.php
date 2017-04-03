@@ -16,12 +16,9 @@
 
 
     <div class="container container-fix">
-    <div class="row">
-    <ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>
+        <div class="row">
+            {!! Breadcrumbs::render('home') !!} 
+        
         <div class="col-md-12">
             <div class="panel panel-default">
 
@@ -30,39 +27,64 @@
                 <div class="panel-body">
                     {{--{{dd($best_video)}}--}}
                     <div>
-                        <h2>categories</h2>
+                    <h5 class="background white">
+                        <span>Nieuwste videos</span>
+                    </h5>
                         {{--@foreach($categories as $category)--}}
                             {{--<a class="btn btn-default" href="{{ URL::route('video_categories_sub', str_replace(' ', '-', $category->name) ) }}">{{ $category->name  }}</a>--}}
                         {{--@endforeach--}}
                     </div>
 
-                    <h2>recently</h2>
-                    <div class="slider">
                         @foreach($video as $vid )
-                            <div class="thumbnail">
-                                <img src="/{{$vid->thumbnails}}" alt="">
-                                <div class="caption">
-                                    <h3>{{$vid->name}}</h3>
-                                    <p>...</p>
-                                    <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
-                                </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <!--/{{$vid->thumbnails}}--> 
+                                    <div class="thumbnail img-thumb-bg" style="background-image: url('<?php $cijfer = rand(0, 1); if($cijfer == 1) { echo "http://lorempixel.com/400/200/sports/"; }else{echo "https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150";} ?>')">
+                                        <div class="overlay"></div>
+                                        <div class="caption">
+                                            <div class="tag">  
+                                                <a href="{{URL::route('video_show', $vid->video_key)}}">
+                                                    <?php $cijfer = rand(0, 1); if($cijfer == 1) { echo "Video"; }else{echo "Cursus";} ?>
+                                                </a>
+                                            </div>
+                                            <div class="title">
+                                                <a href="{{URL::route('video_show', $vid->video_key)}}">{{$vid->name}}</a>
+                                            </div>
+                                            <div class="clearfix">
+                                               <span class="meta-data">By <a href="">AUTEUR NAAM</a> on DATUM</span>
+                                               <span class="meta-data pull-right"><a href=""><i class="fa fa-heart-o"></i> 9</a></span>
+                                            </div>
+                                            <div class="content">
+                                               <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                    quis nostrud exercitation ullamco.
+                                               </p>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         @endforeach
+                        </div>
                     </div>
 
-                    <h2>Best</h2>
-                    <div class="slider">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                    <h5 class="background white">
+                        <span>EEN LABEL</span>
+                    </h5>
                         @foreach($video as $vid )
-                            <div class="thumbnail">
-                                <img src="/{{$vid->thumbnails}}" alt="">
-                                <div class="caption">
-                                    <h3>{{$vid->name}}</h3>
-                                    <p>...</p>
-                                    <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                    <img src="/{{$vid->thumbnails}}" alt="">
+                                    <div class="caption">
+                                        <h3>{{$vid->name}}</h3>
+                                        <p>...</p>
+                                        <p> <a class="btn btn-default" href="{{URL::route('video_show', $vid->video_key)}}">show video</a></p>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
-                    </div>
+
 
                 </div>
             </div>

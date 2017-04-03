@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-
+    profile
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
-            {!! Breadcrumbs::render('profile.edit') !!}
-        </div>
+            <ol class="breadcrumb">
+                {!! Breadcrumbs::render('profile.edit') !!}            
+            </ol>
 
         @include('layouts.menus.__user')
 

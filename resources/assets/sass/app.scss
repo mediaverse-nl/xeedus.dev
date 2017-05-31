@@ -7,59 +7,168 @@ body {
 	width: 100%;
 	height: 100%;
 	font-family: $font-family;
-	background-color: $primary-bg;
+	background-color: #fff;
 }
 
-//Navigation
-header {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	z-index: 999;
-
-	.navigatie {
-		height: 75px $ipt;
-		line-height: 70px;
-		background: #DF9028;
-	}
-
-	.populair {
-		height: 40px;
-		line-height: 30px;
-		background: white;
-		border-bottom: 1px #ECECEC solid;
-	}
+.navbar {
+  border-color: #D1831D;
 }
 
-nav {
-	width: 100;
-	&.navbar{
-		height: 70px $ipt;
-		line-height: 70px;
-		background: #DF9028;
-		border-bottom: 1px #D1831D solid;
-
-		.navbar-brand {
-			padding: 12.5px;
-			height: 45px;
-		}
-
-		.search {
-		    width: 100%;
-		    height: 40px;
-		    background: rgba(0,0,0,0.3);
-		    border: 0;
-		    border-radius: 5px;
-		    padding: 0px 22px 0px;
-		    box-sizing: border-box;
-		    line-height: 44px;
-		    color: white !important;
-		    z-index: 9;
-		    font-size: 12px;
-		    font-weight: 300;
-    	}
-	}
+.navbar-header {
+  background: #DF9028;
+  height: 90px;
+  width: 90px;
+    border-right: 1px #D1831D solid;
 }
+
+.navbar-brand {
+  line-height: 90px;
+  text-align: center;
+  margin-top: 22.5px;
+  margin-left: 9px;
+  padding:0px;
+  height: auto;
+}
+
+.dropdown-toggle {
+  height: 90px;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    line-height: 60px !important;
+    font-weight: bold;
+    color: white !important;
+    text-transform: uppercase;
+}
+
+.dropdown-toggle:hover {
+  background-color: none;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    background-color: transparent;
+    opacity: 0.8;
+}
+
+.navbar {
+  background: #333;
+}
+
+
+.panel-default {
+  border: none;
+  border-color: #DF9028;
+}
+
+.panel-default .panel-heading {
+    color: #333;
+    background-color: #fff;
+    border-color: #DF9028;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    padding-top: 12px;
+    border-bottom: 2px solid #DF9028;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+//Comment
+input, textarea {
+  outline: none;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-size: rem(16);
+  color: grey;
+}
+
+p {
+  line-height: rem(21);
+}
+
+.comments {
+  margin: rem(40) auto 0;
+  max-width: rem(972);
+  padding: 0 rem(20);
+}
+
+.comment-wrap {
+  margin-bottom: rem(20);
+  display: table;
+  width: 100%;
+  min-height: rem(85);
+}
+
+.photo {
+  //background-color: #ff6666;
+  padding-top: rem(10);
+  display: table-cell;
+  width: rem(56);
+  
+  .avatar {
+    //background-color: #0094ff;
+    border-radius: 50%;
+    background-size: contain;
+  }
+}
+
+.comment-block {
+  padding: rem(16);
+  background-color: #fff;
+  display: table-cell;
+  vertical-align: top;
+  border-radius: rem(3);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.08);
+  
+  textarea {
+    width: 100%;
+    resize: none;
+  }
+}
+
+.comment-text {
+  margin-bottom: rem(20);
+}
+
+.bottom-comment {
+  color: #acb4c2;
+  font-size: rem(14);
+}
+
+.comment-date {
+  float: left;
+}
+
+.comment-actions {
+  float: right;
+  
+  li {
+    display: inline;
+    margin: -2px;
+    cursor: pointer;
+    
+    &.complain {
+      padding-right: rem(12);
+      border-right: 1px solid #e1e5eb;
+    }
+    
+    &.reply {
+      padding-left: rem(12);
+      padding-right: rem(2);
+    }
+    
+    &:hover {
+      color: blue;
+      //text-decoration: underline;
+    }
+  }
+}
+
 
 //Footer
 footer {
@@ -111,7 +220,14 @@ a {
 	}
 }
 
+
+
+.navbar-default .navbar-toggle .icon-bar {
+      background-color: #fff;
+    }
+
 .breadcrumb {
+  margin-bottom: 15px;
 
 	.active {
 		font-weight: bold;
@@ -194,7 +310,7 @@ a {
 
 //Template fixes
 .container-fix {
-	margin-top: 25px; //Only use one on a page!
+  margin-top: 30px;
 	margin-bottom: 30px;
 }
 
@@ -209,6 +325,13 @@ a {    color: #808080; //All <a></a> will have other font color
 			width: 45px;
 		}
 	}
+.navbar-header {
+  background: #DF9028;
+  height: 90px;
+  width: 100%;
+    border-right: 1px #D1831D solid;
+}
+
 }
 
 //H1, H2, H3, H4, H5, H6 auto genereren!

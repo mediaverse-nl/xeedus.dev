@@ -23,27 +23,24 @@
     @stack('css')
 </head>
 <body id="app-layout" style="margin-top: 70px;">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{ URL::route('home_page') }}">
+        <img class="logo" src="/sitefiles/logo-white.png" height="45px">
+    </a>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+  </div>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ URL::route('home_page') }}">
-                    <img class="logo" src="/sitefiles/logo-white.png" height="45px">
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
 
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
@@ -63,14 +60,17 @@
 
                     </li>
                 </ul>
-                <ul class="nav navbar-nav">
-                        <form class="typeahead form-group" role="search">
-                            <input type="search" name="q" class="form-control search search-input typeahead" value="Zoek op producten" autocomplete="off">
-                        </form>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+   <!--<div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>-->
+<ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -86,7 +86,7 @@
                         @endif
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="padding-right: 35px !important;">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -99,10 +99,9 @@
                         </li>
                     @endif
                 </ul>
-            </div>
-        </div>
-    </nav>
-
+  </div><!-- /.navbar-collapse -->
+</nav>
+    
     @yield('content')
 
 <footer>
@@ -127,7 +126,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="-label"></label>
+                    <label class="-label">Labeltje</label>
                     <ul class="-list">
                         <li><a href="{{URL::route('author_create')}}">Hier komt een hele</a></li>
                         <li><a href="{{URL::route('page_faq', '')}}">Lange test link waardoor</a></li>
@@ -154,7 +153,7 @@
 
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                    <a href="http://www.mediaverse.nl" class="text-muted pull-right">Mediaverse © 2016 All rights reserved.</a>
+                    <a href="http://www.mediaverse.nl" class="text-muted pull-right">Mediaverse © 2017 All rights reserved.</a>
                 </div>
             </div>
         </div>

@@ -16,8 +16,7 @@ class CreateCreditorderTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->decimal('price', 19, 4);
-            $table->integer('credits');
+            $table->decimal('price', 4, 2);
             $table->string('status');
             $table->string('order_id');
             $table->string('mollie_id');

@@ -49,23 +49,8 @@ Route::get('/find', 'SearchController@find');
 //author profile
 Route::get('/{name}/a-{id}', ['as' => 'author_show', 'uses' => 'AuthorController@show']);
 
-Route::get('/test', ['as' => 'test', function(){
-    return view('test');
-}]);
-
-Route::get('/test/get', ['as' => 'test', function(){
-    return view('test2');
-}]);
 
 Route::get('/x', ['as' => 'test', 'uses' => 'TestController@index']);
-
-Route::get('/make-stream', ['as' => 'test', 'uses' => function(){
-    return view('test1');
-}]);
-
-Route::get('/join-stream', ['as' => 'test', 'uses' => function(){
-    return view('get');
-}]);
 
     //authorized user
 Route::group(['middleware' => ['auth']], function () {

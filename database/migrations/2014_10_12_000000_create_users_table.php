@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->char('postcode', 6);
             $table->string('straatnaam');
             $table->string('huisnummer');
-            $table->integer('credits');
+//            $table->integer('credits');
+            $table->decimal('bank', 6, 2);
             $table->string('status');
             $table->string('role');
             $table->string('geboortedatum');

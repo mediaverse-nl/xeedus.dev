@@ -17,6 +17,8 @@ class CreateOrderTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('video_id')->unsigned();
             $table->foreign('video_id')->references('id')->on('video');
+            $table->enum('ecquired', ['gift', 'bought']);
+            $table->decimal('paid', 4, 2);
             $table->timestamps();
         });
     }

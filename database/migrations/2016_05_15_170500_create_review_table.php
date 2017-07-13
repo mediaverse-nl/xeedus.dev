@@ -18,10 +18,8 @@ class CreateReviewTable extends Migration
             $table->foreign('video_id')->references('id')->on('videos');
             $table->integer('user_id')->unsigned()->unique();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('tekst');
-            $table->decimal('rating_1', 5, 2);
-            $table->decimal('rating_2', 5, 2);
-            $table->decimal('rating_3', 5, 2);
+            $table->string('text');
+            $table->decimal('rating', 5, 2);
             $table->timestamps();
         });
     }
